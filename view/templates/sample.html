@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{{title}}</title>
+
+</head>
+<body>
+<ul>
+    {% for user in users %}
+    <li><a href="{{ user}}">{{ user}}</a></li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
