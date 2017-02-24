@@ -1,4 +1,8 @@
 from PyQt5.Qt import *
+from OpenGL import GL  # Do not auto clean imports !! from OpenGL import GL is needed for linux
+
+# todo 2/23/17  issue seems to be with linux
+# todo 2/23/17  check error with blank screen. ref: https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
 
 qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')
 if not qwebchannel_js.open(QIODevice.ReadOnly):
@@ -12,8 +16,14 @@ def client_script():
     script = QWebEngineScript()
     script.setSourceCode(qwebchannel_js + '''
     new QWebChannel(qt.webChannelTransport, function(channel) {
-        channel.objects.bridge.print('Hello world!');
+        channel.objects.bridge.respond('Hello world!');
     });
+
+    var button = document.getElementById('hello');
+    button.onclick = function(){
+     new QWebChannel(qt.webChannelTransport, function(channel) {
+        channel.objects.bridge.respond('button clicked!!');
+    });}
 ''')
     script.setName('xxx')
     script.setWorldId(QWebEngineScript.MainWorld)
@@ -30,7 +40,7 @@ class WebPage(QWebEnginePage):
             pass
 
     @pyqtSlot(str)
-    def print(self, text):
+    def respond(self, text):
         print('From JS:', text)
 
 
@@ -42,6 +52,8 @@ p.profile().scripts().insert(client_script())
 c = QWebChannel(p)
 p.setWebChannel(c)
 c.registerObject('bridge', p)
-v.setHtml('<p>Hello world!')
+p.setHtml('<button id="hello">Hello world!</button>')
+p.setBackgroundColor(Qt.transparent)
 v.show()
+
 app.exec_()
