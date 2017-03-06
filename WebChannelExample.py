@@ -75,11 +75,14 @@ app = QApplication([])
 p = WebPage()
 v = QWebEngineView()
 v.setPage(p)
+
 p.profile().scripts().insert(client_script())
 c = QWebChannel(p)
 p.setWebChannel(c)
-listener = ThirdPartyListener()
-c.registerObject('bridge', listener)
+# listener = p()
+c.registerObject('bridge', p)
+
+
 p.setHtml('<button id="hello">Hello world!</button>')
 p.setBackgroundColor(Qt.transparent)
 v.show()
