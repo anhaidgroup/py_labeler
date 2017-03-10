@@ -1,4 +1,7 @@
-def getMatchingTuplePairs(dataFrame):
+from utils.Constants import MATCH, NON_MATCH
+
+
+def get_matching_tuple_pairs(data_frame):
     """Gets tuple pairs whose label value is currently "MATCH"
 
     :param
@@ -7,12 +10,12 @@ def getMatchingTuplePairs(dataFrame):
         Data frame with tuple pairs whose label value is currently NON-MATCH
     """
     # todo check if assertion is correct thing to do
-    assert ('label' in dataFrame.columns)
+    assert ('label' in data_frame.columns)
     # todo check data type of label column
-    return (dataFrame[dataFrame.label == '1'])
+    return data_frame[data_frame.label == MATCH]
 
 
-def getNonMatchedTuplePairs(dataFrame):
+def get_non_matched_tuple_pairs(data_frame):
     """Gets tuple pairs whose label value is currently NON-MATCH
 
     :param
@@ -21,6 +24,6 @@ def getNonMatchedTuplePairs(dataFrame):
         Data frame with tuple pairs whose label value is currently NON-MATCH
     """
     # todo check if assertion is correct thing to do
-    assert ('label' in dataFrame.columns)
+    assert ('label' in data_frame.columns)
     # todo check data type of label column
-    return (dataFrame[dataFrame.label == '0'])
+    return data_frame[data_frame.label == NON_MATCH]

@@ -1,0 +1,3 @@
+MATCH = "1"
+NON_MATCH = "0"
+COUNT_PER_PAGE = 20
