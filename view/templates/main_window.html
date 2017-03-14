@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../styles/style.css"/>
+    <script type="text/javascript" src="../js/main_window.js"/>
+    <title>Title</title>
+</head>
+<body>
+<h1>Main window</h1>
+
+<div id="left_pane">
+    <div id="stats"></div>
+    <div id="filter"></div>
+</div>
+
+<div id="right_pane">
+    <div id="tuple_pairs">
+        {% for pair in pairs %}
+        <!--do something with every pair-->
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>

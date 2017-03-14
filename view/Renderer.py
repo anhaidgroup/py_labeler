@@ -11,3 +11,13 @@ def renderSampleTemplate(title, users):
     # get a template from the folder
     template = env.get_template('sample.html')
     return template.render(title="templated page", users=["me", "them", "who"])
+
+
+def render_main_page(tuple_pairs):
+    main_window = env.get_template('main_window.html');
+    return main_window.render(pairs=tuple_pairs)
+
+
+def render_dummy_page():
+    main_window = env.get_template('dummy_page.html');
+    return main_window.render()

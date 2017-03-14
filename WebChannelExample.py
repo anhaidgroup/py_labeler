@@ -66,7 +66,8 @@ class WebPage(QWebEnginePage):
 
     @pyqtSlot(str)
     def respond(self, text):
-        self.setHtml(Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
+        self.setHtml(Renderer.render_main_page(None))
+        # self.setHtml(Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
         print('From JS:', Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
 
 
@@ -81,7 +82,6 @@ c = QWebChannel(p)
 p.setWebChannel(c)
 # listener = p()
 c.registerObject('bridge', p)
-
 
 p.setHtml('<button id="hello">Hello world!</button>')
 p.setBackgroundColor(Qt.transparent)

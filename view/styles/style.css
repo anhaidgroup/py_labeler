@@ -1,0 +1,33 @@
+/*
+        todo 3/10/17 change to relative scale
+     */
+
+#left_pane {
+    display: inline-block;
+    border-style: dashed;
+    width: 30%;
+    height: 850px;
+}
+
+#stats {
+    margin: 10px auto;
+    border-style: dotted;
+    height: 50%;
+    width: 100%;
+}
+
+#filter {
+    margin: 10px auto;
+    border-style: dotted;
+    height: 50%;
+    width: 100%;
+}
+
+#right_pane {
+    display: inline-block;
+    background-color: antiquewhite;
+    border-style: dashed;
+    margin-left: 10px;
+    width: 65%;
+    height: 850px;
+}
