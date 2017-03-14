@@ -2,9 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../styles/style.css"/>
-    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>
+    {#    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>#}
+    <link rel="stylesheet" href="/home/pavan/ds_independent_study/magellan_labeller/view/styles/style.css"/>
     <title>Title</title>
+    <style>
+        /*
+        todo 3/10/17 change to relative scale
+        todo External style sheet
+     */
+
+        #left_pane {
+            float: left;
+            display: inline-block;
+            border-style: dashed;
+            width: 30%;
+            height: 850px;
+        }
+
+        #stats {
+            margin: 10px auto;
+            border-style: dotted;
+            height: 50%;
+            width: 100%;
+        }
+
+        /*todo: label_{label value} check & fix label values*/
+        .label_Yes {
+            background-color: lightgreen;
+        }
+
+        .label_Not-Sure {
+            background-color: yellow;
+        }
+
+        .label_Unlabeled {
+            background-color: lightcoral;
+        }
+
+        #filter {
+            margin: 10px auto;
+            border-style: dotted;
+            height: 50%;
+            width: 100%;
+        }
+
+        #right_pane {
+            clear: left;
+            display: inline-block;
+            background-color: antiquewhite;
+            border-style: dashed;
+            margin-left: 10px;
+            width: 65%;
+            height: 850px;
+        }
+    </style>
 </head>
 <body>
 <h1>Main window</h1>
@@ -35,6 +86,7 @@
         {% endfor %}
 
     </div>
+    <button id="hello"></button>
 </div>
 </body>
 </html>

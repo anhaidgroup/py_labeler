@@ -65,6 +65,7 @@ class MainPage(QWebEnginePage):
 # execution starts here
 application = QApplication([])
 main_page = MainPage()
+main_page.profile().clearHttpCache()
 main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
 view = QWebEngineView()
 main_page.setHtml('<button id="hello">Start Labeling</button>')
