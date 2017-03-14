@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var button = document.getElementById('hello');
+            button.onclick = function () {
+                new QWebChannel(qt.webChannelTransport, function (channel) {
+                    alert("hello world");
+                    channel.objects.pagination_controller.respond('button clicked!!');
+                })
+            }
 
-    <title>{{title}}</title>
+        }
+    </script>
+    <title>{{ title }}</title>
 
 </head>
 <body>
 <ul>
     {% for user in users %}
-    <li><a href="{{ user}}">{{ user}}</a></li>
+        <li><a href="{{ user }}">{{ user }}</a></li>
     {% endfor %}
     <button id="hello">Hello world!</button>
 </ul>

@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QApplication
 
 from controller.FilterController import FilterController
 from controller.StatsController import StatsController
+from controller.PaginationController import PaginationController
 from view import Renderer
 
 from OpenGL import GL
@@ -26,11 +27,11 @@ qwebchannel_js = bytes(qwebchannel_js.readAll()).decode('utf-8')
 def client_script():
     script = QWebEngineScript()
     script.setSourceCode(qwebchannel_js + '''
-    //var button = document.getElementById('hello');
-    //button.onclick = function(){
-    //new QWebChannel(qt.webChannelTransport, function(channel) {
-    // channel.objects.bridge.respond('button clicked!!');
-    //});}
+    var button = document.getElementById('hello');
+    button.onclick = function(){
+    new QWebChannel(qt.webChannelTransport, function(channel) {
+     channel.objects.bridge.respond('button clicked!!');
+    });}
     ''')
     script.setName('qWebChannelJS')
     script.setWorldId(QWebEngineScript.MainWorld)
@@ -52,7 +53,7 @@ class MainPage(QWebEnginePage):
     @pyqtSlot(str)
     def respond(self, text):
         self.setHtml(Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
-        print('From JS:', Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
+        # print('From JS:', Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
 
 
 # execution starts here
@@ -70,9 +71,11 @@ main_page.setWebChannel(channel)
 # add controllers to the channel
 filter_controller = FilterController()
 stats_controller = StatsController()
+pagination_contoller = PaginationController()
 channel.registerObject('bridge', main_page)
 channel.registerObject('filter_controller', filter_controller)
 channel.registerObject('stats_controller', stats_controller)
+channel.registerObject('pagination_controller', pagination_contoller)
 view.show()
 
 application.exec_()
