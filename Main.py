@@ -1,3 +1,5 @@
+import pandas as pd
+from OpenGL import GL
 from PyQt5.QtCore import QFile
 from PyQt5.QtCore import QIODevice
 from PyQt5.QtCore import pyqtSlot
@@ -6,11 +8,9 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage, QWebEngineS
 from PyQt5.QtWidgets import QApplication
 
 from controller.FilterController import FilterController
-from controller.StatsController import StatsController
 from controller.PaginationController import PaginationController
+from controller.StatsController import StatsController
 from view import Renderer
-
-from OpenGL import GL
 
 # do not auto clean imports! from OpenGL import GL is needed on linux
 # ref: https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
@@ -52,7 +52,13 @@ class MainPage(QWebEnginePage):
 
     @pyqtSlot(str)
     def respond(self, text):
-        self.setHtml(Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
+        df = pd.read_csv('./test/sample.csv')
+
+        self.setHtml(
+            Renderer.render_main_page(df)
+        )
+        print(Renderer.render_main_page(df))
+        # Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"], data=df.to_dict()))
         # print('From JS:', Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
 
 

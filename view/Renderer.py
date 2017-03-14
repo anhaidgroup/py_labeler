@@ -7,15 +7,15 @@ env = Environment(
 )
 
 
-def renderSampleTemplate(title, users):
+def renderSampleTemplate(title, users, data):
     # get a template from the folder
     template = env.get_template('sample.html')
-    return template.render(title="templated page", users=["me", "them", "who"])
+    return template.render(title="templated page", users=["me", "them", "who"], data=data)
 
 
 def render_main_page(tuple_pairs):
     main_window = env.get_template('main_window.html');
-    return main_window.render(pairs=tuple_pairs)
+    return main_window.render(data=tuple_pairs.to_dict(orient='records'))
 
 
 def render_dummy_page():

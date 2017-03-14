@@ -16,6 +16,19 @@
     width: 100%;
 }
 
+/*todo: label_{label value} check & fix label values*/
+.label_Yes {
+    background-color: lightgreen;
+}
+
+.label_Not-Sure {
+    background-color: yellow;
+}
+
+.label_Unlabeled {
+    background-color: lightcoral;
+}
+
 #filter {
     margin: 10px auto;
     border-style: dotted;

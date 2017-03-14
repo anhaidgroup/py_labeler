@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../styles/style.css"/>
-    <script type="text/javascript" src="../js/main_window.js"/>
+    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>
     <title>Title</title>
 </head>
 <body>
@@ -14,11 +14,26 @@
     <div id="filter"></div>
 </div>
 
+{# todo: Remove hard coding!!#}
 <div id="right_pane">
     <div id="tuple_pairs">
-        {% for pair in pairs %}
-        <!--do something with every pair-->
+        {% for row in data %}
+            <table class="label_Yes">
+                {#            class={{ "label_"+row['label'] }}#}
+                <tr>
+                    <td>{{ row['ltable.ID'] }}</td>
+                    <td>{{ row['ltable.birth_year'] }}</td>
+                    <td>{{ row['ltable.name'] }}</td>
+                </tr>
+                <tr>
+                    <td>{{ row['rtable.ID'] }}</td>
+                    <td>{{ row['rtable.birth_year'] }}</td>
+                    <td>{{ row['rtable.name'] }}</td>
+                </tr>
+                {#                _id, ltable.ID, rtable.ID, ltable.birth_year, ltable.name, rtable.birth_year,rtable.name,label#}
+            </table>
         {% endfor %}
+
     </div>
 </div>
 </body>
