@@ -4,6 +4,10 @@ from utils.Constants import MATCH, NON_MATCH
 
 
 class FilterController(QObject):
+    def __init__(self, main_page):
+        super(FilterController, self).__init__(None)
+        self.main_page = main_page
+
     @pyqtSlot(str)
     def get_matching_tuple_pairs(data_frame):
         """Gets tuple pairs whose label value is currently "MATCH"

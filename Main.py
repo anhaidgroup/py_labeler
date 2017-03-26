@@ -15,6 +15,10 @@ from view import Renderer
 # do not auto clean imports! from OpenGL import GL is needed on linux
 # ref: https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
 
+# todo 3/26/17 move to constants file?
+# Global data frame so that it is common to the controllers
+df = pd.read_csv('./test/sample.csv')
+
 # todo 3/10/17 move this under view?
 qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')
 if not qwebchannel_js.open(QIODevice.ReadOnly):
@@ -52,12 +56,16 @@ class MainPage(QWebEnginePage):
 
     @pyqtSlot(str)
     def respond(self, text):
-        df = pd.read_csv('./test/sample.csv')
 
         self.setHtml(
-            Renderer.render_main_page(df, stats_controller.count_matched_tuple_pairs(df),
+            Renderer.render_main_page(pagination_contoller.get_page(1),
+                                      pagination_contoller.get_current_page(),
+                                      pagination_contoller.get_per_page_count(),
+                                      pagination_contoller.get_number_of_pages(df),
+                                      stats_controller.count_matched_tuple_pairs(df),
                                       stats_controller.count_non_matched_tuple_pairs(df),
-                                      stats_controller.count_tuple_pairs(df))
+                                      stats_controller.count_tuple_pairs(df)
+                                      )
         )
         # print(Renderer.render_main_page(df))
         # Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"], data=df.to_dict()))
@@ -78,9 +86,13 @@ channel = QWebChannel(main_page)
 main_page.setWebChannel(channel)
 
 # add controllers to the channel
-filter_controller = FilterController()
-stats_controller = StatsController()
-pagination_contoller = PaginationController()
+filter_controller = FilterController(main_page)
+stats_controller = StatsController(main_page)
+pagination_contoller = PaginationController(main_page)
+pagination_contoller.set_data(data_frame=df)
+pagination_contoller.set_per_page_count(7)
+pagination_contoller.set_current_page(1)
+
 channel.registerObject('bridge', main_page)
 channel.registerObject('filter_controller', filter_controller)
 channel.registerObject('stats_controller', stats_controller)

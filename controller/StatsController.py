@@ -5,6 +5,10 @@ from utils.Constants import MATCH, NON_MATCH
 
 # todo should we pass around data frame or set in a context and use the same
 class StatsController(QObject):
+    def __init__(self, main_page):
+        super(StatsController, self).__init__(None)
+        self.main_page = main_page
+
     @pyqtSlot()
     def count_matched_tuple_pairs(self, data_frame):
         """ Returns a count of tuple pairs whose label value is MATCH

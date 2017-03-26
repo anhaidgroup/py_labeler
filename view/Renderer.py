@@ -13,13 +13,20 @@ def renderSampleTemplate(title, users, data):
     return template.render(title="templated page", users=["me", "them", "who"], data=data)
 
 
-def render_main_page(tuple_pairs, matched_count, un_matched_count, total_count):
-    main_window = env.get_template('main_window.html');
-    print(un_matched_count)
-    return main_window.render(data=tuple_pairs.to_dict(orient='records'), matched_count=matched_count,
+def render_main_page(tuple_pairs, currentPage, countPerPage, numberOfPages, matched_count, un_matched_count,
+                     total_count):
+    main_window = env.get_template('main_window.html')
+    return main_window.render(data=tuple_pairs.to_dict(orient='records'), currentPage=currentPage,
+                              countPerPage=countPerPage, numberOfPages=numberOfPages,
+                              matched_count=matched_count,
                               un_matched_count=un_matched_count, total_count=total_count)
 
 
 def render_dummy_page():
     main_window = env.get_template('dummy_page.html');
     return main_window.render()
+
+
+def render_tuple_pairs(tuple_pairs):
+    tuple_template = env.get_template('tuple_pairs.html')
+    return tuple_template.render(data=tuple_pairs.to_dict(orient='records'))

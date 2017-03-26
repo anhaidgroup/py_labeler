@@ -5,3 +5,17 @@ _id,ltable.ID,rtable.ID,ltable.birth_year,ltable.name,rtable.birth_year,rtable.n
 3,a3,b6,1986,William Bridge,1987,Michael Brodie,Not-Sure
 4,a4,b2,1987,Binto George,1986,Bill Bridge,Unlabeled
 5,a5,b5,1984,Alphonse Kemper,1984,Alfons Kemper,Unlabeled
+6,a2,b3,1988,Michael Franklin,1988,Mike Franklin,Yes
+7,a2,b6,1988,Michael Franklin,1987,Michael Brodie,Not-Sure
+8,a3,b2,1986,William Bridge,1986,Bill Bridge,Not-Sure
+9,a3,b6,1986,William Bridge,1987,Michael Brodie,Not-Sure
+10,a4,b2,1987,Binto George,1986,Bill Bridge,Unlabeled
+11,a5,b5,1984,Alphonse Kemper,1984,Alfons Kemper,Unlabeled
+12,a4,b2,1987,Binto George,1986,Bill Bridge,Unlabeled
+13,a5,b5,1984,Alphonse Kemper,1984,Alfons Kemper,Unlabeled
+14,a4,b2,1987,Binto George,1986,Bill Bridge,Unlabeled
+15,a5,b5,1984,Alphonse Kemper,1984,Alfons Kemper,Unlabeled
+16,a4,b2,1987,Binto George,1986,Bill Bridge,Unlabeled
+17,a5,b5,1984,Alphonse Kemper,1984,Alfons Kemper,Unlabeled
+18,a4,b2,1987,Binto George,1986,Bill Bridge,Unlabeled
+19,a5,b5,1984,Alphonse Kemper,1984,Alfons Kemper,Unlabeled

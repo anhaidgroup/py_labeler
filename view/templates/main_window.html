@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    {#    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>#}
-    <link rel="stylesheet" href="/home/pavan/ds_independent_study/magellan_labeller/view/styles/style.css"/>
     <title>Title</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/home/pavan/ds_independent_study/magellan_labeller/view/styles/style.css"/>
     <style>
         /*
         todo 3/10/17 change to relative scale
@@ -93,8 +92,34 @@
             width: 33%;
         }
 
+        #pagination {
+            float: right;
+        }
+
+        .pageNumber {
+            color: blue;
+        }
+
 
     </style>
+
+    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../js/jquery.loadTemplate.min.js"></script>
+    <script type="text/javascript">
+        function changePage(pageNumber) {
+            alert(pageNumber);
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                {# todo 3/26/17 change function name #}
+                channel.objects.pagination_controller.get_page_html(pageNumber);
+            });
+        }
+        var currentPage = {{ currentPage|int }};
+        {# initialize with values from Jinja #}
+        var countPerPage = {{ countPerPage|int }};
+        var numberOfPages = {{ numberOfPages|int }};
+
+    </script>
 </head>
 <body>
 <h1>Main window</h1>
@@ -127,7 +152,7 @@
 
 {# todo: Remove hard coding!!#}
 <div id="right_pane">
-    <div id="tuple_pairs">
+    <div id="tuple_pairs" class="tuple_pairs">
         <h5>Tuple pairs</h5>
         {% for row in data %}
             <table class={{ "label_"+row['label'] }}>
@@ -158,6 +183,11 @@
 
     </div>
     <button id="save_button">Save and Continue</button>
+    <div id="pagination">
+        {% for i in range(numberOfPages) %}
+            <a class="pageNumber" onclick=changePage({{ i }});>{{ i }}</a>
+        {% endfor %}
+    </div>
 </div>
 </body>
 </html>
