@@ -1,3 +1,3 @@
-MATCH = "1"
-NON_MATCH = "0"
+MATCH = "Yes"
+NON_MATCH = "Unlabeled"
 COUNT_PER_PAGE = 20

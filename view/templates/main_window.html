@@ -14,79 +14,150 @@
         #left_pane {
             float: left;
             display: inline-block;
-            border-style: dashed;
-            width: 30%;
+        {#            border-style: solid;#}{#            border-w: 1px;#} width: 30%;
             height: 850px;
         }
 
-        #stats {
+        #stats_pane {
             margin: 10px auto;
-            border-style: dotted;
-            height: 50%;
+        {#            border-style: dotted;#} height: 50%;
             width: 100%;
+            padding-left: 20px;
         }
 
-        /*todo: label_{label value} check & fix label values*/
-        .label_Yes {
-            background-color: lightgreen;
-        }
-
-        .label_Not-Sure {
-            background-color: yellow;
-        }
-
-        .label_Unlabeled {
-            background-color: lightcoral;
-        }
-
-        #filter {
+        #filter_pane {
             margin: 10px auto;
-            border-style: dotted;
-            height: 50%;
+        {#            border-style: dotted;#} height: 50%;
             width: 100%;
+            padding-left: 20px;
         }
 
         #right_pane {
             clear: left;
             display: inline-block;
-            background-color: antiquewhite;
-            border-style: dashed;
-            margin-left: 10px;
+            background: white;
+        {#            border-style: dashed;#} margin-left: 10px;
             width: 65%;
             height: 850px;
         }
+
+        /*todo: label_{label value} check & fix label values*/
+        .label_Yes {
+            background-color: lightgreen;
+            margin-top: 15px;
+            border: dashed;
+            width: 100%;
+            border: 1px solid black;
+
+        }
+
+        .label_Not-Sure {
+            background-color: yellow;
+            margin-top: 15px;
+            border: dashed;
+            width: 100%;
+            border: 1px solid black;
+
+        }
+
+        .label_Unlabeled {
+            background-color: lightcoral;
+            margin-top: 15px;
+            border: dashed;
+            width: 100%;
+            border: 1px solid black;
+        }
+
+        #save_button {
+            margin-top: 15px;
+            float: right;
+        }
+
+        #mark_matched {
+            background: lawngreen;
+        }
+
+        #mark_not_sure {
+            background: yellow;
+        }
+
+        #mark_unmatched {
+            background: orangered;
+        }
+
+        .tuple_row {
+            margin-left: 10px;
+        }
+
+        .button_row td {
+            width: 33%;
+        }
+
+
     </style>
 </head>
 <body>
 <h1>Main window</h1>
 
 <div id="left_pane">
-    <div id="stats"></div>
-    <div id="filter"></div>
+    <div id="stats_pane">
+        <h5> Stats </h5>
+        <p>
+            Matched: {{ matched_count }}
+        </p>
+        <p>
+            Non Matching: {{ unmatched_count }}
+        </p>
+        <p>
+            Total: {{ total_count }}
+        </p>
+    </div>
+    <div id="filter_pane">
+        <h5>Filter tuple pairs</h5>
+        <p>
+            <input type="checkbox" id="show_matched"/>
+            <label>Show matched tuple pairs</label></p>
+        <p>
+            <input type="checkbox" id="show_non_matched"/>
+            <label>Show non-matching tuple pairs</label>
+        </p>
+
+    </div>
 </div>
 
 {# todo: Remove hard coding!!#}
 <div id="right_pane">
     <div id="tuple_pairs">
+        <h5>Tuple pairs</h5>
         {% for row in data %}
-            <table class="label_Yes">
+            <table class={{ "label_"+row['label'] }}>
                 {#            class={{ "label_"+row['label'] }}#}
-                <tr>
+                <tr class="tuple_row">
                     <td>{{ row['ltable.ID'] }}</td>
                     <td>{{ row['ltable.birth_year'] }}</td>
                     <td>{{ row['ltable.name'] }}</td>
                 </tr>
-                <tr>
+                <tr class="tuple_row">
                     <td>{{ row['rtable.ID'] }}</td>
                     <td>{{ row['rtable.birth_year'] }}</td>
                     <td>{{ row['rtable.name'] }}</td>
                 </tr>
-                {#                _id, ltable.ID, rtable.ID, ltable.birth_year, ltable.name, rtable.birth_year,rtable.name,label#}
+                <tr class="button_row">
+                    <td>
+                        <button id="mark_matched">yes</button>
+                    </td>
+                    <td>
+                        <button id="mark_not_sure">not sure</button>
+                    </td>
+                    <td>
+                        <button id="mark_unmatched">no</button>
+                    </td>
+                </tr>
             </table>
         {% endfor %}
 
     </div>
-    <button id="hello"></button>
+    <button id="save_button">Save and Continue</button>
 </div>
 </body>
 </html>

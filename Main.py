@@ -55,9 +55,11 @@ class MainPage(QWebEnginePage):
         df = pd.read_csv('./test/sample.csv')
 
         self.setHtml(
-            Renderer.render_main_page(df)
+            Renderer.render_main_page(df, stats_controller.count_matched_tuple_pairs(df),
+                                      stats_controller.count_non_matched_tuple_pairs(df),
+                                      stats_controller.count_tuple_pairs(df))
         )
-        print(Renderer.render_main_page(df))
+        # print(Renderer.render_main_page(df))
         # Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"], data=df.to_dict()))
         # print('From JS:', Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
 
