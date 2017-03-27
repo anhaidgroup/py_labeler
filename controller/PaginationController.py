@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 from math import ceil
 
-from utils.Constants import MATCH, NON_MATCH
+from utils.Constants import MATCH, NON_MATCH, NOT_SURE
 from view import Renderer
 
 # todo 3/26/17
@@ -64,4 +64,5 @@ class PaginationController(QObject):
                                       ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
                                       self.data_frame[self.data_frame.label == MATCH].shape[0],
                                       self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
+                                      self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
                                       self.data_frame.shape[0]))

@@ -64,6 +64,7 @@ class MainPage(QWebEnginePage):
                                              pagination_contoller.get_number_of_pages(df),
                                              stats_controller.count_matched_tuple_pairs(df),
                                              stats_controller.count_non_matched_tuple_pairs(df),
+                                             stats_controller.count_not_sure_tuple_pairs(df),
                                              stats_controller.count_tuple_pairs(df)
                                              )
         print(html_str)

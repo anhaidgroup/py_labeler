@@ -14,11 +14,12 @@ def renderSampleTemplate(title, users, data):
 
 
 def render_main_page(tuple_pairs, currentPage, countPerPage, numberOfPages, matched_count, un_matched_count,
-                     total_count):
+                     not_sure_count, total_count):
     main_window = env.get_template('main_window.html')
     return main_window.render(data=tuple_pairs.to_dict(orient='records'), currentPage=currentPage,
                               countPerPage=countPerPage, numberOfPages=numberOfPages,
                               matched_count=matched_count,
+                              not_sure_count=not_sure_count,
                               unmatched_count=un_matched_count, total_count=total_count)
 
 

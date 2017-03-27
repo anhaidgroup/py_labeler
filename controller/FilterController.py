@@ -60,4 +60,8 @@ class FilterController(QObject):
             data = self.get_non_sure_tuple_pairs()
 
         self.main_page.setHtml(
-            Renderer.render_main_page(data, 1, COUNT_PER_PAGE, ceil(data.shape[0] / COUNT_PER_PAGE), 0, 0, 0))
+            Renderer.render_main_page(data, 1, COUNT_PER_PAGE, ceil(data.shape[0] / COUNT_PER_PAGE),
+                                      self.data_frame[self.data_frame.label == MATCH].shape[0],
+                                      self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
+                                      self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
+                                      self.data_frame.shape[0]))
