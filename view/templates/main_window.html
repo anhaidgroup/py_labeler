@@ -107,8 +107,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../js/jquery.loadTemplate.min.js"></script>
     <script type="text/javascript">
+        function filterTuples() {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                channel.objects.filter_controller.get_filtered_tuple_pairs(document.querySelector('.filter:checked').value);
+            });
+        }
+
         function changePage(pageNumber) {
-            alert(pageNumber);
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 {# todo 3/26/17 change function name #}
                 channel.objects.pagination_controller.get_page_html(pageNumber);
@@ -138,15 +143,23 @@
         </p>
     </div>
     <div id="filter_pane">
-        <h5>Filter tuple pairs</h5>
-        <p>
-            <input type="checkbox" id="show_matched"/>
-            <label>Show matched tuple pairs</label></p>
-        <p>
-            <input type="checkbox" id="show_non_matched"/>
-            <label>Show non-matching tuple pairs</label>
-        </p>
-
+        <h5>Filter tuple pairs by label</h5>
+        <form action="">
+            <input type="radio" class="filter" name="filter" value="Yes"> Matched<br>
+            <input type="radio" class="filter" name="filter" value="Unlabeled"> Not Matched<br>
+            <input type="radio" class="filter" name="filter" value="Not-Sure"> Not Sure <br>
+            <input type="button" onclick=filterTuples() value="Filter">
+        </form>
+        {#        <form>#}
+        {# todo: remove id field    #}
+        {#            <input type="radio" class="filter-option" id="show_matched" value="matched"/>#}
+        {#            Show matched tuple pairs</br>#}
+        {#            <input type="radio" class="filter-option" id="show_non_matched" value="non-matched"/>#}
+        {#            Show non-matching tuple pairs</br>#}
+        {#            <input type="radio" class="filter-option" id="show_not_sure" value="not-sure"/>#}
+        {#            Show not-sure tuple pairs</br>#}
+        {#            <button onclick=filterTuples()>Filter</button>#}
+        {#        </form>#}
     </div>
 </div>
 

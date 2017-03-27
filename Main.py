@@ -86,7 +86,7 @@ channel = QWebChannel(main_page)
 main_page.setWebChannel(channel)
 
 # add controllers to the channel
-filter_controller = FilterController(main_page)
+filter_controller = FilterController(main_page, data_frame=df)
 stats_controller = StatsController(main_page)
 pagination_contoller = PaginationController(main_page)
 pagination_contoller.set_data(data_frame=df)
