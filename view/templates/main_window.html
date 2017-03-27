@@ -97,6 +97,10 @@
             color: blue;
         }
 
+        .currentPageNumber {
+            color: red;
+        }
+
 
     </style>
 
@@ -196,7 +200,11 @@
     <button id="save_button">Save and Continue</button>
     <div id="pagination">
         {% for i in range(numberOfPages) %}
-            <a class="pageNumber" onclick=changePage({{ i }});>{{ i }}</a>
+            {% if currentPage == i %}
+                <a class="currentPageNumber" onclick=changePage({{ i }});>{{ i }}</a>
+            {% else %}
+                <a class="pageNumber" onclick=changePage({{ i }});>{{ i }}</a>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
