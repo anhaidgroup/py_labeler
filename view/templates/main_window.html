@@ -44,7 +44,6 @@
         .label_Yes {
             background-color: lightgreen;
             margin-top: 15px;
-            border: dashed;
             width: 100%;
             border: 1px solid black;
 
@@ -53,16 +52,14 @@
         .label_Not-Sure {
             background-color: yellow;
             margin-top: 15px;
-            border: dashed;
             width: 100%;
             border: 1px solid black;
 
         }
 
-        .label_Unlabeled {
+        .label_Not-Matched {
             background-color: lightcoral;
             margin-top: 15px;
-            border: dashed;
             width: 100%;
             border: 1px solid black;
         }
@@ -119,6 +116,11 @@
                 channel.objects.pagination_controller.get_page_html(pageNumber);
             });
         }
+
+        function changeLabel(tupleId, newLabel) {
+            {#            alert(tupleId + " " + newLabel);#}
+            document.getElementById(tupleId).className = "label_" + newLabel;
+        }
         var currentPage = {{ currentPage|int }};
         {# initialize with values from Jinja #}
         var countPerPage = {{ countPerPage|int }};
@@ -150,16 +152,6 @@
             <input type="radio" class="filter" name="filter" value="Not-Sure"> Not Sure <br>
             <input type="button" onclick=filterTuples() value="Filter">
         </form>
-        {#        <form>#}
-        {# todo: remove id field    #}
-        {#            <input type="radio" class="filter-option" id="show_matched" value="matched"/>#}
-        {#            Show matched tuple pairs</br>#}
-        {#            <input type="radio" class="filter-option" id="show_non_matched" value="non-matched"/>#}
-        {#            Show non-matching tuple pairs</br>#}
-        {#            <input type="radio" class="filter-option" id="show_not_sure" value="not-sure"/>#}
-        {#            Show not-sure tuple pairs</br>#}
-        {#            <button onclick=filterTuples()>Filter</button>#}
-        {#        </form>#}
     </div>
 </div>
 
@@ -168,9 +160,9 @@
     <div id="tuple_pairs" class="tuple_pairs">
         <h5>Tuple pairs</h5>
         {% for row in data %}
-            <table class={{ "label_"+row['label'] }}>
-                {#            class={{ "label_"+row['label'] }}#}
+            <table class={{ "label_"+row['label'] }} id={{ row['_id'] }}>
                 <tr class="tuple_row">
+                    <td rowspan="2">{{ row['_id'] }}</td>
                     <td>{{ row['ltable.ID'] }}</td>
                     <td>{{ row['ltable.birth_year'] }}</td>
                     <td>{{ row['ltable.name'] }}</td>
@@ -182,13 +174,14 @@
                 </tr>
                 <tr class="button_row">
                     <td>
-                        <button id="mark_matched">yes</button>
+                        <button id="mark_matched" onclick="changeLabel({{ row['_id'] }},'Yes')">Yes</button>
                     </td>
                     <td>
-                        <button id="mark_not_sure">not sure</button>
+                        <button id="mark_not_sure" onclick="changeLabel({{ row['_id'] }}, 'Not-Sure')">Not-Sure</button>
                     </td>
                     <td>
-                        <button id="mark_unmatched">no</button>
+                        <button id="mark_unmatched" onclick="changeLabel({{ row['_id'] }}, 'Not-Matched')">Not-Matched
+                        </button>
                     </td>
                 </tr>
             </table>
