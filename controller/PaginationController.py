@@ -57,6 +57,7 @@ class PaginationController(QObject):
 
     @pyqtSlot(int)
     def get_page_html(self, page_number):
-        data = self.get_page(page_number)
         self.main_page.setHtml(
-            Renderer.render_main_page(data, page_number, COUNT_PER_PAGE, ceil(data.shape[0] / COUNT_PER_PAGE), 0, 0, 0))
+            Renderer.render_main_page(self.get_page(page_number), page_number, COUNT_PER_PAGE,
+                                      ceil(self.data_frame.shape[0] / COUNT_PER_PAGE), 0, 0,
+                                      self.data_frame.shape[0]))

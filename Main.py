@@ -8,6 +8,7 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage, QWebEngineS
 from PyQt5.QtWidgets import QApplication
 
 from controller.FilterController import FilterController
+from controller.LabelUpdateController import LabelUpdateController
 from controller.PaginationController import PaginationController
 from controller.StatsController import StatsController
 from view import Renderer
@@ -57,16 +58,16 @@ class MainPage(QWebEnginePage):
     @pyqtSlot(str)
     def respond(self, text):
 
-        self.setHtml(
-            Renderer.render_main_page(pagination_contoller.get_page(1),
-                                      pagination_contoller.get_current_page(),
-                                      pagination_contoller.get_per_page_count(),
-                                      pagination_contoller.get_number_of_pages(df),
-                                      stats_controller.count_matched_tuple_pairs(df),
-                                      stats_controller.count_non_matched_tuple_pairs(df),
-                                      stats_controller.count_tuple_pairs(df)
-                                      )
-        )
+        html_str = Renderer.render_main_page(pagination_contoller.get_page(1),
+                                             pagination_contoller.get_current_page(),
+                                             pagination_contoller.get_per_page_count(),
+                                             pagination_contoller.get_number_of_pages(df),
+                                             stats_controller.count_matched_tuple_pairs(df),
+                                             stats_controller.count_non_matched_tuple_pairs(df),
+                                             stats_controller.count_tuple_pairs(df)
+                                             )
+        print(html_str)
+        self.setHtml(html_str)
         # print(Renderer.render_main_page(df))
         # Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"], data=df.to_dict()))
         # print('From JS:', Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
@@ -89,6 +90,7 @@ main_page.setWebChannel(channel)
 filter_controller = FilterController(main_page, data_frame=df)
 stats_controller = StatsController(main_page)
 pagination_contoller = PaginationController(main_page)
+label_controller = LabelUpdateController(main_page, df)
 pagination_contoller.set_data(data_frame=df)
 pagination_contoller.set_per_page_count(7)
 pagination_contoller.set_current_page(1)
@@ -97,6 +99,7 @@ channel.registerObject('bridge', main_page)
 channel.registerObject('filter_controller', filter_controller)
 channel.registerObject('stats_controller', stats_controller)
 channel.registerObject('pagination_controller', pagination_contoller)
+channel.registerObject('label_controller', label_controller)
 view.show()
 
 application.exec_()
