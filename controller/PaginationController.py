@@ -1,5 +1,7 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 from math import ceil
+
+from utils.Constants import MATCH, NON_MATCH
 from view import Renderer
 
 # todo 3/26/17
@@ -59,5 +61,7 @@ class PaginationController(QObject):
     def get_page_html(self, page_number):
         self.main_page.setHtml(
             Renderer.render_main_page(self.get_page(page_number), page_number, COUNT_PER_PAGE,
-                                      ceil(self.data_frame.shape[0] / COUNT_PER_PAGE), 0, 0,
+                                      ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
+                                      self.data_frame[self.data_frame.label == MATCH].shape[0],
+                                      self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
                                       self.data_frame.shape[0]))

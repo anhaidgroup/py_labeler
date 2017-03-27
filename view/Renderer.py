@@ -19,7 +19,7 @@ def render_main_page(tuple_pairs, currentPage, countPerPage, numberOfPages, matc
     return main_window.render(data=tuple_pairs.to_dict(orient='records'), currentPage=currentPage,
                               countPerPage=countPerPage, numberOfPages=numberOfPages,
                               matched_count=matched_count,
-                              un_matched_count=un_matched_count, total_count=total_count)
+                              unmatched_count=un_matched_count, total_count=total_count)
 
 
 def render_dummy_page():
