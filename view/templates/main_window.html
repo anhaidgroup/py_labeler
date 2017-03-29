@@ -10,33 +10,46 @@
         todo External style sheet
      */
 
+        body {
+            font-family: sans-serif;
+        }
+
+        h5 {
+            font-family: monospace;
+            font-weight: normal;
+            font-size: large;
+        }
+
         #left_pane {
             float: left;
             display: inline-block;
-        {#            border-style: solid;#}{#            border-w: 1px;#} width: 30%;
-            height: 850px;
+            width: 20%;
+            height: auto;
+            padding-right: 20px;
         }
 
         #stats_pane {
             margin: 10px auto;
-        {#            border-style: dotted;#} height: 50%;
+            height: 50%;
             width: 100%;
             padding-left: 20px;
+            margin-bottom: 30px;
         }
 
         #filter_pane {
-            margin: 10px auto;
-        {#            border-style: dotted;#} height: 50%;
+            /*margin: 10px auto;*/
+            height: 50%;
             width: 100%;
             padding-left: 20px;
+            border-top: 1px solid;
         }
 
         #right_pane {
             clear: left;
             display: inline-block;
             background: white;
-        {#            border-style: dashed;#} margin-left: 10px;
-            width: 65%;
+            margin-left: 10px;
+            width: 75%;
             height: 850px;
         }
 
@@ -45,7 +58,6 @@
             background-color: lightgreen;
             margin-top: 15px;
             width: 100%;
-            border: 1px solid black;
 
         }
 
@@ -53,7 +65,6 @@
             background-color: yellow;
             margin-top: 15px;
             width: 100%;
-            border: 1px solid black;
 
         }
 
@@ -61,12 +72,18 @@
             background-color: lightcoral;
             margin-top: 15px;
             width: 100%;
-            border: 1px solid black;
+        }
+
+        #filter_button {
+            margin-top: 15px;
+            width: 50px;
         }
 
         #save_button {
             margin-top: 15px;
+            clear: both;
             float: right;
+            padding-top: 5px;
         }
 
         #mark_matched {
@@ -83,6 +100,7 @@
 
         .tuple_row {
             margin-left: 10px;
+            border: 1px solid black;
         }
 
         .button_row td {
@@ -91,14 +109,19 @@
 
         #pagination {
             float: right;
+            border: 3px;
+            padding: 5px;
         }
 
         .pageNumber {
             color: blue;
+            font-size: 125%;
         }
 
         .currentPageNumber {
             color: red;
+            text-underline: thick;
+            font-size: 150%;
         }
 
 
@@ -115,6 +138,7 @@
         }
 
         function changePage(pageNumber) {
+            currentPage = pageNumber;
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 {# todo 3/26/17 change function name #}
                 channel.objects.pagination_controller.get_page_html(pageNumber);
@@ -138,31 +162,52 @@
     </script>
 </head>
 <body>
-<h1>Main window</h1>
 
 <div id="left_pane">
     <div id="stats_pane">
-        <h5> Stats </h5>
-        <p>
-            Matched: {{ matched_count }}
-        </p>
-        <p>
-            Non Matching: {{ unmatched_count }}
-        </p>
-        <p>
-            Non Sure: {{ not_sure_count }}
-        </p>
-        <p>
-            Total: {{ total_count }}
-        </p>
+        <h5> Number of tuples </h5>
+        <table border="1">
+            <tr>
+                <td>Matched</td>
+                <td>{{ matched_count }}</td>
+            </tr>
+            <tr>
+                <td>Non Matching:</td>
+                <td>{{ unmatched_count }}</td>
+            </tr>
+            <tr>
+                <td>Non Sure:</td>
+                <td>{{ not_sure_count }}</td>
+            </tr>
+            <tr>
+                <td>Total:</td>
+                <td>{{ total_count }}</td>
+            </tr>
+        </table>
     </div>
     <div id="filter_pane">
         <h5>Filter tuple pairs by label</h5>
         <form action="">
-            <input type="radio" class="filter" name="filter" value="Yes"> Matched<br>
-            <input type="radio" class="filter" name="filter" value="Not-Matched"> Not Matched<br>
-            <input type="radio" class="filter" name="filter" value="Not-Sure"> Not Sure <br>
-            <input type="button" onclick=filterTuples() value="Filter">
+            <table border="2" id="filter_options">
+                <tr>
+                    <td><input type="radio" class="filter" name="filter" value="Yes"></td>
+                    <td>Matched</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" class="filter" name="filter" value="Not-Matched"></td>
+                    <td>Not Matched</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" class="filter" name="filter" value="Not-Sure"></td>
+                    <td>Not Sure</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" class="filter" name="filter" value="All"></td>
+                    <td>Show All</td>
+                </tr>
+            </table>
+            <input type="button" id="filter_button" onclick=filterTuples() value="Filter">
+
         </form>
     </div>
 </div>
@@ -170,7 +215,7 @@
 {# todo: Remove hard coding!!#}
 <div id="right_pane">
     <div id="tuple_pairs" class="tuple_pairs">
-        <h5>Tuple pairs</h5>
+        <h5>{{ display_title }}</h5>
         {% for row in data %}
             <table class={{ "label_"+row['label'] }} id={{ row['_id'] }}>
                 <tr class="tuple_row">
