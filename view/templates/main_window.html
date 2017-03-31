@@ -65,21 +65,21 @@
 
         /*todo: label_{label value} check & fix label values*/
         .label_Yes {
-            background-color: lightgreen;
+            background-color: #66FF00;
             margin-top: 15px;
             width: 100%;
 
         }
 
         .label_Not-Sure {
-            background-color: yellow;
+            background-color: #FCF75E;
             margin-top: 15px;
             width: 100%;
 
         }
 
         .label_Not-Matched {
-            background-color: lightcoral;
+            background-color: #FF6961;
             margin-top: 15px;
             width: 100%;
         }
@@ -169,13 +169,23 @@
             });
         }
 
-        function change_label(tupleId, newLabel) {
+        function change_label(tuple_id, new_label) {
             {#            alert(tupleId + " " + newLabel);#}
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 {# todo 3/26/17 change function name #}
-                document.getElementById(tupleId).className = "label_" + newLabel;
-                channel.objects.label_controller.change_label(tupleId, newLabel);
+                document.getElementById(tuple_id).className = "label_" + new_label;
+                channel.objects.label_controller.change_label(tuple_id, new_label);
             });
+        }
+
+        function view_tuple_pair(tuple_id) {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                {# todo 3/26/17 change function name #}
+                channel.objects.label_controller.show_tuple_pair(tuple_id, function (ret) {
+                    alert(ret);
+                });
+            });
+
         }
 
 
