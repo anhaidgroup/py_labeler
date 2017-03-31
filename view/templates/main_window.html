@@ -20,12 +20,22 @@
             font-size: large;
         }
 
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 3px;
+        }
+
         #left_pane {
             float: left;
             display: inline-block;
             width: 20%;
-            height: auto;
+            height: 100%;
             padding-right: 20px;
+            border-right: 1px solid;
+            position: fixed;
         }
 
         #stats_pane {
@@ -45,7 +55,7 @@
         }
 
         #right_pane {
-            clear: left;
+            float: right;
             display: inline-block;
             background: white;
             margin-left: 10px;
@@ -81,6 +91,10 @@
         #filter_button {
             margin-top: 15px;
             width: 50px;
+        }
+
+        #refresh_stats_button {
+            margin-top: 15px;
         }
 
         #save_button {
@@ -125,6 +139,7 @@
         .page_number {
             color: blue;
             font-size: 125%;
+            cursor: pointer;
         }
 
         .current_page_number {
@@ -140,13 +155,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="../js/jquery.loadTemplate.min.js"></script>
     <script type="text/javascript">
-        function filterTuples() {
+        function filter_tuples() {
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 channel.objects.filter_controller.get_filtered_tuple_pairs(document.querySelector('.filter:checked').value);
             });
         }
 
-        function changePage(pageNumber) {
+        function change_page(pageNumber) {
             currentPage = pageNumber;
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 {# todo 3/26/17 change function name #}
@@ -154,15 +169,16 @@
             });
         }
 
-        function changeLabel(tupleId, newLabel) {
+        function change_label(tupleId, newLabel) {
             {#            alert(tupleId + " " + newLabel);#}
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 {# todo 3/26/17 change function name #}
                 document.getElementById(tupleId).className = "label_" + newLabel;
                 channel.objects.label_controller.change_label(tupleId, newLabel);
             });
-
         }
+
+
         var currentPage = {{ currentPage|int }};
         {# initialize with values from Jinja #}
         var countPerPage = {{ countPerPage|int }};
@@ -174,7 +190,7 @@
 
 <div id="left_pane">
     <div id="stats_pane">
-        <h5> Number of tuples </h5>
+        <h5> Number of tuple pairs </h5>
         <table border="1">
             <tr>
                 <td>Matched</td>
@@ -193,11 +209,13 @@
                 <td>{{ total_count }}</td>
             </tr>
         </table>
+        <input type="button" id="refresh_stats_button" onclick=change_page(currentPage) value="Refresh">
+
     </div>
     <div id="filter_pane">
         <h5>Filter tuple pairs by label</h5>
         <form action="">
-            <table border="2" id="filter_options">
+            <table border="1" id="filter_options">
                 <tr>
                     <td><input type="radio" class="filter" name="filter" value="Yes"></td>
                     <td>Matched</td>
@@ -215,7 +233,7 @@
                     <td>Show All</td>
                 </tr>
             </table>
-            <input type="button" id="filter_button" onclick=filterTuples() value="Filter">
+            <input type="button" id="filter_button" onclick=filter_tuples() value="Filter">
 
         </form>
     </div>
@@ -223,12 +241,21 @@
 
 {# todo: Remove hard coding!!#}
 <div id="right_pane">
+    <div id="pagination">
+        <h7>page:</h7>
+        {% for i in range(numberOfPages) %}
+            {% if currentPage == i %}
+                <a class="current_page_number" onclick=change_page({{ i }});>{{ i }}</a>
+            {% else %}
+                <a class="page_number" onclick=change_page({{ i }});>{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
     <div id="tuple_pairs" class="tuple_pairs">
         <h5>{{ display_title }}</h5>
         {% for row in data %}
-            <table class={{ "label_"+row['label'] }} id={{ row['_id'] }}>
+            <table border="1" class={{ "label_"+row['label'] }} id={{ row['_id'] }}>
                 <tr class="tuple_row">
-                    <td rowspan="2">{{ row['_id'] }}</td>
                     <td>{{ row['ltable.ID'] }}</td>
                     <td>{{ row['ltable.birth_year'] }}</td>
                     <td>{{ row['ltable.name'] }}</td>
@@ -240,25 +267,30 @@
                 </tr>
             </table>
             <div class="button_row">
-                <button id="mark_matched" class="change_button" onclick="changeLabel({{ row['_id'] }},'Yes')">Yes
+                <button id="mark_matched" class="change_button" onclick="change_label({{ row['_id'] }},'Yes')">Yes
                 </button>
-                <button id="mark_not_sure" class="change_button" onclick="changeLabel({{ row['_id'] }}, 'Not-Sure')">
+                <button id="mark_not_sure" class="change_button" onclick="change_label({{ row['_id'] }}, 'Not-Sure')">
                     Not-Sure
                 </button>
-                <button id="mark_unmatched" class="change_button" onclick="changeLabel({{ row['_id'] }},'Not-Matched')">
+                <button id="mark_unmatched" class="change_button"
+                        onclick="change_label({{ row['_id'] }},'Not-Matched')">
                     Not-Matched
                 </button>
+                <button id="view_tuple_pair" class="change_button" onclick="view_tuple_pair({{ row['_id'] }})">
+                    View Tuple Pair
+                </button>
+
             </div>
         {% endfor %}
 
     </div>
-    <button id="save_button">Save and Continue</button>
     <div id="pagination">
+        <h7>page:</h7>
         {% for i in range(numberOfPages) %}
             {% if currentPage == i %}
-                <a class="current_page_number" onclick=changePage({{ i }});>{{ i }}</a>
+                <a class="current_page_number" onclick=change_page({{ i }});>{{ i }}</a>
             {% else %}
-                <a class="page_number" onclick=changePage({{ i }});>{{ i }}</a>
+                <a class="page_number" onclick=change_page({{ i }});>{{ i }}</a>
             {% endif %}
         {% endfor %}
     </div>
