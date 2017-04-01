@@ -1,6 +1,5 @@
-{% for data in row %}
-    {{ headers[0] }}: {{ data['ltable.ID'] }} {{ data['rtable.ID'] }}
-    {{ headers[1] }}: {{ data['ltable.birth_year'] }} {{ data['rtable.birth_year'] }}
-    {{ headers[2] }}: {{ data['rtable.name'] }} {{ data['ltable.name'] }}
+{% for col in headers %}
+    {% for data in row %}
+        {{ col }} : {{ data['ltable.'+col] }} , {{ data['rtable.'+col] }} |
+    {% endfor %}
 {% endfor %}
-

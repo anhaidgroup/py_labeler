@@ -31,4 +31,4 @@ def render_dummy_page():
 def render_tuple_pair(tuple_pair):
     tuple_pair_template = env.get_template('tuple_pair.html');
     # todo 3/31/17 change
-    return tuple_pair_template.render(row=tuple_pair.to_dict(orient='records'), headers=['ID', 'birth year', 'name']);
+    return tuple_pair_template.render(row=tuple_pair.to_dict(orient='records'), headers=['ID', 'birth_year', 'name']);

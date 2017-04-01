@@ -28,6 +28,21 @@
             padding: 3px;
         }
 
+        #popup {
+            visibility: hidden;
+            width: 160px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -80px;
+        }
+
         #left_pane {
             float: left;
             display: inline-block;
@@ -184,6 +199,8 @@
                 channel.objects.label_controller.show_tuple_pair(tuple_id, function (ret) {
                     alert(ret);
                 });
+
+
             });
 
         }
@@ -303,6 +320,10 @@
                 <a class="page_number" onclick=change_page({{ i }});>{{ i }}</a>
             {% endif %}
         {% endfor %}
+    </div>
+
+    <div id="mypopup">
+        my pop up
     </div>
 </div>
 </body>

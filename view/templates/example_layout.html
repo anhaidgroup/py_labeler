@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Bootstrap Example</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+		.tuple-pair-buttons{
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container-fluid">
+		<!-- todo: make this div a separate template -->
+		<div class="row" id="options-row well" data-spy="affix" data-offset-top="197">
+			<div class="col-sm-3 btn-group-vertical	well" id="stats-pane">
+				<button type="button" class="btn btn-success">Show Yes <span class="badge">7</span></button>
+				<button type="button" class="btn btn-danger">Show No <span class="badge">12</span></button>
+				<button type="button" class="btn btn-warning">Show Not-Sure <span class="badge">3</span></button>
+				<button type="button" class="btn btn-default">Show All <span class="badge">1</span></button>
+			</div>
+			<div class="col-sm-3 btn-group-vertical well" id="filter-pane">
+				<button type="button" class="btn btn-success">Show Yes <span class="badge">7</span></button>
+				<button type="button" class="btn btn-danger">Show No <span class="badge">12</span></button>
+				<button type="button" class="btn btn-warning">Show Not-Sure <span class="badge">3</span></button>
+				<button type="button" class="btn btn-default">Show All <span class="badge">1</span></button>
+			</div>
+			<div class="col-sm-3" id="select-display-pane"></div>
+			<div class="col-sm-3" id="misc-options-pane"></div>
+		</div>
+
+
+		<!-- make this div a separate template -->
+		<div class="row" id="content-row">
+			<div class="col-sm-12" id="tuple-pair-pane">
+				<table class="table table-bordered">
+					<tr class="success">
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+					</tr>
+					<tr class="success">
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+						<td>
+							Hello
+						</td>
+					</tr>
+				</table>
+				<div class="tuple-pair-buttons">
+					<button class="btn btn-md btn-success">yes</button>
+					<button class="btn btn-md btn-danger">no</button>
+					<button class="btn btn-sm btn-warning">maybe</button>
+					<!-- todo: check bootstrap modals -->
+					<button class="btn btn-sm btn-default">show tuple pair</button>
+				</div>	
+			</div>
+
+		</body>
+		</html>
