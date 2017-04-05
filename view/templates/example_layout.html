@@ -20,13 +20,22 @@
 			text-align: center;
 			background: rgba(0, 0, 0, 0.2);
 			border-radius: 5px;
-			display: table;
 			/*box-shadow: inset 0 0 10px black, 0 0 10px black;*/
 		}
+
+
 
 		.tuple-pair-buttons{
 			text-align: center;
 		}
+
+
+		#menu-row {
+			display: table;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}			
 
 		#filter-pane {
 			display: table-cell;
@@ -36,13 +45,26 @@
 		#select-display-pane {
 			display: table-cell;
 			float: none;
+			width: 25%;
 		}
+
+		#attribute-options-pane {
+			display: table-cell;
+			float: none;
+			width: 25%;
+		}
+
+		#misc-options-pane {
+			display: table-cell;
+			float: none;
+		}
+
 
 	</style>
 </head>
 <body>
-	<nav class="navbar-fixed-top">
-		<div class="container row" id="menu-row">
+	<nav class="navbar-fixed-top container-fluid">
+		<div class="row" id="menu-row">
 			<div class="col-sm-3 btn-group-vertical menu-section" id="filter-pane">
 				<h7 class="menu-section-header">filter tuples</h7>
 				<button type="button" class="btn btn-success">Show Yes <span class="badge">7</span></button>
@@ -63,7 +85,12 @@
 				<button type="button" class="btn btn-default">Vertical</button>
 				<button type="button" class="btn btn-default">One at a time</button>
 			</div>
-			<div class="col-sm-3" id="misc-options-pane"></div>
+			<div class="col-sm-3 menu-section" id="attribute-options-pane">
+				hello world
+			</div>
+			<div class="col-sm-3 menu-section" id="misc-options-pane">
+				hello world
+			</div>
 		</div>	
 	</nav>
 	<div class="container-fluid">
