@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Example</title>
+	<title>Magellan Labeller</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,20 +19,22 @@
 		.menu-section {
 			text-align: center;
 			background: rgba(0, 0, 0, 0.2);
-			border-radius: 5px;
 			/*box-shadow: inset 0 0 10px black, 0 0 10px black;*/
 		}
-
-
 
 		.tuple-pair-buttons{
 			text-align: center;
 		}
 
+		.progress-bar {
+			background:#41c977;
+			/*todo: change the color so that it's not confused with yes label*/
+		}
 
 		#menu-row {
 			display: table;
 			width: 100%;
+			height: 100%;
 			margin-left: auto;
 			margin-right: auto;
 		}			
@@ -48,7 +50,7 @@
 			width: 25%;
 		}
 
-		#attribute-options-pane {
+		#attribute-display-pane {
 			display: table-cell;
 			float: none;
 			width: 25%;
@@ -59,6 +61,20 @@
 			float: none;
 		}
 
+		#checkbox-div
+		{
+			height: 68%;
+			overflow: hidden;
+			padding-bottom: 40px;
+			overflow-y: auto;
+			text-align: left;
+		}
+
+		#attribute-display-button{
+			float: right;
+			margin-top: 1%;
+			width: 100%;
+		}
 
 	</style>
 </head>
@@ -71,7 +87,7 @@
 				<button type="button" class="btn btn-danger">Show No <span class="badge">12</span></button>
 				<button type="button" class="btn btn-warning">Show Not-Sure <span class="badge">3</span></button>
 				<button type="button" class="btn btn-basic">Show Not Labelled<span class="badge">1</span></button>
-				<button type="button" class="btn btn-default">Show All <span class="badge">1</span></button>
+				<button type="button" class="btn btn-info active">Show All <span class="badge">1</span></button>
 
 				<div class="progress">
 					<div class="progress-bar" role="progressbar" style="width:80%">
@@ -81,12 +97,71 @@
 			</div>
 			<div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
 				<h7 class="menu-section-header">select tuple pair display</h7>
-				<button type="button" class="btn btn-default">Horizontal<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
+				<button type="button" class="btn btn-default active">Horizontal<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
 				<button type="button" class="btn btn-default">Vertical</button>
 				<button type="button" class="btn btn-default">One at a time</button>
 			</div>
-			<div class="col-sm-3 menu-section" id="attribute-options-pane">
-				hello world
+			<div class="col-sm-3 menu-section" id="attribute-display-pane">
+				<h7 class="menu-section-header">select which attributes to show</h7>
+				<div id="checkbox-div">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Show all Attributes
+						</label>
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 1
+						</label>
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 2
+						</label>
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 3
+						</label>
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 4
+						</label>
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 5
+						</label>
+					</div>
+
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 6
+						</label>
+					</div>
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 7
+						</label>
+					</div>
+
+
+					<div class="checkbox">
+						<label>
+							<input type="checkbox"> Attrbiute 8
+						</label>
+					</div>
+				</div>
+
+				<button type="button" class="btn btn-info" id="attribute-display-button">Change Displayed Attributes</button>
 			</div>
 			<div class="col-sm-3 menu-section" id="misc-options-pane">
 				hello world
