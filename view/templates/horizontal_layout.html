@@ -1,719 +1,727 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Magellan Labeller</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Magellan Labeller</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<style type="text/css">
-		
-		body {
-			padding-top: 230px;
-		}
+    <style type="text/css">
 
-		.menu-section {
-			text-align: center;
-			background: #F0F8FF;
-			border-right: 3px solid #F0FFFF;
-			/*box-shadow: inset 0 0 10px black, 0 0 10px black;*/
-		}
+        body {
+            padding-top: 230px;
+        }
 
-		.tuple-pair-buttons-div{
-			text-align: center;
-			margin-bottom: 10px;
-		}
+        .menu-section {
+            text-align: center;
+            background: #F0F8FF;
+            border-right: 3px solid #F0FFFF;
+            /*box-shadow: inset 0 0 10px black, 0 0 10px black;*/
+        }
 
-		.table {
-			margin-bottom: 2px; 
-			/*over-riding bootstrap's margin-bottom*/
-		}
+        .tuple-pair-buttons-div {
+            text-align: center;
+            margin-bottom: 10px;
+        }
 
-		.progress-bar {
-			background:#41c977;
-			/*todo: change the color so that it's not confused with yes label*/
-		}
+        .table {
+            margin-bottom: 2px;
+            /*over-riding bootstrap's margin-bottom*/
+        }
 
-		.pagination{
-			margin: 3px;
-		}
+        .progress-bar {
+            background: #41c977;
+            /*todo: change the color so that it's not confused with yes label*/
+        }
 
-		#menu-row {
-			display: table;
-			width: 100%;
-			height: 100%;
-			margin-left: auto;
-			margin-right: auto;
-		}			
+        .pagination {
+            margin: 3px;
+        }
 
-		#filter-pane {
-			display: table-cell;
-			float: none;
-		}
+        #menu-row {
+            display: table;
+            width: 100%;
+            height: 100%;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-		#select-display-pane {
-			display: table-cell;
-			float: none;
-		}
+        #filter-pane {
+            display: table-cell;
+            float: none;
+        }
 
-		#attribute-display-pane {
-			display: table-cell;
-			float: none;
-		}
+        #select-display-pane {
+            display: table-cell;
+            float: none;
+        }
 
-		#misc-options-pane {
-			display: table-cell;
-			float: none;
-		}
+        #attribute-display-pane {
+            display: table-cell;
+            float: none;
+        }
 
-		#checkbox-div
-		{
-			height: 68%;
-			overflow: hidden;
-			padding-bottom: 40px;
-			overflow-y: auto;
-			text-align: left;
-		}
+        #misc-options-pane {
+            display: table-cell;
+            float: none;
+        }
 
-		#attribute-display-button{
-			float: right;
-			margin-top: 1%;
-			width: 100%;
-		}
+        #checkbox-div {
+            height: 68%;
+            overflow: hidden;
+            padding-bottom: 40px;
+            overflow-y: auto;
+            text-align: left;
+        }
 
-		#pagination-div {
-			background-color: rgba(23, 27, 23, 0.5);
-			color: #f7f7f7;
-			text-align: right;
-			padding-top: 0px;
-			border: 1px solid;
-		}
+        #attribute-display-button {
+            float: right;
+            margin-top: 1%;
+            width: 100%;
+        }
 
-		#options-change-button{
-			float: right;
-			margin-top: 1%;
-			width: 100%;
-		}
+        #pagination-div {
+            background-color: rgba(23, 27, 23, 0.5);
+            color: #f7f7f7;
+            text-align: right;
+            padding-top: 0px;
+            border: 1px solid;
+        }
 
-	</style>
+        #options-change-button {
+            float: right;
+            margin-top: 1%;
+            width: 100%;
+        }
+
+    </style>
 </head>
 <body>
-	<nav class="navbar-fixed-top container-fluid">
-		<div class="row" id="menu-row">
-			
-			<div class="col-sm-3 btn-group-vertical menu-section" id="filter-pane">
-				<h7 class="menu-section-header">filter tuples</h7>
-				<button type="button" class="btn btn-success">Show Yes <span class="badge">7</span></button>
-				<button type="button" class="btn btn-danger">Show No <span class="badge">12</span></button>
-				<button type="button" class="btn btn-warning">Show Not-Sure <span class="badge">3</span></button>
-				<button type="button" class="btn btn-basic">Show Not Labelled<span class="badge">1</span></button>
-				<button type="button" class="btn btn-info active">Show All <span class="badge">1</span></button>
+<nav class="navbar-fixed-top container-fluid">
+    <div class="row" id="menu-row">
 
-				<div class="progress">
-					<div class="progress-bar" role="progressbar" style="width:80%">
-						<!-- todo: Change width to change progress bar appearan -->
-					</div>
-				</div>			
-			</div>
-			
+        <div class="col-sm-3 btn-group-vertical menu-section" id="filter-pane">
+            <h7 class="menu-section-header">filter tuples</h7>
+            <button type="button" class="btn btn-success">Show Yes <span class="badge">{{ match_count|int }}</span>
+            </button>
+            <button type="button" class="btn btn-danger">Show No <span class="badge">{{ not_match_count|int }}</span>
+            </button>
+            <button type="button" class="btn btn-warning">Show Not-Sure <span
+                    class="badge"> {{ not_sure_count|int }}</span>
+            </button>
+            <button type="button" class="btn btn-basic">Show Not Labelled<span
+                    class="badge">{{ unlabeled_count|int }}</span></button>
+            <button type="button" class="btn btn-info active">Show All <span class="badge">{{ total_count }}</span>
+            </button>
 
-			<div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
-				<h7 class="menu-section-header">select tuple pair display</h7>
-				<button type="button" class="btn btn-default active">Horizontal<span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
-				<button type="button" class="btn btn-default">Vertical</button>
-				<button type="button" class="btn btn-default">One at a time</button>
-			</div>
-			
-			<div class="col-sm-3 menu-section" id="attribute-display-pane">
-				<h7 class="menu-section-header">select which attributes to show</h7>
-				<div id="checkbox-div">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Show all Attributes
-						</label>
-					</div>
-
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 1
-						</label>
-					</div>
-
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 2
-						</label>
-					</div>
-
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 3
-						</label>
-					</div>
-
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 4
-						</label>
-					</div>
-
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 5
-						</label>
-					</div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style={{ "width:"+completed_percent+"%" }}>
+                    <!-- todo: Change width to change progress bar appearan -->
+                </div>
+            </div>
+        </div>
 
 
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 6
-						</label>
-					</div>
+        <div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
+            <h7 class="menu-section-header">select tuple pair display</h7>
+            <button type="button" class="btn btn-default active">Horizontal<span class="glyphicon glyphicon-align-left"
+                                                                                 aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default">Vertical</button>
+            <button type="button" class="btn btn-default">One at a time</button>
+        </div>
 
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 7
-						</label>
-					</div>
+        <div class="col-sm-3 menu-section" id="attribute-display-pane">
+            <h7 class="menu-section-header">select which attributes to show</h7>
+            <div id="checkbox-div">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Show all Attributes
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 1
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 2
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 3
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 4
+                    </label>
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 5
+                    </label>
+                </div>
 
 
-					<div class="checkbox">
-						<label>
-							<input type="checkbox"> Attrbiute 8
-						</label>
-					</div>
-				</div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 6
+                    </label>
+                </div>
 
-				<button type="button" class="btn btn-info" id="attribute-display-button">Change Displayed Attributes</button>
-			</div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 7
+                    </label>
+                </div>
 
 
-			<div class="col-sm-3 menu-section" id="misc-options-pane">
-				<h7 class="menu-section-header">Other options</h7><br>
-				
-				<label>Maximum number of tokens to show per attribue</label>
-				<input type="number" name="attribute-token-count" placeholder="50">
-				<br>
-				<button type="button" class="btn btn-info" id="options-change-button">Change Options</button>
-			</div>
-		</div>	
-	</nav>
-	<div class="container-fluid">
-		<!-- todo: make this div a separate template -->
-		<!-- make this div a separate template -->
-		<div class="row" id="content-row">
-			<div class="col-sm-12" id="tuple-pair-pane">
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-				<div class="tuple-pair-div">
-					<table class="table table-bordered">
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-						<tr class="success">
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-							<td>
-								Hello
-							</td>
-						</tr>
-					</table>
-					<div class="tuple-pair-buttons-div">
-						<button class="btn btn-md btn-success">yes</button>
-						<button class="btn btn-md btn-danger">no</button>
-						<button class="btn btn-sm btn-warning">maybe</button>
-						<!-- todo: check bootstrap modals -->
-						<button class="btn btn-sm btn-default">show tuple pair</button>
-					</div>	
-				</div>
-			</div>
-		</div>
-		<div class="navbar-fixed-bottom" id="pagination-div">
-			<ul class="pagination pagination-sm">
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-			</ul>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Attrbiute 8
+                    </label>
+                </div>
+            </div>
 
-			</div>
-		</div>
-	</body>
-	</html>
+            <button type="button" class="btn btn-info" id="attribute-display-button">Change Displayed Attributes
+            </button>
+        </div>
+
+
+        <div class="col-sm-3 menu-section" id="misc-options-pane">
+            <h7 class="menu-section-header">Other options</h7>
+            <br>
+
+            <label>Maximum number of tokens to show per attribue</label>
+            <input type="number" name="attribute-token-count" placeholder="50">
+            <br>
+            <button type="button" class="btn btn-info" id="options-change-button">Change Options</button>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+    <!-- todo: make this div a separate template -->
+    <!-- make this div a separate template -->
+    <div class="row" id="content-row">
+        <div class="col-sm-12" id="tuple-pair-pane">
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+            <div class="tuple-pair-div">
+                <table class="table table-bordered">
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                        <td>
+                            Hello
+                        </td>
+                    </tr>
+                </table>
+                <div class="tuple-pair-buttons-div">
+                    <button class="btn btn-md btn-success">yes</button>
+                    <button class="btn btn-md btn-danger">no</button>
+                    <button class="btn btn-sm btn-warning">maybe</button>
+                    <!-- todo: check bootstrap modals -->
+                    <button class="btn btn-sm btn-default">show tuple pair</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-fixed-bottom" id="pagination-div">
+        <ul class="pagination pagination-sm">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>
