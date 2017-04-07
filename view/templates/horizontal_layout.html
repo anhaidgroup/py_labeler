@@ -128,7 +128,7 @@
             current_page = page_number;
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 {# todo 3/26/17 change function name #}
-                channel.objects.pagination_controller.get_page_html(pageNumber);
+                channel.objects.pagination_controller.get_page_html(page_number);
             });
 
         }

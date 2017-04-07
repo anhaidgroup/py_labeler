@@ -4,9 +4,9 @@ from math import ceil
 from utils.Constants import MATCH, NON_MATCH, NOT_SURE, NOT_LABELED
 from view import Renderer
 
-# todo 3/26/17
-COUNT_PER_PAGE = 10
-CURRENT_PAGE = 1
+# todo 3/26/17 use Constants.py
+COUNT_PER_PAGE = 5
+CURRENT_PAGE = 0
 
 
 class PaginationController(QObject):
@@ -32,7 +32,7 @@ class PaginationController(QObject):
 
     @pyqtSlot()
     def set_current_page(self, current_page):
-        assert current_page > 0
+        assert current_page >= 0
         # todo 3/26/17 this does not work
         CURRENT_PAGE = current_page
 
