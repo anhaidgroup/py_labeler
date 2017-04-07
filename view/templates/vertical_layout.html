@@ -241,7 +241,7 @@
 
             {% for tuple_pair in tuple_pairs %}
                 <div class="tuple-pair-div">
-                    <table class="{{ tuple_pair['label']+' table table-bordered' }}">
+                    <table class="{{ tuple_pair['label']+' table table-bordered' }}" id={{ tuple_pair['_id'] }}>
                         {% for attribute in attributes %}
                             <tr>
                                 <td>
@@ -276,14 +276,15 @@
             {% endfor %}
 
         </div>
-
         <div class="navbar-fixed-bottom" id="pagination-div">
             <ul class="pagination pagination-sm">
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                {% for i in range(number_of_pages) %}
+                    {% if current_page == i %}
+                        <li class="active"><a href="#" onclick="change_page({{ i }})">{{ i }}</a></li>
+                    {% else %}
+                        <li><a href="#" onclick="change_page({{ i }})">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
             </ul>
 
         </div>

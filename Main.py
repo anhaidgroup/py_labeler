@@ -22,6 +22,8 @@ from view import Renderer
 # todo 3/26/17 move to constants file?
 # Global data frame so that it is common to the controllers
 df = pd.read_csv('./test/sample.csv')
+Constants.complete_data = df
+Constants.current_data = df
 
 # todo 3/10/17 move this under view?
 qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')

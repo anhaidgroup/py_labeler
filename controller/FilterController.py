@@ -2,7 +2,7 @@ from math import ceil
 
 from PyQt5.QtCore import QObject, pyqtSlot
 
-from utils.Constants import MATCH, NON_MATCH, NOT_SURE, COUNT_PER_PAGE, ALL, NOT_LABELED
+from utils import Constants
 from view import Renderer
 
 
@@ -23,7 +23,7 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check data type of label column
-        return self.data_frame[self.data_frame.label == MATCH]
+        return self.data_frame[self.data_frame.label == Constants.MATCH]
 
     @pyqtSlot()
     def get_non_matched_tuple_pairs(self):
@@ -35,7 +35,7 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check if assertion is correct thing to do
-        return self.data_frame[self.data_frame.label == NON_MATCH]
+        return self.data_frame[self.data_frame.label == Constants.NON_MATCH]
 
     @pyqtSlot()
     def get_non_sure_tuple_pairs(self):
@@ -47,7 +47,7 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check data type of label column
-        return self.data_frame[self.data_frame.label == NOT_SURE]
+        return self.data_frame[self.data_frame.label == Constants.NOT_SURE]
 
     @pyqtSlot()
     def get_not_labeled_tuple_pairs(self):
@@ -59,30 +59,32 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check data type of label column
-        return self.data_frame[self.data_frame.label == NOT_LABELED]
+        return self.data_frame[self.data_frame.label == Constants.NOT_LABELED]
 
     @pyqtSlot(str)
     def get_filtered_tuple_pairs(self, label):
         data = None
-        if (label == MATCH):
+        if label == Constants.MATCH:
             data = self.get_matching_tuple_pairs()
-        elif (label == NON_MATCH):
+        elif label == Constants.NON_MATCH:
             data = self.get_non_matched_tuple_pairs()
-        elif (label == NOT_SURE):
+        elif label == Constants.NOT_SURE:
             data = self.get_non_sure_tuple_pairs()
-        elif (label == NOT_LABELED):
+        elif label == Constants.NOT_LABELED:
             data = self.get_not_labeled_tuple_pairs()
-        elif (label == ALL):
+        elif label == Constants.ALL:
             data = self.data_frame
 
+        data = data.iloc[0 * Constants.COUNT_PER_PAGE: 0 * Constants.COUNT_PER_PAGE + Constants.COUNT_PER_PAGE]
             # todo 4/7/17 get attributes from data
         self.main_page.setHtml(
             Renderer.render_main_page(tuple_pairs=data, attributes=["ID", "birth_year", "name"], current_page=0,
-                                      count_per_page=COUNT_PER_PAGE, number_of_pages=ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
+                                      count_per_page=Constants.COUNT_PER_PAGE,
+                                      number_of_pages=ceil(self.data_frame.shape[0] / Constants.COUNT_PER_PAGE),
                                       total_count=self.data_frame.shape[0],
-                                      match_count=self.data_frame[self.data_frame.label == MATCH].shape[0],
-                                      not_match_count=self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
-                                      not_sure_count=self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
-                                      unlabeled_count=self.data_frame[self.data_frame.label == NOT_LABELED].shape[0],
+                                      match_count=self.data_frame[self.data_frame.label == Constants.MATCH].shape[0],
+                                      not_match_count=self.data_frame[self.data_frame.label == Constants.NON_MATCH].shape[0],
+                                      not_sure_count=self.data_frame[self.data_frame.label == Constants.NOT_SURE].shape[0],
+                                      unlabeled_count=self.data_frame[self.data_frame.label == Constants.NOT_LABELED].shape[0],
                                       tokens_per_attribute=20)
         )

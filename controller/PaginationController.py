@@ -71,4 +71,8 @@ class PaginationController(QObject):
     @pyqtSlot(str)
     def change_layout(self, layout):
         Constants.CURRENT_TEMPLATE = layout
+        if layout == 'single':
+            Constants.COUNT_PER_PAGE = 1
+        else:
+            Constants.COUNT_PER_PAGE = Constants.HORIZONTAL_COUNT_PER_PAGE
         self.get_page_html(0)
