@@ -1,3 +1,5 @@
+from math import ceil
+
 import pandas as pd
 from OpenGL import GL
 from PyQt5.QtCore import QFile
@@ -11,6 +13,7 @@ from controller.FilterController import FilterController
 from controller.LabelUpdateController import LabelUpdateController
 from controller.PaginationController import PaginationController
 from controller.StatsController import StatsController
+from utils import Constants
 from view import Renderer
 
 # do not auto clean imports! from OpenGL import GL is needed on linux
@@ -58,15 +61,26 @@ class MainPage(QWebEnginePage):
     @pyqtSlot(str)
     def respond(self, text):
 
-        html_str = Renderer.render_main_page(pagination_contoller.get_page(1),
-                                             pagination_contoller.get_current_page(),
-                                             pagination_contoller.get_per_page_count(),
-                                             pagination_contoller.get_number_of_pages(df),
-                                             stats_controller.count_matched_tuple_pairs(df),
-                                             stats_controller.count_non_matched_tuple_pairs(df),
-                                             stats_controller.count_not_sure_tuple_pairs(df),
-                                             stats_controller.count_tuple_pairs(df)
-                                             )
+        html_str = Renderer.render_horizontal_template(pagination_contoller.get_page(1),
+                                                       ["ID", "birth_year", "name"], 1,
+                                                       Constants.COUNT_PER_PAGE, ceil(df.shape[0] / Constants.COUNT_PER_PAGE),
+                                                       total_count=stats_controller.count_tuple_pairs(df),
+                                                       match_count=stats_controller.count_matched_tuple_pairs(df),
+                                                       not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
+                                                       not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
+                                                       unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
+                                                       tokens_per_attribute=20
+                                                       )
+
+        # html_str = Renderer.render_main_page(pagination_contoller.get_page(1),
+        #                                      pagination_contoller.get_current_page(),
+        #                                      pagination_contoller.get_per_page_count(),
+        #                                      pagination_contoller.get_number_of_pages(df),
+        #                                      stats_controller.count_matched_tuple_pairs(df),
+        #                                      stats_controller.count_non_matched_tuple_pairs(df),
+        #                                      stats_controller.count_not_sure_tuple_pairs(df),
+        #                                      stats_controller.count_tuple_pairs(df)
+        #                                      )
         print(html_str)
         self.setHtml(html_str)
         # print(Renderer.render_main_page(df))

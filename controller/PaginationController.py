@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 from math import ceil
 
-from utils.Constants import MATCH, NON_MATCH, NOT_SURE
+from utils.Constants import MATCH, NON_MATCH, NOT_SURE, NOT_LABELED
 from view import Renderer
 
 # todo 3/26/17
@@ -60,9 +60,22 @@ class PaginationController(QObject):
     @pyqtSlot(int)
     def get_page_html(self, page_number):
         self.main_page.setHtml(
-            Renderer.render_main_page(self.get_page(page_number), page_number, COUNT_PER_PAGE,
-                                      ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
-                                      self.data_frame[self.data_frame.label == MATCH].shape[0],
-                                      self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
-                                      self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
-                                      self.data_frame.shape[0]))
+            Renderer.render_horizontal_template(self.get_page(page_number), ["ID", "birth_year", "name"], page_number,
+                                                COUNT_PER_PAGE, ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
+                                                total_count=self.data_frame.shape[0],
+                                                match_count=self.data_frame[self.data_frame.label == MATCH].shape[0],
+                                                not_match_count=self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
+                                                not_sure_count=self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
+                                                unlabeled_count=self.data_frame[self.data_frame.label == NOT_LABELED].shape[0],
+                                                tokens_per_attribute=20)
+        )
+
+        # todo 4/7/17 clean this
+
+        # self.main_page.setHtml(
+        #     Renderer.render_main_page(self.get_page(page_number), page_number, COUNT_PER_PAGE,
+        #                               ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
+        #                               self.data_frame[self.data_frame.label == MATCH].shape[0],
+        #                               self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
+        #                               self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
+        #                               self.data_frame.shape[0]))

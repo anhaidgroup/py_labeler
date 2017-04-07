@@ -7,8 +7,6 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style type="text/css">
 
@@ -116,6 +114,25 @@
         }
 
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>
+
+    <script type="text/javascript">
+
+        var current_page = {{ current_page|int }};
+
+
+        function change_page(page_number) {
+            current_page = page_number;
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                {# todo 3/26/17 change function name #}
+                channel.objects.pagination_controller.get_page_html(pageNumber);
+            });
+
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar-fixed-top container-fluid">
@@ -233,7 +250,9 @@
     <div class="row" id="content-row">
         <div class="col-sm-12" id="tuple-pair-pane">
 
+
             {% for tuple_pair in tuple_pairs %}
+                {# Tuple pair tables #}
                 <div class="tuple-pair-div">
                     <table class="table table-bordered">
                         <tr class="{{ tuple_pair['label'] }}">
