@@ -146,6 +146,12 @@
                 channel.objects.label_controller.change_label(tuple_pair_id, new_label);
             });
         }
+
+        function change_layout(new_layout) {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                channel.objects.pagination_controller.change_layout(new_layout);
+            });
+        }
     </script>
 </head>
 <body>
@@ -179,9 +185,9 @@
 
         <div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
             <h7 class="menu-section-header">select tuple pair display</h7>
-            <button type="button" class="btn btn-default active">Horizontal</button>
-            <button type="button" class="btn btn-default">Vertical</button>
-            <button type="button" class="btn btn-default">One at a time</button>
+            <button type="button" class="btn btn-default active" onclick=change_layout("horizontal")>Horizontal</button>
+            <button type="button" class="btn btn-default" onclick=change_layout("vertical")>Vertical</button>
+            <button type="button" class="btn btn-default" onclick=change_layout("single")>One at a time</button>
         </div>
 
         <div class="col-sm-3 menu-section" id="attribute-display-pane">
@@ -220,7 +226,7 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <!-- todo: make this div a separate template -->
+    <!-- todo: make this div a separate template ? -->
     <!-- make this div a separate template -->
     <div class="row" id="content-row">
         <div class="col-sm-12" id="tuple-pair-pane">

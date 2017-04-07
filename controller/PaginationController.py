@@ -1,12 +1,8 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 from math import ceil
 
-from utils.Constants import MATCH, NON_MATCH, NOT_SURE, NOT_LABELED
+from utils import Constants
 from view import Renderer
-
-# todo 3/26/17 use Constants.py
-COUNT_PER_PAGE = 5
-CURRENT_PAGE = 0
 
 
 class PaginationController(QObject):
@@ -34,12 +30,12 @@ class PaginationController(QObject):
     def set_current_page(self, current_page):
         assert current_page >= 0
         # todo 3/26/17 this does not work
-        CURRENT_PAGE = current_page
+        Constants.CURRENT_PAGE = current_page
 
     @pyqtSlot(int)
     def get_page(self, page_number):
         assert page_number >= 0
-        return self.data_frame.iloc[page_number * COUNT_PER_PAGE: page_number * COUNT_PER_PAGE + COUNT_PER_PAGE]
+        return self.data_frame.iloc[page_number * Constants.COUNT_PER_PAGE: page_number * Constants.COUNT_PER_PAGE + Constants.COUNT_PER_PAGE]
 
     @pyqtSlot(str)
     def respond(self, text):
@@ -47,35 +43,32 @@ class PaginationController(QObject):
 
     @pyqtSlot()
     def get_current_page(self):
-        return CURRENT_PAGE
+        return Constants.CURRENT_PAGE
 
     @pyqtSlot()
     def get_per_page_count(self):
-        return COUNT_PER_PAGE
+        return Constants.COUNT_PER_PAGE
 
     @pyqtSlot()
     def get_number_of_pages(self, data_frame):
-        return ceil(data_frame.shape[0] / COUNT_PER_PAGE)
+        return ceil(data_frame.shape[0] / Constants.COUNT_PER_PAGE)
 
     @pyqtSlot(int)
     def get_page_html(self, page_number):
         self.main_page.setHtml(
-            Renderer.render_horizontal_template(self.get_page(page_number), ["ID", "birth_year", "name"], page_number,
-                                                COUNT_PER_PAGE, ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
-                                                total_count=self.data_frame.shape[0],
-                                                match_count=self.data_frame[self.data_frame.label == MATCH].shape[0],
-                                                not_match_count=self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
-                                                not_sure_count=self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
-                                                unlabeled_count=self.data_frame[self.data_frame.label == NOT_LABELED].shape[0],
-                                                tokens_per_attribute=20)
+            Renderer.render_main_page(self.get_page(page_number), ["ID", "birth_year", "name"], page_number,
+                                      Constants.COUNT_PER_PAGE, ceil(self.data_frame.shape[0] / Constants.COUNT_PER_PAGE),
+                                      total_count=self.data_frame.shape[0],
+                                      match_count=self.data_frame[self.data_frame.label == Constants.MATCH].shape[0],
+                                      not_match_count=self.data_frame[self.data_frame.label == Constants.NON_MATCH].shape[0],
+                                      not_sure_count=self.data_frame[self.data_frame.label == Constants.NOT_SURE].shape[0],
+                                      unlabeled_count=self.data_frame[self.data_frame.label == Constants.NOT_LABELED].shape[0],
+                                      tokens_per_attribute=20)
         )
 
         # todo 4/7/17 clean this
 
-        # self.main_page.setHtml(
-        #     Renderer.render_main_page(self.get_page(page_number), page_number, COUNT_PER_PAGE,
-        #                               ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
-        #                               self.data_frame[self.data_frame.label == MATCH].shape[0],
-        #                               self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
-        #                               self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
-        #                               self.data_frame.shape[0]))
+    @pyqtSlot(str)
+    def change_layout(self, layout):
+        Constants.CURRENT_TEMPLATE = layout
+        self.get_page_html(0)

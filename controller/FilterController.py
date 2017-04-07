@@ -77,19 +77,12 @@ class FilterController(QObject):
 
             # todo 4/7/17 get attributes from data
         self.main_page.setHtml(
-            Renderer.render_horizontal_template(tuple_pairs=data, attributes=["ID", "birth_year", "name"], current_page=0,
-                                                count_per_page=COUNT_PER_PAGE, number_of_pages=ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
-                                                total_count=self.data_frame.shape[0],
-                                                match_count=self.data_frame[self.data_frame.label == MATCH].shape[0],
-                                                not_match_count=self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
-                                                not_sure_count=self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
-                                                unlabeled_count=self.data_frame[self.data_frame.label == NOT_LABELED].shape[0],
-                                                tokens_per_attribute=20)
+            Renderer.render_main_page(tuple_pairs=data, attributes=["ID", "birth_year", "name"], current_page=0,
+                                      count_per_page=COUNT_PER_PAGE, number_of_pages=ceil(self.data_frame.shape[0] / COUNT_PER_PAGE),
+                                      total_count=self.data_frame.shape[0],
+                                      match_count=self.data_frame[self.data_frame.label == MATCH].shape[0],
+                                      not_match_count=self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
+                                      not_sure_count=self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
+                                      unlabeled_count=self.data_frame[self.data_frame.label == NOT_LABELED].shape[0],
+                                      tokens_per_attribute=20)
         )
-
-        # self.main_page.setHtml(
-        #     Renderer.render_main_page(data, 1, COUNT_PER_PAGE, ceil(data.shape[0] / COUNT_PER_PAGE),
-        #                               self.data_frame[self.data_frame.label == MATCH].shape[0],
-        #                               self.data_frame[self.data_frame.label == NON_MATCH].shape[0],
-        #                               self.data_frame[self.data_frame.label == NOT_SURE].shape[0],
-        #                               self.data_frame.shape[0], label + " tuple pairs"))
