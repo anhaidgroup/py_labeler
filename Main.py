@@ -76,7 +76,11 @@ class MainPage(QWebEnginePage):
 
 # execution starts here
 
-ht = Renderer.render_horizontal_template(df, ["ID", "birth_year", "name"], None, None, None, 100, 10, 11, 12, 13,
+# render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,match_count,                          not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=50):
+
+
+
+ht = Renderer.render_horizontal_template(df, ["ID", "birth_year", "name"], 2, None, 5, 100, 10, 11, 12, 13,
                                          tokens_per_attribute=20)
 application = QApplication([])
 main_page = MainPage()
