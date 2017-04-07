@@ -7,11 +7,9 @@ from view import Renderer
 
 
 class FilterController(QObject):
-    def __init__(self, main_page, data_frame):
+    def __init__(self, main_page):
         super(FilterController, self).__init__(None)
         self.main_page = main_page
-        assert ('label' in data_frame.columns)
-        self.data_frame = data_frame
 
     @pyqtSlot(str)
     def get_matching_tuple_pairs(self):
@@ -23,7 +21,7 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check data type of label column
-        return self.data_frame[self.data_frame.label == Constants.MATCH]
+        return Constants.complete_data[Constants.complete_data.label == Constants.MATCH]
 
     @pyqtSlot()
     def get_non_matched_tuple_pairs(self):
@@ -35,7 +33,7 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check if assertion is correct thing to do
-        return self.data_frame[self.data_frame.label == Constants.NON_MATCH]
+        return Constants.complete_data[Constants.complete_data.label == Constants.NON_MATCH]
 
     @pyqtSlot()
     def get_non_sure_tuple_pairs(self):
@@ -47,7 +45,7 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check data type of label column
-        return self.data_frame[self.data_frame.label == Constants.NOT_SURE]
+        return Constants.complete_data[Constants.complete_data.label == Constants.NOT_SURE]
 
     @pyqtSlot()
     def get_not_labeled_tuple_pairs(self):
@@ -59,7 +57,7 @@ class FilterController(QObject):
             Data frame with tuple pairs whose label value is currently NON-MATCH
         """
         # todo check data type of label column
-        return self.data_frame[self.data_frame.label == Constants.NOT_LABELED]
+        return Constants.complete_data[Constants.complete_data.label == Constants.NOT_LABELED]
 
     @pyqtSlot(str)
     def get_filtered_tuple_pairs(self, label):
@@ -73,18 +71,19 @@ class FilterController(QObject):
         elif label == Constants.NOT_LABELED:
             data = self.get_not_labeled_tuple_pairs()
         elif label == Constants.ALL:
-            data = self.data_frame
+            data = Constants.complete_data
 
+        Constants.current_data = data
         data = data.iloc[0 * Constants.COUNT_PER_PAGE: 0 * Constants.COUNT_PER_PAGE + Constants.COUNT_PER_PAGE]
-            # todo 4/7/17 get attributes from data
+        # todo 4/7/17 get attributes from data
         self.main_page.setHtml(
             Renderer.render_main_page(tuple_pairs=data, attributes=["ID", "birth_year", "name"], current_page=0,
                                       count_per_page=Constants.COUNT_PER_PAGE,
-                                      number_of_pages=ceil(self.data_frame.shape[0] / Constants.COUNT_PER_PAGE),
-                                      total_count=self.data_frame.shape[0],
-                                      match_count=self.data_frame[self.data_frame.label == Constants.MATCH].shape[0],
-                                      not_match_count=self.data_frame[self.data_frame.label == Constants.NON_MATCH].shape[0],
-                                      not_sure_count=self.data_frame[self.data_frame.label == Constants.NOT_SURE].shape[0],
-                                      unlabeled_count=self.data_frame[self.data_frame.label == Constants.NOT_LABELED].shape[0],
+                                      number_of_pages=ceil(Constants.current_data.shape[0] / Constants.COUNT_PER_PAGE),
+                                      total_count=Constants.complete_data.shape[0],
+                                      match_count=Constants.complete_data[Constants.complete_data.label == Constants.MATCH].shape[0],
+                                      not_match_count=Constants.complete_data[Constants.complete_data.label == Constants.NON_MATCH].shape[0],
+                                      not_sure_count=Constants.complete_data[Constants.complete_data.label == Constants.NOT_SURE].shape[0],
+                                      unlabeled_count=Constants.complete_data[Constants.complete_data.label == Constants.NOT_LABELED].shape[0],
                                       tokens_per_attribute=20)
         )

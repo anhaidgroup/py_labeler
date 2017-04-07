@@ -63,9 +63,9 @@ class MainPage(QWebEnginePage):
     @pyqtSlot(str)
     def respond(self, text):
 
-        html_str = Renderer.render_main_page(pagination_contoller.get_page(0),
-                                             ["ID", "birth_year", "name"], 0,
-                                             Constants.COUNT_PER_PAGE, ceil(df.shape[0] / Constants.COUNT_PER_PAGE),
+        html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
+                                             attributes=["ID", "birth_year", "name"], current_page=0,
+                                             count_per_page=Constants.COUNT_PER_PAGE, number_of_pages=ceil(df.shape[0] / Constants.COUNT_PER_PAGE),
                                              total_count=stats_controller.count_tuple_pairs(df),
                                              match_count=stats_controller.count_matched_tuple_pairs(df),
                                              not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
@@ -105,13 +105,10 @@ channel = QWebChannel(main_page)
 main_page.setWebChannel(channel)
 
 # add controllers to the channel
-filter_controller = FilterController(main_page, data_frame=df)
+filter_controller = FilterController(main_page)
 stats_controller = StatsController(main_page)
 pagination_contoller = PaginationController(main_page)
 label_controller = LabelUpdateController(main_page, df)
-pagination_contoller.set_data(data_frame=df)
-pagination_contoller.set_per_page_count(5)  # todo 4/7/17 change this to use Constants.py
-pagination_contoller.set_current_page(0)
 
 channel.registerObject('bridge', main_page)
 channel.registerObject('filter_controller', filter_controller)
