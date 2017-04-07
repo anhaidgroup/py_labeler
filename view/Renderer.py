@@ -38,7 +38,7 @@ def render_tuple_pair(tuple_pair):
 
 def render_main_page(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                      match_count,
-                     not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=50):
+                     not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE):
     if Constants.CURRENT_TEMPLATE == "horizontal":
         return render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                                           match_count,
@@ -55,7 +55,7 @@ def render_main_page(tuple_pairs, attributes, current_page, count_per_page, numb
 
 def render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                                match_count,
-                               not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=50):
+                               not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute):
     horizontal_template = env.get_template('horizontal_layout.html')
     return horizontal_template.render(tuple_pairs=tuple_pairs.to_dict(orient='records'), attributes=attributes,
                                       count_per_page=count_per_page, number_of_pages=number_of_pages,
@@ -68,7 +68,7 @@ def render_horizontal_template(tuple_pairs, attributes, current_page, count_per_
 
 def render_vertical_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                              match_count,
-                             not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=50):
+                             not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute):
     horizontal_template = env.get_template('vertical_layout.html')
     return horizontal_template.render(tuple_pairs=tuple_pairs.to_dict(orient='records'), attributes=attributes,
                                       count_per_page=count_per_page, number_of_pages=number_of_pages,
@@ -81,7 +81,7 @@ def render_vertical_template(tuple_pairs, attributes, current_page, count_per_pa
 
 def render_single_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                            match_count,
-                           not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=50):
+                           not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute):
     horizontal_template = env.get_template('single_layout.html')
     # todo 4/7/17 check params
     return horizontal_template.render(tuple_pairs=tuple_pairs.to_dict(orient='records'), attributes=attributes,

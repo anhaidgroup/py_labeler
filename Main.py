@@ -61,16 +61,16 @@ class MainPage(QWebEnginePage):
     @pyqtSlot(str)
     def respond(self, text):
 
-        html_str = Renderer.render_horizontal_template(pagination_contoller.get_page(0),
-                                                       ["ID", "birth_year", "name"], 0,
-                                                       Constants.COUNT_PER_PAGE, ceil(df.shape[0] / Constants.COUNT_PER_PAGE),
-                                                       total_count=stats_controller.count_tuple_pairs(df),
-                                                       match_count=stats_controller.count_matched_tuple_pairs(df),
-                                                       not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
-                                                       not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
-                                                       unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
-                                                       tokens_per_attribute=20
-                                                       )
+        html_str = Renderer.render_main_page(pagination_contoller.get_page(0),
+                                             ["ID", "birth_year", "name"], 0,
+                                             Constants.COUNT_PER_PAGE, ceil(df.shape[0] / Constants.COUNT_PER_PAGE),
+                                             total_count=stats_controller.count_tuple_pairs(df),
+                                             match_count=stats_controller.count_matched_tuple_pairs(df),
+                                             not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
+                                             not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
+                                             unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
+                                             tokens_per_attribute=20
+                                             )
 
         # html_str = Renderer.render_main_page(pagination_contoller.get_page(1),
         #                                      pagination_contoller.get_current_page(),
@@ -90,12 +90,6 @@ class MainPage(QWebEnginePage):
 
 # execution starts here
 
-# render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,match_count,                          not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=50):
-
-
-
-ht = Renderer.render_horizontal_template(df, ["ID", "birth_year", "name"], 2, None, 5, 100, 10, 11, 12, 13,
-                                         tokens_per_attribute=20)
 application = QApplication([])
 main_page = MainPage()
 main_page.profile().clearHttpCache()
