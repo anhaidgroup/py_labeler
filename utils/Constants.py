@@ -14,3 +14,4 @@ TOKENS_PER_ATTRIBUTE = 20
 
 complete_data = None
 current_data = None
+attributes = None

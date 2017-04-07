@@ -77,7 +77,7 @@ class FilterController(QObject):
         data = data.iloc[0 * Constants.COUNT_PER_PAGE: 0 * Constants.COUNT_PER_PAGE + Constants.COUNT_PER_PAGE]
         # todo 4/7/17 get attributes from data
         self.main_page.setHtml(
-            Renderer.render_main_page(tuple_pairs=data, attributes=["ID", "birth_year", "name"], current_page=0,
+            Renderer.render_main_page(tuple_pairs=data, attributes=Constants.attributes, current_page=0,
                                       count_per_page=Constants.COUNT_PER_PAGE,
                                       number_of_pages=ceil(Constants.current_data.shape[0] / Constants.COUNT_PER_PAGE),
                                       total_count=Constants.complete_data.shape[0],

@@ -24,6 +24,7 @@ from view import Renderer
 df = pd.read_csv('./test/sample.csv')
 Constants.complete_data = df
 Constants.current_data = df
+Constants.attributes = ["ID", "birth_year", "name"]
 
 # todo 3/10/17 move this under view?
 qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')
@@ -64,7 +65,7 @@ class MainPage(QWebEnginePage):
     def respond(self, text):
 
         html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
-                                             attributes=["ID", "birth_year", "name"], current_page=0,
+                                             attributes=Constants.attributes, current_page=0,
                                              count_per_page=Constants.COUNT_PER_PAGE, number_of_pages=ceil(df.shape[0] / Constants.COUNT_PER_PAGE),
                                              total_count=stats_controller.count_tuple_pairs(df),
                                              match_count=stats_controller.count_matched_tuple_pairs(df),

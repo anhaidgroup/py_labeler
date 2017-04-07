@@ -158,6 +158,18 @@
                 channel.objects.pagination_controller.change_layout(new_layout);
             });
         }
+
+        function view_tuple_pair(tuple_id) {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                {# todo 3/26/17 change function name #}
+                channel.objects.label_controller.show_tuple_pair(tuple_id, function (ret) {
+                    alert(ret);
+                });
+
+
+            });
+
+        }
     </script>
 </head>
 <body>
