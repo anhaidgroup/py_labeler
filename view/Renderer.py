@@ -34,14 +34,15 @@ def render_tuple_pair(tuple_pair):
     return tuple_pair_template.render(row=tuple_pair.to_dict(orient='records'), headers=['ID', 'birth_year', 'name']);
 
 
-def render_horizontal_template(tuple_pairs, current_page, count_per_page, number_of_pages, total_count, match_count,
+def render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
+                               match_count,
                                not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=50):
     horizontal_template = env.get_template('horizontal_layout.html')
     # todo 4/7/17 count per page
-    return horizontal_template.render(tuple_pairs=None, count_per_page=count_per_page,
-                                      number_of_pages=number_of_pages, current_page=current_page,
-                                      match_count=match_count, not_match_count=not_match_count,
-                                      not_sure_count=not_sure_count, unlabeled_count=unlabeled_count,
-                                      total_count=total_count,
+    return horizontal_template.render(tuple_pairs=tuple_pairs.to_dict(orient='records'), attributes=attributes,
+                                      count_per_page=count_per_page, number_of_pages=number_of_pages,
+                                      current_page=current_page, match_count=match_count,
+                                      not_match_count=not_match_count, not_sure_count=not_sure_count,
+                                      unlabeled_count=unlabeled_count, total_count=total_count,
                                       completed_percent=str(round((total_count - unlabeled_count) * 100 / total_count)),
                                       tokens_per_attribute=tokens_per_attribute)

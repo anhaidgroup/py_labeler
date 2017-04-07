@@ -76,7 +76,8 @@ class MainPage(QWebEnginePage):
 
 # execution starts here
 
-ht = Renderer.render_horizontal_template(None, None, None, None, 100, 10, 11, 12, 13, tokens_per_attribute=50)
+ht = Renderer.render_horizontal_template(df, ["ID", "birth_year", "name"], None, None, None, 100, 10, 11, 12, 13,
+                                         tokens_per_attribute=20)
 application = QApplication([])
 main_page = MainPage()
 main_page.profile().clearHttpCache()

@@ -217,7 +217,69 @@
 		<!-- make this div a separate template -->
 		<div class="row" id="content-row">
 			<div class="col-sm-12" id="tuple-pair-pane">
-				<div class="tuple-pair-div">
+
+{#                {% for tuple_pair in tuple_pairs %}#}
+                {#                <div class="tuple-pair-div">#}
+                {#                    <table class="table table-bordered">#}
+                {#                        {% for attribute in attributes %}#}
+                {#                            <tr class="{{ tuple_pair['label'] }}">#}
+                {#                                <td>#}
+                {#                                    {{ tuple_pair["ltable."+attribute] }}#}
+                {#                                </td>#}
+                {#                                <td>#}
+                {#                                    {{ tuple_pair["rtable."+attribute] }}#}
+                {#                                </td>#}
+                {#                            </tr>#}
+                {#                        {% endfor %}#}
+                {#                    </table>#}
+                {##}
+                {# Change label buttons #}
+                {#                    <div class="tuple-pair-buttons-div">#}
+                {#                        <button class="btn btn-md btn-success"#}
+                {#                                onclick="change_label({{ tuple_pair['_id'] }}, 'Yes')">#}
+                {#                            yes#}
+                {#                        </button>#}
+                {#                        <button class="btn btn-md btn-danger"#}
+                {#                                onclick="change_label({{ tuple_pair['_id'] }}, 'No')">no#}
+                {#                        </button>#}
+                {#                        <button class="btn btn-sm btn-warning"#}
+                {#                                onclick="change_label({{ tuple_pair['_id'] }}, 'Not-Sure')">maybe#}
+                {#                        </button>#}
+                {#                        <!-- todo: check bootstrap modals -->#}
+                {#                        <button class="btn btn-sm btn-default"#}
+                {#                                onclick="view_tuple_pair(tuple_pair['_id'])">show tuple pair#}
+                {#                        </button>#}
+                {#                    </div>#}
+                {#                </div>#}
+                {##}
+                {#            {% endfor %}#}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="tuple-pair-div">
 					<table class="table table-bordered">
 						<tr class="success">
 							<td>
