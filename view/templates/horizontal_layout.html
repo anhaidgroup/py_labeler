@@ -138,6 +138,14 @@
                 channel.objects.filter_controller.get_filtered_tuple_pairs(label);
             });
         }
+
+        function change_label(tuple_pair_id, new_label) {
+            {#            alert(tupleId + " " + newLabel);#}
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                document.getElementById(tuple_pair_id).className = "table table-bordered " + new_label;
+                channel.objects.label_controller.change_label(tuple_pair_id, new_label);
+            });
+        }
     </script>
 </head>
 <body>
@@ -221,15 +229,15 @@
             {% for tuple_pair in tuple_pairs %}
                 {# Tuple pair tables #}
                 <div class="tuple-pair-div">
-                    <table class="table table-bordered">
-                        <tr class="{{ tuple_pair['label'] }}">
+                    <table class="{{ tuple_pair['label'] + ' table table-bordered' }}" id={{ tuple_pair['_id'] }}>
+                        <tr>
                             {% for attribute in attributes %}
                                 <td>
                                     {{ tuple_pair["ltable."+attribute] }}
                                 </td>
                             {% endfor %}
                         </tr>
-                        <tr class="{{ tuple_pair['label'] }}">
+                        <tr>
                             {% for attribute in attributes %}
                                 <td>
                                     {{ tuple_pair["rtable."+attribute] }}
@@ -240,13 +248,14 @@
                     </table>
 
                     {# Change label buttons #}
-                    <div class="tuple-pair-buttons-div">
+                    <div class=" tuple-pair-buttons-div
+                    ">
                         <button class="btn btn-md btn-success"
                                 onclick="change_label({{ tuple_pair['_id'] }}, 'Yes')">
                             yes
                         </button>
                         <button class="btn btn-md btn-danger"
-                                onclick="change_label({{ tuple_pair['_id'] }}, 'No')">no
+                                onclick="change_label({{ tuple_pair['_id'] }}, 'Not-Matched')">no
                         </button>
                         <button class="btn btn-sm btn-warning"
                                 onclick="change_label({{ tuple_pair['_id'] }}, 'Not-Sure')">maybe
