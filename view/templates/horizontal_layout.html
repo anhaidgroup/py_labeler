@@ -162,8 +162,7 @@
 
         <div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
             <h7 class="menu-section-header">select tuple pair display</h7>
-            <button type="button" class="btn btn-default active">Horizontal<span class="glyphicon glyphicon-align-left"
-                                                                                 aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default active">Horizontal</button>
             <button type="button" class="btn btn-default">Vertical</button>
             <button type="button" class="btn btn-default">One at a time</button>
         </div>
@@ -177,55 +176,14 @@
                     </label>
                 </div>
 
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 1
-                    </label>
-                </div>
+                {% for attribute in attributes %}
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> {{ attribute }}
+                        </label>
+                    </div>
+                {% endfor %}
 
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 2
-                    </label>
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 3
-                    </label>
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 4
-                    </label>
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 5
-                    </label>
-                </div>
-
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 6
-                    </label>
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 7
-                    </label>
-                </div>
-
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> Attrbiute 8
-                    </label>
-                </div>
             </div>
 
             <button type="button" class="btn btn-info" id="attribute-display-button">Change Displayed Attributes
