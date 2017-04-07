@@ -132,6 +132,12 @@
             });
 
         }
+
+        function filter_tuples(label) {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                channel.objects.filter_controller.get_filtered_tuple_pairs(label);
+            });
+        }
     </script>
 </head>
 <body>
@@ -140,16 +146,19 @@
 
         <div class="col-sm-3 btn-group-vertical menu-section" id="filter-pane">
             <h7 class="menu-section-header">filter tuples</h7>
-            <button type="button" class="btn btn-success">Show Yes <span class="badge">{{ match_count|int }}</span>
+            <button type="button" class="btn btn-success" onclick=filter_tuples('Yes')>Show Yes <span
+                    class="badge">{{ match_count|int }}</span>
             </button>
-            <button type="button" class="btn btn-danger">Show No <span class="badge">{{ not_match_count|int }}</span>
+            <button type="button" class="btn btn-danger" onclick=filter_tuples('Not-Matched')>Show No <span
+                    class="badge">{{ not_match_count|int }}</span>
             </button>
-            <button type="button" class="btn btn-warning">Show Not-Sure <span
+            <button type="button" class="btn btn-warning" onclick=filter_tuples('Not-Sure')>Show Not-Sure <span
                     class="badge"> {{ not_sure_count|int }}</span>
             </button>
-            <button type="button" class="btn btn-basic">Show Not Labelled<span
+            <button type="button" class="btn btn-basic" onclick=filter_tuples('Not-Labeled')>Show Not Labelled<span
                     class="badge">{{ unlabeled_count|int }}</span></button>
-            <button type="button" class="btn btn-info active">Show All <span class="badge">{{ total_count }}</span>
+            <button type="button" class="btn btn-info active" onclick=filter_tuples('All')>Show All <span
+                    class="badge">{{ total_count }}</span>
             </button>
 
             <div class="progress">
