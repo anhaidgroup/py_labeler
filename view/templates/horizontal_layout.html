@@ -260,6 +260,13 @@
                         <tr>
                             {% for attribute in attributes %}
                                 <td>
+                                    <strong>{{ attribute }}</strong>
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            {% for attribute in attributes %}
+                                <td>
                                     {{ tuple_pair["ltable."+attribute] }}
                                 </td>
                             {% endfor %}
