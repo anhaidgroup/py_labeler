@@ -25,7 +25,7 @@ class MyPopup(QWidget):
 
 
 class LabelUpdateController(QObject):
-    data_frame = None
+    data_frame = None  # todo 4/14/17 remove this
 
     def __init__(self, main_page, data_frame):
         super(LabelUpdateController, self).__init__(None)

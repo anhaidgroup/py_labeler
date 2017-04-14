@@ -72,3 +72,8 @@ class PaginationController(QObject):
         else:
             Constants.COUNT_PER_PAGE = Constants.HORIZONTAL_COUNT_PER_PAGE
         self.get_page_html(0)
+
+    @pyqtSlot(str)
+    def save_data(self, save_file_name):
+        Constants.complete_data.to_csv(Constants.SAVEPATH + save_file_name)
+        Constants.SAVE_FILE_NAME = save_file_name

@@ -16,15 +16,19 @@ from controller.StatsController import StatsController
 from utils import Constants
 from view import Renderer
 
+
 # do not auto clean imports! from OpenGL import GL is needed on linux
 # ref: https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
 
 # todo 3/26/17 move to constants file?
 # Global data frame so that it is common to the controllers
-df = pd.read_csv('./test/sample.csv')
-Constants.complete_data = df
-Constants.current_data = df
-Constants.attributes = ["ID", "birth_year", "name"]
+def initialize_data():
+    df = pd.read_csv('./test/sample.csv')
+    Constants.complete_data = df
+    Constants.current_data = df
+    Constants.attributes = ["ID", "birth_year", "name"]
+    return df
+
 
 # todo 3/10/17 move this under view?
 qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')
@@ -74,16 +78,6 @@ class MainPage(QWebEnginePage):
                                              unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
                                              tokens_per_attribute=20
                                              )
-
-        # html_str = Renderer.render_main_page(pagination_contoller.get_page(1),
-        #                                      pagination_contoller.get_current_page(),
-        #                                      pagination_contoller.get_per_page_count(),
-        #                                      pagination_contoller.get_number_of_pages(df),
-        #                                      stats_controller.count_matched_tuple_pairs(df),
-        #                                      stats_controller.count_non_matched_tuple_pairs(df),
-        #                                      stats_controller.count_not_sure_tuple_pairs(df),
-        #                                      stats_controller.count_tuple_pairs(df)
-        #                                      )
         print(html_str)
         self.setHtml(html_str)
         # print(Renderer.render_main_page(df))
@@ -92,7 +86,7 @@ class MainPage(QWebEnginePage):
 
 
 # execution starts here
-
+df = initialize_data()
 application = QApplication([])
 main_page = MainPage()
 main_page.profile().clearHttpCache()

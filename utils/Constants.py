@@ -12,6 +12,10 @@ CURRENT_PAGE = 0
 CURRENT_TEMPLATE = 'horizontal'
 TOKENS_PER_ATTRIBUTE = 20
 
+DEFAULT_SAVE_FILE_NAME = "default_save_file"
+SAVE_FILE_NAME = DEFAULT_SAVE_FILE_NAME
+SAVEPATH = "saves/"
+
 complete_data = None
 current_data = None
 attributes = None

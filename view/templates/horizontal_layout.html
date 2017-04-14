@@ -108,6 +108,10 @@
             width: 100%;
         }
 
+        #save-button {
+            float: left;
+        }
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -166,6 +170,22 @@
                 }
                 channel.objects.filter_controller.filter_attribute(checkboxesChecked);
             });
+
+        }
+
+        function save_data(save_file_name) {
+            if (save_file_name == null || save_file_name == "default_save_file") {
+                {# todo: better way to do default file name#}
+                var save_file_name = prompt("Please enter your name", save_file_name);
+                if (save_file_name == null)
+                    alert("Save file name can't be empty");
+            }
+            if (save_file_name != null) {
+                alert(save_file_name);
+                new QWebChannel(qt.webChannelTransport, function (channel) {
+                    channel.objects.pagination_controller.save_data(save_file_name);
+                });
+            }
 
         }
     </script>
@@ -231,8 +251,13 @@
 
             <label>Maximum number of tokens to show per attribue</label>
             <input type="number" name="attribute-token-count" placeholder={{ tokens_per_attribute }}>
-            <br>
-            <button type="button" class="btn btn-info" id="options-change-button">Change Options</button>
+            <button type="button" class="btn btn-sm btn-info" id="options-change-button">Change Number of Tokens</button>
+            <br><br>
+            {# todo: remove br and add padding #}
+            <button type="button" class="btn btn-md btn-info" id="save-button" onclick=save_data('{{ save_file_name }}')>
+                Save to file <br><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+            </button>
+
         </div>
     </div>
 </nav>
