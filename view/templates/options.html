@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Options</title>
+
+    <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>
+
+    <script type="text/javascript">
+        function submit_options() {
+            var comments_col = document.getElementById("comments_col").value;
+            var tags_col = document.getElementById("tags_col").value;
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                channel.objects.bridge.respond(comments_col, tags_col);
+            });
+
+        }
+    </script>
+</head>
+<body>
+<h6> The labeller will add a comments and a tags column to your data frame </h6>
+<form>
+    Comments column name:<br>
+    <input type="text" name="comments_col" id="comments_col"><br>
+    Tags column name:<br>
+    <input type="text" name="tags_col" id="tags_col"><br>
+    <button type="button" class="btn btn-info" id="attribute-display-button" onclick=submit_options()>Start Labelling
+
+</form>
+</body>
+</html>

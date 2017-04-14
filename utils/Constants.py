@@ -18,6 +18,7 @@ SAVEPATH = "saves/"
 
 COMMENTS_COLUMN = "comments"
 TAGS_COLUMN = ""
+LABEL_COLUMN = "label"
 
 complete_data = None
 current_data = None

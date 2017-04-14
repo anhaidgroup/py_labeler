@@ -16,6 +16,10 @@
             table-layout: fixed;
         }
 
+        td {
+            overflow: hidden;
+        }
+
         .menu-section {
             text-align: center;
             background: #F0F8FF;
@@ -305,13 +309,13 @@
                     {% endfor %}
                     <tr>
                         <td><strong>Comments</strong></td>
-                        <td>
+                        <td colspan="2">
                             <em id="{{ 'comments_'+tuple_pair['_id']|string }}">{{ tuple_pair[comments_col] }}</em>
                         </td>
                     </tr>
                     <tr>
                         <td><strong>Tags</strong></td>
-                        <td>
+                        <td colspan="2">
                             <em id="{{ 'tags_'+tuple_pair['_id']|string }}">{{ tuple_pair[tags_col] }}</em>
                         </td>
                     </tr>
@@ -332,7 +336,7 @@
                             onclick="edit_comments({{ tuple_pair['_id'] }}, '{{ tuple_pair[comments_col] }}')">edit comments
                     </button>
                     <button class="btn btn-sm btn-default"
-                            onclick="edit_tags({{ tuple_pair['_id'] }}, '{{ tuple_pair[tags_col] }}')">edit tags
+                            onclick="edit_tags({{ tuple_pair['_id   '] }}, '{{ tuple_pair[tags_col] }}')">edit tags
                     </button>
                     <!-- todo: check bootstrap modals -->
                     <button class="btn btn-sm btn-default"
@@ -344,7 +348,8 @@
         </div>
         <div class="navbar-fixed-bottom" id="pagination-div">
             <ul class="pagination pagination-sm">
-                {% for i in range(number_of_pages) %}
+                {% for i in range(current_page-3, current_page+3) %}
+
                     {% if current_page == i %}
                         <li class="active"><a href="#" onclick="change_page({{ i }})">{{ i }}</a></li>
                     {% else %}

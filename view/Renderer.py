@@ -15,6 +15,11 @@ def renderSampleTemplate(title, users, data):
     return template.render(title="templated page", users=["me", "them", "who"], data=data)
 
 
+def render_options_page():
+    options_page = env.get_template('options.html')
+    return options_page.render();
+
+
 # def render_main_page(tuple_pairs, currentPage, countPerPage, numberOfPages, matched_count, un_matched_count,
 #                      not_sure_count, total_count, display_title="Tuple Pairs"):
 #     main_window = env.get_template('main_window.html')

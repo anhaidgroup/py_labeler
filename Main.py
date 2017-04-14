@@ -22,16 +22,23 @@ from view import Renderer
 
 # todo 3/26/17 move to constants file?
 # Global data frame so that it is common to the controllers
-def initialize_data():
-    df = pd.read_csv('./test/sample.csv')
+def initialize_data(comments_col, tags_col):
+    df = pd.read_csv('./test/drug_sample.csv', index_col=0)
+    df = df.drop_duplicates(subset='_id', keep='last')
+    df = df.set_index(['_id'], verify_integrity=True, drop=False)
+
+    Constants.COMMENTS_COLUMN = comments_col
+    Constants.TAGS_COLUMN = tags_col
 
     # todo 4/14/17 check if these columns exist already
     df[Constants.COMMENTS_COLUMN] = ""
     df[Constants.TAGS_COLUMN] = ""
+    df[Constants.LABEL_COLUMN] = "Not-Labeled"
 
     Constants.complete_data = df
     Constants.current_data = df
-    Constants.attributes = ["ID", "birth_year", "name"]
+
+    Constants.attributes = ["id", "ProductNo", "Form", "Dosage", "TECode", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"]
     return df
 
 
@@ -70,8 +77,9 @@ class MainPage(QWebEnginePage):
         except OSError:
             pass
 
-    @pyqtSlot(str)
-    def respond(self, text):
+    @pyqtSlot(str, str)
+    def respond(self, comments_col, tags_col):
+        df = initialize_data(comments_col, tags_col)
 
         html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
                                              attributes=Constants.attributes, current_page=0,
@@ -91,13 +99,12 @@ class MainPage(QWebEnginePage):
 
 
 # execution starts here
-df = initialize_data()
 application = QApplication([])
 main_page = MainPage()
 main_page.profile().clearHttpCache()
 main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
 view = QWebEngineView()
-main_page.setHtml('<button id="hello">Start Labeling</button>')
+main_page.setHtml(Renderer.render_options_page())
 view.setPage(main_page)
 
 # create channel of communication between HTML & Py
