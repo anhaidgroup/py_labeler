@@ -47,7 +47,7 @@ def render_main_page(tuple_pairs, attributes, current_page, count_per_page, numb
     elif Constants.CURRENT_TEMPLATE == "vertical":
         return render_vertical_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                                         match_count,
-                                        not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute.save_file_name)
+                                        not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
     elif Constants.CURRENT_TEMPLATE == "single":
         return render_single_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                                       match_count,
