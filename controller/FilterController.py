@@ -1,6 +1,6 @@
 from math import ceil
 
-from PyQt5.QtCore import QObject, pyqtSlot
+from PyQt5.QtCore import QObject, pyqtSlot, QJsonValue
 
 from utils import Constants
 from view import Renderer
@@ -87,3 +87,7 @@ class FilterController(QObject):
                                       unlabeled_count=Constants.complete_data[Constants.complete_data.label == Constants.NOT_LABELED].shape[0],
                                       tokens_per_attribute=20)
         )
+
+    @pyqtSlot(str)
+    def filter_attribute(self, attributes):
+        print(attributes)
