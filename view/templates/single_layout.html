@@ -152,6 +152,26 @@
             });
         }
 
+        function edit_comments(tuple_pair_id, comments) {
+            var comments = prompt("Edit comments", comments);
+            if (comments == null) comments = "";
+            var element = document.getElementById("comments_" + tuple_pair_id);
+            element.innerHTML = comments;
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                channel.objects.label_controller.edit_comments(tuple_pair_id, comments);
+            });
+        }
+
+        function edit_tags(tuple_pair_id, tags) {
+            var tags = prompt("Enter comma separated tags", tags);
+            if (tags == null) tags = "";
+            var element = document.getElementById("tags_" + tuple_pair_id);
+            element.innerHTML = tags;
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                channel.objects.label_controller.edit_tags(tuple_pair_id, tags);
+            });
+        }
+
         function change_layout(new_layout) {
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 channel.objects.pagination_controller.change_layout(new_layout);
@@ -279,6 +299,18 @@
                             </td>
                         </tr>
                     {% endfor %}
+                    <tr>
+                        <td><strong>Comments</strong></td>
+                        <td>
+                            <em id="{{ 'comments_'+tuple_pair['_id']|string }}">{{ tuple_pair[comments_col] }}</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tags</strong></td>
+                        <td>
+                            <em id="{{ 'tags_'+tuple_pair['_id']|string }}">{{ tuple_pair[tags_col] }}</em>
+                        </td>
+                    </tr>
                 </table>
 
                 <div class="tuple-pair-buttons-div">
@@ -292,9 +324,15 @@
                     <button class="btn btn-sm btn-warning"
                             onclick="change_label({{ tuple_pair['_id'] }}, 'Not-Sure')">maybe
                     </button>
+                    <button class="btn btn-sm btn-default"
+                            onclick="edit_comments({{ tuple_pair['_id'] }}, '{{ tuple_pair[comments_col] }}')">edit comments
+                    </button>
+                    <button class="btn btn-sm btn-default"
+                            onclick="edit_tags({{ tuple_pair['_id'] }}, '{{ tuple_pair[tags_col] }}')">edit tags
+                    </button>
                     <!-- todo: check bootstrap modals -->
                     <button class="btn btn-sm btn-default"
-                            onclick="view_tuple_pair(tuple_pair['_id'])">show tuple pair
+                            onclick="view_tuple_pair({{ tuple_pair['_id'] }})">show tuple pair
                     </button>
                 </div>
             {% endfor %}

@@ -37,9 +37,9 @@ def render_tuple_pair(tuple_pair):
 
 
 def render_main_page(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
-                     match_count,
-                     not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE,
+                     match_count, not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE,
                      save_file_name=Constants.DEFAULT_SAVE_FILE_NAME):
+    # todo 4/14/17 check which attributes can be used from constants
     if Constants.CURRENT_TEMPLATE == "horizontal":
         return render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                                           match_count,
@@ -64,7 +64,8 @@ def render_horizontal_template(tuple_pairs, attributes, current_page, count_per_
                                       not_match_count=not_match_count, not_sure_count=not_sure_count,
                                       unlabeled_count=unlabeled_count, total_count=total_count,
                                       completed_percent=str(round((total_count - unlabeled_count) * 100 / total_count)),
-                                      tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name)
+                                      tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name,
+                                      comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)
 
 
 def render_vertical_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
@@ -77,7 +78,8 @@ def render_vertical_template(tuple_pairs, attributes, current_page, count_per_pa
                                       not_match_count=not_match_count, not_sure_count=not_sure_count,
                                       unlabeled_count=unlabeled_count, total_count=total_count,
                                       completed_percent=str(round((total_count - unlabeled_count) * 100 / total_count)),
-                                      tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name)
+                                      tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name,
+                                      comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)
 
 
 def render_single_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
@@ -91,4 +93,5 @@ def render_single_template(tuple_pairs, attributes, current_page, count_per_page
                                       not_match_count=not_match_count, not_sure_count=not_sure_count,
                                       unlabeled_count=unlabeled_count, total_count=total_count,
                                       completed_percent=str(round((total_count - unlabeled_count) * 100 / total_count)),
-                                      tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name)
+                                      tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name,
+                                      comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)

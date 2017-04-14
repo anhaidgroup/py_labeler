@@ -16,6 +16,9 @@ DEFAULT_SAVE_FILE_NAME = "default_save_file"
 SAVE_FILE_NAME = DEFAULT_SAVE_FILE_NAME
 SAVEPATH = "saves/"
 
+COMMENTS_COLUMN = "comments"
+TAGS_COLUMN = ""
+
 complete_data = None
 current_data = None
 attributes = None

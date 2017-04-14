@@ -24,6 +24,11 @@ from view import Renderer
 # Global data frame so that it is common to the controllers
 def initialize_data():
     df = pd.read_csv('./test/sample.csv')
+
+    # todo 4/14/17 check if these columns exist already
+    df[Constants.COMMENTS_COLUMN] = ""
+    df[Constants.TAGS_COLUMN] = ""
+
     Constants.complete_data = df
     Constants.current_data = df
     Constants.attributes = ["ID", "birth_year", "name"]
@@ -103,7 +108,7 @@ main_page.setWebChannel(channel)
 filter_controller = FilterController(main_page)
 stats_controller = StatsController(main_page)
 pagination_contoller = PaginationController(main_page)
-label_controller = LabelUpdateController(main_page, df)
+label_controller = LabelUpdateController(main_page)
 
 channel.registerObject('bridge', main_page)
 channel.registerObject('filter_controller', filter_controller)
