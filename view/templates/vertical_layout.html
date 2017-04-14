@@ -56,11 +56,6 @@
             background-color: #f2dede;
         }
 
-        .progress-bar {
-            background: #41c977;
-            /*todo: change the color so that it's not confused with yes label*/
-        }
-
         #menu-row {
             display: table;
             width: 100%;
@@ -187,17 +182,12 @@
             <button type="button" class="btn btn-warning" onclick=filter_tuples('Not-Sure')>Show Not-Sure <span
                     class="badge"> {{ not_sure_count|int }}</span>
             </button>
-            <button type="button" class="btn btn-basic" onclick=filter_tuples('Not-Labeled')>Show Not Labelled<span
+            <button type="button" class="btn btn-basic" onclick=filter_tuples('Not-Labeled')>Show Not Labelled <span
                     class="badge">{{ unlabeled_count|int }}</span></button>
             <button type="button" class="btn btn-info active" onclick=filter_tuples('All')>Show All <span
                     class="badge">{{ total_count }}</span>
             </button>
 
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" style={{ "width:"+completed_percent+"%" }}>
-                    <!-- todo: Change width to change progress bar appearan -->
-                </div>
-            </div>
         </div>
 
         <div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
