@@ -59,7 +59,7 @@ class PaginationController(QObject):
                                       not_match_count=Constants.current_data[Constants.current_data.label == Constants.NON_MATCH].shape[0],
                                       not_sure_count=Constants.current_data[Constants.current_data.label == Constants.NOT_SURE].shape[0],
                                       unlabeled_count=Constants.current_data[Constants.current_data.label == Constants.NOT_LABELED].shape[0],
-                                      tokens_per_attribute=20)
+                                      tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE)
         )
 
         # todo 4/7/17 clean this

@@ -90,7 +90,7 @@ class MainPage(QWebEnginePage):
                                              not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
                                              not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
                                              unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
-                                             tokens_per_attribute=20
+                                             tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE
                                              )
         print(html_str)
         self.setHtml(html_str)

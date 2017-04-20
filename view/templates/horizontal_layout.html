@@ -311,14 +311,14 @@
                         <tr>
                             {% for attribute in attributes %}
                                 <td>
-                                    {{ tuple_pair["ltable."+attribute]|string|truncate(tokens_per_attribute, True) }}
+                                    {{ tuple_pair["ltable."+attribute]|string|truncate(tokens_per_attribute+3, True, '...', 0)}}
                                 </td>
                             {% endfor %}
                         </tr>
                         <tr>
                             {% for attribute in attributes %}
                                 <td>
-                                    {{ tuple_pair["rtable."+attribute]|string|truncate(tokens_per_attribute, 4) }}
+                                    {{ tuple_pair["rtable."+attribute]|string|truncate(tokens_per_attribute+3, True, '...', 0)}}
                                 </td>
                             {% endfor %}
                         </tr>

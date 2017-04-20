@@ -85,7 +85,7 @@ class FilterController(QObject):
                                       not_match_count=Constants.complete_data[Constants.complete_data.label == Constants.NON_MATCH].shape[0],
                                       not_sure_count=Constants.complete_data[Constants.complete_data.label == Constants.NOT_SURE].shape[0],
                                       unlabeled_count=Constants.complete_data[Constants.complete_data.label == Constants.NOT_LABELED].shape[0],
-                                      tokens_per_attribute=20)
+                                      tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE)
         )
 
     @pyqtSlot(str)
@@ -108,7 +108,7 @@ class FilterController(QObject):
                                          not_match_count=stats_controller.count_non_matched_tuple_pairs(Constants.current_data),
                                          not_sure_count=stats_controller.count_not_sure_tuple_pairs(Constants.current_data),
                                          unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(Constants.current_data),
-                                         tokens_per_attribute=20
+                                         tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE
                                          )
         self.main_page.setHtml(html)
         print(attributes)
