@@ -23,3 +23,4 @@ LABEL_COLUMN = "label"
 complete_data = None
 current_data = None
 attributes = None
+ALL_ATTRIBUTES = None

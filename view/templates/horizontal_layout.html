@@ -192,9 +192,11 @@
         function filter_attributes() {
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 var checkedBoxes = document.querySelectorAll('input[name=attribute_filter]:checked');
-                var checkboxesChecked = [];
+                var checkboxesChecked = "";
                 for (i = 0; i < checkedBoxes.length; i++) {
-                    checkboxesChecked.push(checkedBoxes[i].id);
+                    alert(checkedBoxes[i].id)
+                    checkboxesChecked = checkboxesChecked.concat(checkedBoxes[i].id);
+                    checkboxesChecked = checkboxesChecked.concat(",");
                 }
                 channel.objects.filter_controller.filter_attribute(checkboxesChecked);
             });
@@ -261,7 +263,7 @@
                 {% for attribute in attributes %}
                     <div class="checkbox">
                         <label>
-                            <input name="attribute_filter" id={{ "attr_"+ attribute }} type="checkbox"> {{ attribute }}
+                            <input name="attribute_filter" id={{ attribute }} type="checkbox"> {{ attribute }}
                         </label>
                     </div>
                 {% endfor %}
@@ -310,14 +312,14 @@
                         <tr>
                             {% for attribute in attributes %}
                                 <td>
-                                    {{ tuple_pair["ltable."+attribute] }}
+                                    {{ tuple_pair["ltable."+attribute]|string|truncate(tokens_per_attribute, True) }}
                                 </td>
                             {% endfor %}
                         </tr>
                         <tr>
                             {% for attribute in attributes %}
                                 <td>
-                                    {{ tuple_pair["rtable."+attribute] }}
+                                    {{ tuple_pair["rtable."+attribute]|string|truncate(tokens_per_attribute, 4) }}
                                 </td>
                             {% endfor %}
                         </tr>
@@ -366,7 +368,7 @@
     </div>
     <div class="navbar-fixed-bottom" id="pagination-div">
         <ul class="pagination pagination-sm">
-            {% for i in range(current_page, current_page+5) %}
+            {% for i in range(current_page-3, current_page+3) %}
                 {% if current_page == i %}
                     <li class="active"><a href="#" onclick="change_page({{ i }})">{{ i }}</a></li>
                 {% else %}

@@ -300,10 +300,10 @@
                                 <strong>{{ attribute }}</strong>
                             </td>
                             <td>
-                                {{ tuple_pair["ltable."+attribute] }}
+                                {{ tuple_pair["ltable."+attribute]|string|truncate(tokens_per_attribute, True) }}
                             </td>
                             <td>
-                                {{ tuple_pair["rtable."+attribute] }}
+                                {{ tuple_pair["rtable."+attribute]|string|truncate(tokens_per_attribute, True) }}
                             </td>
                         </tr>
                     {% endfor %}

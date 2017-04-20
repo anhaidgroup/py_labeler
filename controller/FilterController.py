@@ -90,4 +90,25 @@ class FilterController(QObject):
 
     @pyqtSlot(str)
     def filter_attribute(self, attributes):
+        attributes = attributes.split(",")
+        if "_show_all" in attributes:
+            Constants.attributes = Constants.ALL_ATTRIBUTES
+        else:
+            attributes.remove("")
+            Constants.attributes = attributes
+
+        from Main import pagination_contoller
+        from Main import stats_controller
+        html = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
+                                         attributes=Constants.attributes, current_page=0,
+                                         count_per_page=Constants.COUNT_PER_PAGE,
+                                         number_of_pages=ceil(Constants.current_data.shape[0] / Constants.COUNT_PER_PAGE),
+                                         total_count=stats_controller.count_tuple_pairs(Constants.current_data),
+                                         match_count=stats_controller.count_matched_tuple_pairs(Constants.current_data),
+                                         not_match_count=stats_controller.count_non_matched_tuple_pairs(Constants.current_data),
+                                         not_sure_count=stats_controller.count_not_sure_tuple_pairs(Constants.current_data),
+                                         unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(Constants.current_data),
+                                         tokens_per_attribute=20
+                                         )
+        self.main_page.setHtml(html)
         print(attributes)

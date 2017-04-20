@@ -23,9 +23,9 @@ from view import Renderer
 # todo 3/26/17 move to constants file?
 # Global data frame so that it is common to the controllers
 def initialize_data(comments_col, tags_col):
-    df = pd.read_csv('./test/drug_sample.csv', index_col=0)
-    df = df.drop_duplicates(subset='_id', keep='last')
-    df = df.set_index(['_id'], verify_integrity=True, drop=False)
+    df = pd.read_csv('./test/drug_sample.csv')
+    # df = df.drop_duplicates(subset='_id', keep='last')
+    # df = df.set_index(['_id'], verify_integrity=True, drop=False)
 
     Constants.COMMENTS_COLUMN = comments_col
     Constants.TAGS_COLUMN = tags_col
@@ -38,7 +38,8 @@ def initialize_data(comments_col, tags_col):
     Constants.complete_data = df
     Constants.current_data = df
 
-    Constants.attributes = ["id", "ProductNo", "Form", "Dosage", "TECode", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"]
+    Constants.attributes = ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"]
+    Constants.ALL_ATTRIBUTES = Constants.attributes
     return df
 
 
