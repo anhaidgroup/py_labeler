@@ -30,6 +30,8 @@
         .tuple-pair-buttons-div {
             text-align: center;
             margin-bottom: 10px;
+            margin-top: 5%;
+            flex: auto;
         }
 
         .tuple-pair-buttons-div button {
@@ -37,13 +39,14 @@
         }
 
         .tuple-pair-div {
-            display: inline;
+            display: flex;
+            margin-bottom: 10px;
         }
 
         .table {
             margin-bottom: 2px;
-            width: 90%;
-            float: left;
+            width: 100%;
+
             /*over-riding bootstrap's margin-bottom*/
         }
 
@@ -198,6 +201,19 @@
             });
         }
 
+        function filter_attributes() {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                var checkedBoxes = document.querySelectorAll('input[name=attribute_filter]:checked');
+                var checkboxesChecked = "";
+                for (i = 0; i < checkedBoxes.length; i++) {
+                    checkboxesChecked = checkboxesChecked.concat(checkedBoxes[i].id);
+                    checkboxesChecked = checkboxesChecked.concat(",");
+                }
+                channel.objects.filter_controller.filter_attribute(checkboxesChecked);
+            });
+
+        }
+
         function save_data(save_file_name) {
             if (save_file_name == null || save_file_name == "default_save_file") {
                 {# todo: better way to do default file name#}
@@ -250,21 +266,21 @@
             <div id="checkbox-div">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"> Show all Attributes
+                        <input name="attribute_filter" type="checkbox" id="_show_all"> Show all Attributes
                     </label>
                 </div>
 
                 {% for attribute in attributes %}
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> {{ attribute }}
+                            <input name="attribute_filter" id={{ attribute }} type="checkbox"> {{ attribute }}
                         </label>
                     </div>
                 {% endfor %}
 
             </div>
 
-            <button type="button" class="btn btn-info" id="attribute-display-button">Change Displayed Attributes
+            <button type="button" class="btn btn-info" id="attribute-display-button" onclick=filter_attributes()>Change Displayed Attributes
             </button>
         </div>
 
@@ -293,34 +309,35 @@
 
             {% for tuple_pair in tuple_pairs %}
                 <div class="tuple-pair-div">
-                    <table class="{{ tuple_pair['label']+' table table-bordered' }}" id={{ tuple_pair['_id'] }}>
-                        {% for attribute in attributes %}
+                    <div>
+                        <table class="{{ tuple_pair['label']+' table table-bordered' }}" id={{ tuple_pair['_id'] }}>
+                            {% for attribute in attributes %}
+                                <tr>
+                                    <td>
+                                        <strong>{{ attribute }}</strong>
+                                    </td>
+                                    <td>
+                                        {{ tuple_pair["ltable."+attribute]|string|truncate(tokens_per_attribute, True) }}
+                                    </td>
+                                    <td>
+                                        {{ tuple_pair["rtable."+attribute]|string|truncate(tokens_per_attribute, True) }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
                             <tr>
-                                <td>
-                                    <strong>{{ attribute }}</strong>
-                                </td>
-                                <td>
-                                    {{ tuple_pair["ltable."+attribute]|string|truncate(tokens_per_attribute, True) }}
-                                </td>
-                                <td>
-                                    {{ tuple_pair["rtable."+attribute]|string|truncate(tokens_per_attribute, True) }}
+                                <td><strong>Comments</strong></td>
+                                <td colspan="2">
+                                    <em id="{{ 'comments_'+tuple_pair['_id']|string }}">{{ tuple_pair[comments_col] }}</em>
                                 </td>
                             </tr>
-                        {% endfor %}
-                        <tr>
-                            <td><strong>Comments</strong></td>
-                            <td colspan="2">
-                                <em id="{{ 'comments_'+tuple_pair['_id']|string }}">{{ tuple_pair[comments_col] }}</em>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><strong>Tags</strong></td>
-                            <td colspan="2">
-                                <em id="{{ 'tags_'+tuple_pair['_id']|string }}">{{ tuple_pair[tags_col] }}</em>
-                            </td>
-                        </tr>
-                    </table>
-
+                            <tr>
+                                <td><strong>Tags</strong></td>
+                                <td colspan="2">
+                                    <em id="{{ 'tags_'+tuple_pair['_id']|string }}">{{ tuple_pair[tags_col] }}</em>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
 
                     <div class="tuple-pair-buttons-div">
                         <button class="btn btn-md btn-success"

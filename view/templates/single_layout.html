@@ -198,6 +198,19 @@
 
         }
 
+        function filter_attributes() {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                var checkedBoxes = document.querySelectorAll('input[name=attribute_filter]:checked');
+                var checkboxesChecked = "";
+                for (i = 0; i < checkedBoxes.length; i++) {
+                    checkboxesChecked = checkboxesChecked.concat(checkedBoxes[i].id);
+                    checkboxesChecked = checkboxesChecked.concat(",");
+                }
+                channel.objects.filter_controller.filter_attribute(checkboxesChecked);
+            });
+
+        }
+
 
         function save_data(save_file_name) {
             if (save_file_name == null || save_file_name == "default_save_file") {
@@ -249,21 +262,21 @@
             <div id="checkbox-div">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"> Show all Attributes
+                        <input name="attribute_filter" type="checkbox" id="_show_all"> Show all Attributes
                     </label>
                 </div>
 
                 {% for attribute in attributes %}
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> {{ attribute }}
+                            <input name="attribute_filter" id={{ attribute }} type="checkbox"> {{ attribute }}
                         </label>
                     </div>
                 {% endfor %}
 
             </div>
 
-            <button type="button" class="btn btn-info" id="attribute-display-button">Change Displayed Attributes
+            <button type="button" class="btn btn-info" id="attribute-display-button" onclick=filter_attributes()>Change Displayed Attributes
             </button>
         </div>
 

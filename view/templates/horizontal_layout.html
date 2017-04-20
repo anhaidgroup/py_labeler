@@ -194,7 +194,6 @@
                 var checkedBoxes = document.querySelectorAll('input[name=attribute_filter]:checked');
                 var checkboxesChecked = "";
                 for (i = 0; i < checkedBoxes.length; i++) {
-                    alert(checkedBoxes[i].id)
                     checkboxesChecked = checkboxesChecked.concat(checkedBoxes[i].id);
                     checkboxesChecked = checkboxesChecked.concat(",");
                 }
@@ -256,7 +255,7 @@
             <div id="checkbox-div">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" id="_show_all"> Show all Attributes
+                        <input name="attribute_filter" type="checkbox" id="_show_all"> Show all Attributes
                     </label>
                 </div>
 
