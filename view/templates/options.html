@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Options</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src=":/qtwebchannel/qwebchannel.js"></script>
 
     <script type="text/javascript">
@@ -18,14 +23,24 @@
     </script>
 </head>
 <body>
-<h6> The labeller will add a comments and a tags column to your data frame </h6>
-<form>
-    Comments column name:<br>
-    <input type="text" name="comments_col" id="comments_col"><br>
-    Tags column name:<br>
-    <input type="text" name="tags_col" id="tags_col"><br>
-    <button type="button" class="btn btn-info" id="attribute-display-button" onclick=submit_options()>Start Labelling
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="page-header"> The labeller will add a comments and a tags column to your data frame </h3>
 
-</form>
+            <form>
+                <div class="form-group">
+                    <label for="comments_col">Comments Column Name</label>
+                    <input type="text" class="form-control" id="comments_col" placeholder="comments">
+                </div>
+                <div class="form-group">
+                    <label for="tags_col">Tags Column Name</label>
+                    <input type="text" class="form-control" id="tags_col" placeholder="tags">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
