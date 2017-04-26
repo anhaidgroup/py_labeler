@@ -15,9 +15,9 @@ def renderSampleTemplate(title, users, data):
     return template.render(title="templated page", users=["me", "them", "who"], data=data)
 
 
-def render_options_page():
+def render_options_page(tags_col, comments_col):
     options_page = env.get_template('options.html')
-    return options_page.render();
+    return options_page.render(tags_col=tags_col, comments_col=comments_col)
 
 
 # def render_main_page(tuple_pairs, currentPage, countPerPage, numberOfPages, matched_count, un_matched_count,

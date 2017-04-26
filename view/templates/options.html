@@ -15,9 +15,20 @@
         function submit_options() {
             var comments_col = document.getElementById("comments_col").value;
             var tags_col = document.getElementById("tags_col").value;
-            new QWebChannel(qt.webChannelTransport, function (channel) {
-                channel.objects.bridge.respond(comments_col, tags_col);
-            });
+            var valid = true;
+            if (comments_col === null || comments_col === "") {
+                alert("Enter name for Comments column");
+                valid = false;
+            }
+            if (tags_col === null || tags_col === "") {
+                alert("Enter name for Tags column");
+                valid = false;
+            }
+            if (valid) {
+                new QWebChannel(qt.webChannelTransport, function (channel) {
+                    channel.objects.bridge.respond(comments_col, tags_col);
+                });
+            }
 
         }
     </script>
@@ -31,11 +42,11 @@
             <form>
                 <div class="form-group">
                     <label for="comments_col">Comments Column Name</label>
-                    <input type="text" class="form-control" id="comments_col" placeholder="comments">
+                    <input type="text" class="form-control" id="comments_col" placeholder="comments" value="{{ comments_col }}" required>
                 </div>
                 <div class="form-group">
                     <label for="tags_col">Tags Column Name</label>
-                    <input type="text" class="form-control" id="tags_col" placeholder="tags">
+                    <input type="text" class="form-control" id="tags_col" placeholder="tags" value="{{ tags_col }}" required>
                 </div>
                 <button type="submit" class="btn btn-default" onclick="submit_options()">Submit</button>
             </form>

@@ -60,6 +60,22 @@ if not qwebchannel_js.open(QIODevice.ReadOnly):
         qwebchannel_js.errorString())
 qwebchannel_js = bytes(qwebchannel_js.readAll()).decode('utf-8')
 
+df = read_data_frame('./test/drug_sample.csv',
+                     ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
+
+
+def suggest_tags_comments_column_name(df):
+    comments_col = ""
+    tags_col = ""
+    if "comments" not in df.columns:
+        comments_col = "comments"
+    if "tags" not in df.columns:
+        tags_col = "tags"
+    return [tags_col, comments_col]
+
+
+[tags_col, comments_col] = suggest_tags_comments_column_name(df)
+
 
 def client_script():
     script = QWebEngineScript()
@@ -90,6 +106,9 @@ class MainPage(QWebEnginePage):
 
     @pyqtSlot(str, str)
     def respond(self, comments_col, tags_col):
+        # todo 4/26/17
+        global df
+        df = initialize_tags_comments(df, comments_col, tags_col)
 
         html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
                                              attributes=Constants.attributes, current_page=0,
@@ -106,17 +125,13 @@ class MainPage(QWebEnginePage):
 
 
 # execution starts here
-df = read_data_frame('./test/drug_sample.csv',
-                     ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
-# todo 4/26/17
-df = initialize_tags_comments(df, "comments", "tags")
 
 application = QApplication([])
 view = QWebEngineView()
 main_page = MainPage(df)
 main_page.profile().clearHttpCache()
 main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
-main_page.setHtml(Renderer.render_options_page())
+main_page.setHtml(Renderer.render_options_page(tags_col, comments_col))
 view.setPage(main_page)
 
 # create channel of communication between HTML & Py
