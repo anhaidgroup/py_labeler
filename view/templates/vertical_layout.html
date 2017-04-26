@@ -17,7 +17,7 @@
         }
 
         td {
-            overflow: hidden;
+            word-wrap: break-word;
         }
 
         .menu-section {
@@ -159,6 +159,14 @@
 
         }
 
+        function change_token_count() {
+            var token_count = document.getElementById("token_number_input").value;
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                {# todo 3/26/17 change function name #}
+                channel.objects.pagination_controller.change_token_count(token_count);
+            });
+        }
+
         function filter_tuples(label) {
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 channel.objects.filter_controller.get_filtered_tuple_pairs(label);
@@ -298,8 +306,8 @@
             <br>
 
             <label>Maximum number of tokens to show per attribue</label>
-            <input type="number" name="attribute-token-count" placeholder={{ tokens_per_attribute }}>
-            <button type="button" class="btn btn-sm btn-info" id="options-change-button">Change Number of Tokens</button>
+            <input type="number" name="attribute-token-count" value={{ tokens_per_attribute }}>
+            <button type="button" class="btn btn-sm btn-info" id="options-change-button" onclick=change_token_count()>Change Number of Tokens</button>
             <br><br>
             {# todo: remove br and add padding #}
             <button type="button" class="btn btn-md btn-info" id="save-button" onclick=save_data('{{ save_file_name }}')>
