@@ -41,30 +41,47 @@ def render_tuple_pair(tuple_pair):
     return tuple_pair_template.render(row=tuple_pair.to_dict(orient='records'), headers=['ID', 'birth_year', 'name']);
 
 
+def compute_page_numbers(current_page):
+    if current_page - Constants.PAGE_DISPLAY_COUNT / 2 < 0:
+        start_page = 0
+        end_page = Constants.PAGE_DISPLAY_COUNT
+    else:
+        start_page = current_page - Constants.PAGE_DISPLAY_COUNT // 2
+        end_page = start_page + Constants.PAGE_DISPLAY_COUNT
+    return [start_page, end_page]
+
+
 def render_main_page(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
                      match_count, not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE,
                      save_file_name=Constants.DEFAULT_SAVE_FILE_NAME):
     # todo 4/14/17 check which attributes can be used from constants
+
+    [start_page_number, end_page_number] = compute_page_numbers(current_page)
     if Constants.CURRENT_TEMPLATE == "horizontal":
-        return render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
+        return render_horizontal_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
+                                          total_count,
                                           match_count,
                                           not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
     elif Constants.CURRENT_TEMPLATE == "vertical":
-        return render_vertical_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
+        return render_vertical_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
+                                        total_count,
                                         match_count,
                                         not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
     elif Constants.CURRENT_TEMPLATE == "single":
-        return render_single_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
+        return render_single_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
+                                      total_count,
                                       match_count,
                                       not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
 
 
-def render_horizontal_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
+def render_horizontal_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
+                               total_count,
                                match_count,
                                not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name):
     horizontal_template = env.get_template('horizontal_layout.html')
     return horizontal_template.render(tuple_pairs=tuple_pairs.to_dict(orient='records'), attributes=attributes,
                                       count_per_page=count_per_page, number_of_pages=number_of_pages,
+                                      start_page_number=start_page_number, end_page_number=end_page_number,
                                       current_page=current_page, match_count=match_count,
                                       not_match_count=not_match_count, not_sure_count=not_sure_count,
                                       unlabeled_count=unlabeled_count, total_count=total_count,
@@ -73,12 +90,13 @@ def render_horizontal_template(tuple_pairs, attributes, current_page, count_per_
                                       comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)
 
 
-def render_vertical_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
+def render_vertical_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages, total_count,
                              match_count,
                              not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name):
     horizontal_template = env.get_template('vertical_layout.html')
     return horizontal_template.render(tuple_pairs=tuple_pairs.to_dict(orient='records'), attributes=attributes,
                                       count_per_page=count_per_page, number_of_pages=number_of_pages,
+                                      start_page_number=start_page_number, end_page_number=end_page_number,
                                       current_page=current_page, match_count=match_count,
                                       not_match_count=not_match_count, not_sure_count=not_sure_count,
                                       unlabeled_count=unlabeled_count, total_count=total_count,
@@ -87,13 +105,14 @@ def render_vertical_template(tuple_pairs, attributes, current_page, count_per_pa
                                       comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)
 
 
-def render_single_template(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
+def render_single_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages, total_count,
                            match_count,
                            not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name):
     horizontal_template = env.get_template('single_layout.html')
     # todo 4/7/17 check params
     return horizontal_template.render(tuple_pairs=tuple_pairs.to_dict(orient='records'), attributes=attributes,
                                       count_per_page=count_per_page, number_of_pages=number_of_pages,
+                                      start_page_number=start_page_number, end_page_number=end_page_number,
                                       current_page=current_page, match_count=match_count,
                                       not_match_count=not_match_count, not_sure_count=not_sure_count,
                                       unlabeled_count=unlabeled_count, total_count=total_count,

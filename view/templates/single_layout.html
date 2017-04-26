@@ -408,7 +408,7 @@
         </div>
         <div class="navbar-fixed-bottom" id="pagination-div">
             <ul class="pagination pagination-sm">
-                {% for i in range(current_page-3, current_page+3) %}
+                {% for i in range(start_page_number, end_page_number) %}
 
                     {% if current_page == i %}
                         <li class="active"><a href="#" onclick="change_page({{ i }})">{{ i }}</a></li>
