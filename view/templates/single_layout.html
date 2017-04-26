@@ -65,6 +65,10 @@
             margin-top: 5%;
         }
 
+        .show-tuple-pair td {
+            word-wrap: break-word;
+        }
+
         #menu-row {
             display: table;
             width: 100%;
@@ -353,8 +357,51 @@
                     </button>
                     <!-- todo: check bootstrap modals -->
                     <button class="btn btn-sm btn-default"
-                            onclick="view_tuple_pair({{ tuple_pair['_id'] }})">show tuple pair
+                            data-toggle="modal"
+                            data-target={{ "#"+tuple_pair['_id']|string +"modal" }}>show tuple pair
                     </button>
+
+                    <div class="modal fade" role="dialog" id={{ tuple_pair['_id']|string +"modal" }}>
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Tuple pair id {{ tuple_pair['_id'] }}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    {# todo: replace with actual tuple pair#}
+                                    <div>
+                                        <table class="{{ tuple_pair['label']+' table table-bordered show-tuple-pair' }}">
+                                            <tr>
+                                                <td><strong>Attribute</strong></td>
+                                                <td><strong>Table 1</strong></td>
+                                                <td><strong>Table 2</strong></td>
+                                            </tr>
+                                            {% for attribute in attributes %}
+                                                <tr>
+                                                    <td>
+                                                        <strong>{{ attribute }}</strong>
+                                                    </td>
+                                                    <td>
+                                                        {{ tuple_pair["ltable."+attribute]|string }}
+                                                    </td>
+                                                    <td>
+                                                        {{ tuple_pair["rtable."+attribute]|string }}
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
             </div>
