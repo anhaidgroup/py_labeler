@@ -22,24 +22,33 @@ from view import Renderer
 
 # todo 3/26/17 move to constants file?
 # Global data frame so that it is common to the controllers
-def initialize_data(comments_col, tags_col):
-    df = pd.read_csv('./test/drug_sample.csv')
-    # df = df.drop_duplicates(subset='_id', keep='last')
-    # df = df.set_index(['_id'], verify_integrity=True, drop=False)
+
+def read_data_frame(file_name, attribute_list, label_column):
+    df = pd.read_csv(file_name)
+
+    Constants.attributes = attribute_list
+    Constants.ALL_ATTRIBUTES = Constants.attributes
+
+    if label_column not in df.columns:
+        # Add label column
+        df[label_column] = "Not-Labeled"
+    Constants.LABEL_COLUMN = label_column
+    return df
+
+
+def initialize_tags_comments(df, comments_col, tags_col):
+    if comments_col not in df.columns:
+        # initialize empty col
+        df[comments_col] = ""
+    if tags_col not in df.columns:
+        # initialize empty col
+        df[tags_col] = ""
 
     Constants.COMMENTS_COLUMN = comments_col
     Constants.TAGS_COLUMN = tags_col
 
-    # todo 4/14/17 check if these columns exist already
-    df[Constants.COMMENTS_COLUMN] = ""
-    df[Constants.TAGS_COLUMN] = ""
-    df[Constants.LABEL_COLUMN] = "Not-Labeled"
-
     Constants.complete_data = df
     Constants.current_data = df
-
-    Constants.attributes = ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"]
-    Constants.ALL_ATTRIBUTES = Constants.attributes
     return df
 
 
@@ -69,8 +78,9 @@ def client_script():
 
 
 class MainPage(QWebEnginePage):
-    def __init__(self):
+    def __init__(self, df):
         super(MainPage, self).__init__(None)
+        self.df = df
 
     def javaScriptConsoleMessage(self, level, msg, linenumber, source_id):
         try:
@@ -80,7 +90,6 @@ class MainPage(QWebEnginePage):
 
     @pyqtSlot(str, str)
     def respond(self, comments_col, tags_col):
-        df = initialize_data(comments_col, tags_col)
 
         html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
                                              attributes=Constants.attributes, current_page=0,
@@ -94,17 +103,19 @@ class MainPage(QWebEnginePage):
                                              )
         print(html_str)
         self.setHtml(html_str)
-        # print(Renderer.render_main_page(df))
-        # Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"], data=df.to_dict()))
-        # print('From JS:', Renderer.renderSampleTemplate(title="templated page", users=["me", "them", "who"]))
 
 
 # execution starts here
+df = read_data_frame('./test/drug_sample.csv',
+                     ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
+# todo 4/26/17
+df = initialize_tags_comments(df, "comments", "tags")
+
 application = QApplication([])
-main_page = MainPage()
+view = QWebEngineView()
+main_page = MainPage(df)
 main_page.profile().clearHttpCache()
 main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
-view = QWebEngineView()
 main_page.setHtml(Renderer.render_options_page())
 view.setPage(main_page)
 
