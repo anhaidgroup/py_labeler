@@ -25,3 +25,5 @@ complete_data = None
 current_data = None
 attributes = None
 ALL_ATTRIBUTES = None
+
+# todo 4/26/17 can these values linger if app crashes??

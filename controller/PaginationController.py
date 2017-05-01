@@ -75,10 +75,12 @@ class PaginationController(QObject):
 
     @pyqtSlot(str)
     def save_data(self, save_file_name):
+        # todo 4/26/17 handle no such directory errors
         Constants.complete_data.to_csv(Constants.SAVEPATH + save_file_name)
         Constants.SAVE_FILE_NAME = save_file_name
 
     @pyqtSlot(int)
     def change_token_count(self, token_count):
+        # todo 4/26/17 minimum 3 for jinja
         Constants.TOKENS_PER_ATTRIBUTE = token_count
         self.get_page_html(Constants.CURRENT_PAGE)

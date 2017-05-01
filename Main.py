@@ -108,6 +108,7 @@ class MainPage(QWebEnginePage):
     def respond(self, comments_col, tags_col):
         # todo 4/26/17
         global df
+        # use local version - global df may refer to other data frame
         df = initialize_tags_comments(df, comments_col, tags_col)
 
         html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
