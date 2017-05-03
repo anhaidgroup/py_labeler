@@ -26,8 +26,8 @@ from view import Renderer
 def read_data_frame(file_name, attribute_list, label_column):
     df = pd.read_csv(file_name)
 
-    ApplicationContext.attributes = attribute_list
-    ApplicationContext.ALL_ATTRIBUTES = ApplicationContext.attributes
+    ApplicationContext.current_attributes = attribute_list
+    ApplicationContext.ALL_ATTRIBUTES = ApplicationContext.current_attributes
 
     if label_column not in df.columns:
         # Add label column
@@ -47,8 +47,8 @@ def initialize_tags_comments(df, comments_col, tags_col):
     ApplicationContext.COMMENTS_COLUMN = comments_col
     ApplicationContext.TAGS_COLUMN = tags_col
 
-    ApplicationContext.complete_data = df
-    ApplicationContext.current_data = df
+    ApplicationContext.COMPLETE_DATA_FRAME = df
+    ApplicationContext.current_data_frame = df
     return df
 
 
@@ -112,14 +112,14 @@ class MainPage(QWebEnginePage):
         df = initialize_tags_comments(df, comments_col, tags_col)
 
         html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
-                                             attributes=ApplicationContext.attributes, current_page=0,
-                                             count_per_page=ApplicationContext.COUNT_PER_PAGE, number_of_pages=ceil(df.shape[0] / ApplicationContext.COUNT_PER_PAGE),
+                                             attributes=ApplicationContext.current_attributes, current_page=0,
+                                             count_per_page=ApplicationContext.tuple_pair_count_per_page, number_of_pages=ceil(df.shape[0] / ApplicationContext.tuple_pair_count_per_page),
                                              total_count=stats_controller.count_tuple_pairs(df),
                                              match_count=stats_controller.count_matched_tuple_pairs(df),
                                              not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
                                              not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
                                              unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
-                                             tokens_per_attribute=ApplicationContext.TOKENS_PER_ATTRIBUTE
+                                             tokens_per_attribute=ApplicationContext.alphabets_per_attribute_display
                                              )
         print(html_str)
         self.setHtml(html_str)

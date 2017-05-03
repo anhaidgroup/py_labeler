@@ -52,22 +52,22 @@ def compute_page_numbers(current_page):
 
 
 def render_main_page(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
-                     match_count, not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=ApplicationContext.TOKENS_PER_ATTRIBUTE,
+                     match_count, not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=ApplicationContext.alphabets_per_attribute_display,
                      save_file_name=ApplicationContext.DEFAULT_SAVE_FILE_NAME):
     # todo 4/14/17 check which attributes can be used from constants
 
     [start_page_number, end_page_number] = compute_page_numbers(current_page)
-    if ApplicationContext.CURRENT_TEMPLATE == "horizontal":
+    if ApplicationContext.current_layout == "horizontal":
         return render_horizontal_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
                                           total_count,
                                           match_count,
                                           not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
-    elif ApplicationContext.CURRENT_TEMPLATE == "vertical":
+    elif ApplicationContext.current_layout == "vertical":
         return render_vertical_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
                                         total_count,
                                         match_count,
                                         not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
-    elif ApplicationContext.CURRENT_TEMPLATE == "single":
+    elif ApplicationContext.current_layout == "single":
         return render_single_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
                                       total_count,
                                       match_count,

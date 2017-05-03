@@ -1,28 +1,36 @@
-# this module is used as a global context across multiple layouts and filters
+""" this module is used as a global context across multiple layouts and filters """
+
+# Constants that are initialized once when the application starts and will not be changed during runtime
 MATCH = "Yes"
 ALL = "All"
 NOT_LABELED = "Not-Labeled"
 NON_MATCH = "Not-Matched"
 NOT_SURE = "Not-Sure"
 ALL_ATTRIBUTES = None
-
-COUNT_PER_PAGE = 5
-HORIZONTAL_COUNT_PER_PAGE = 5
-CURRENT_PAGE = 0
-CURRENT_TEMPLATE = 'horizontal'
-TOKENS_PER_ATTRIBUTE = 5
-PAGE_DISPLAY_COUNT = 6
-
-DEFAULT_SAVE_FILE_NAME = "default_save_file"
-SAVE_FILE_NAME = DEFAULT_SAVE_FILE_NAME
+DEFAULT_TUPLE_PAIR_COUNT_PER_PAGE = 5
 SAVEPATH = "saves/"
-
+DEFAULT_SAVE_FILE_NAME = "default_save_file"
+PAGE_DISPLAY_COUNT = 6
 COMMENTS_COLUMN = "comments"
 TAGS_COLUMN = "tags"
 LABEL_COLUMN = "label"
+COMPLETE_DATA_FRAME = None
+TOTAL_NUMBER_OF_TUPLE_PAIRS = 0
 
-complete_data = None
-current_data = None
-attributes = None
+# Application values that change during runtime. These are used for operations such as:
+# - Filtering attributes to be displayed
+# - Change display layout
+# - Change the number of tuple pairs displayed
+# - Keep track of the current page number being displayed
+# - Keep track of current save file name
+# - Keep track of data with current attribute filters applied to it
+# - Keep track of the number of alphabets shown per attribute
+tuple_pair_count_per_page = 5
+current_page_number = 0
+current_layout = 'horizontal'
+alphabets_per_attribute_display = 5
+save_file_name = DEFAULT_SAVE_FILE_NAME
+current_data_frame = None
+current_attributes = None
 
 # todo 4/26/17 can these values linger if app crashes??
