@@ -1,10 +1,10 @@
-# this module is used as a global context when layout and filters are changed
-# todo 4/7/17 rename this module
+# this module is used as a global context across multiple layouts and filters
 MATCH = "Yes"
 ALL = "All"
 NOT_LABELED = "Not-Labeled"
 NON_MATCH = "Not-Matched"
 NOT_SURE = "Not-Sure"
+ALL_ATTRIBUTES = None
 
 COUNT_PER_PAGE = 5
 HORIZONTAL_COUNT_PER_PAGE = 5
@@ -24,6 +24,5 @@ LABEL_COLUMN = "label"
 complete_data = None
 current_data = None
 attributes = None
-ALL_ATTRIBUTES = None
 
 # todo 4/26/17 can these values linger if app crashes??

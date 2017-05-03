@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 
-from utils import Constants
+from utils import ApplicationContext
 
 
 # todo should we pass around data frame or set in a context and use the same
@@ -19,7 +19,7 @@ class StatsController(QObject):
         # todo check if assertion is correct thing to do
         assert ('label' in data_frame.columns)
         # todo check data type of label column
-        return data_frame[data_frame.label == Constants.MATCH].shape[0]
+        return data_frame[data_frame.label == ApplicationContext.MATCH].shape[0]
 
     @pyqtSlot()
     def count_non_matched_tuple_pairs(self, data_frame):
@@ -31,7 +31,7 @@ class StatsController(QObject):
         # todo check if assertion is correct thing to do
         assert ('label' in data_frame.columns)
         # todo check data type of label column
-        return data_frame[data_frame.label == Constants.NON_MATCH].shape[0]
+        return data_frame[data_frame.label == ApplicationContext.NON_MATCH].shape[0]
 
     @pyqtSlot()
     def count_not_labeled_tuple_pairs(self, data_frame):
@@ -43,7 +43,7 @@ class StatsController(QObject):
         # todo check if assertion is correct thing to do
         assert ('label' in data_frame.columns)
         # todo check data type of label column
-        return data_frame[data_frame.label == Constants.NOT_LABELED].shape[0]
+        return data_frame[data_frame.label == ApplicationContext.NOT_LABELED].shape[0]
 
     @pyqtSlot()
     def count_not_sure_tuple_pairs(self, data_frame):
@@ -55,7 +55,7 @@ class StatsController(QObject):
         # todo check if assertion is correct thing to do
         assert ('label' in data_frame.columns)
         # todo check data type of label column
-        return data_frame[data_frame.label == Constants.NOT_SURE].shape[0]
+        return data_frame[data_frame.label == ApplicationContext.NOT_SURE].shape[0]
 
     @pyqtSlot()
     def count_tuple_pairs(self, data_frame):

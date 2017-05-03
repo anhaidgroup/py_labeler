@@ -13,7 +13,7 @@ from controller.FilterController import FilterController
 from controller.LabelUpdateController import LabelUpdateController
 from controller.PaginationController import PaginationController
 from controller.StatsController import StatsController
-from utils import Constants
+from utils import ApplicationContext
 from view import Renderer
 
 
@@ -26,13 +26,13 @@ from view import Renderer
 def read_data_frame(file_name, attribute_list, label_column):
     df = pd.read_csv(file_name)
 
-    Constants.attributes = attribute_list
-    Constants.ALL_ATTRIBUTES = Constants.attributes
+    ApplicationContext.attributes = attribute_list
+    ApplicationContext.ALL_ATTRIBUTES = ApplicationContext.attributes
 
     if label_column not in df.columns:
         # Add label column
         df[label_column] = "Not-Labeled"
-    Constants.LABEL_COLUMN = label_column
+    ApplicationContext.LABEL_COLUMN = label_column
     return df
 
 
@@ -44,11 +44,11 @@ def initialize_tags_comments(df, comments_col, tags_col):
         # initialize empty col
         df[tags_col] = ""
 
-    Constants.COMMENTS_COLUMN = comments_col
-    Constants.TAGS_COLUMN = tags_col
+    ApplicationContext.COMMENTS_COLUMN = comments_col
+    ApplicationContext.TAGS_COLUMN = tags_col
 
-    Constants.complete_data = df
-    Constants.current_data = df
+    ApplicationContext.complete_data = df
+    ApplicationContext.current_data = df
     return df
 
 
@@ -112,14 +112,14 @@ class MainPage(QWebEnginePage):
         df = initialize_tags_comments(df, comments_col, tags_col)
 
         html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
-                                             attributes=Constants.attributes, current_page=0,
-                                             count_per_page=Constants.COUNT_PER_PAGE, number_of_pages=ceil(df.shape[0] / Constants.COUNT_PER_PAGE),
+                                             attributes=ApplicationContext.attributes, current_page=0,
+                                             count_per_page=ApplicationContext.COUNT_PER_PAGE, number_of_pages=ceil(df.shape[0] / ApplicationContext.COUNT_PER_PAGE),
                                              total_count=stats_controller.count_tuple_pairs(df),
                                              match_count=stats_controller.count_matched_tuple_pairs(df),
                                              not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
                                              not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
                                              unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
-                                             tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE
+                                             tokens_per_attribute=ApplicationContext.TOKENS_PER_ATTRIBUTE
                                              )
         print(html_str)
         self.setHtml(html_str)

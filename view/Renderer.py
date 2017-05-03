@@ -1,7 +1,7 @@
 from jinja2 import Environment, PackageLoader, select_autoescape
 
 # load all templates from 'view' package and 'templates' folder
-from utils import Constants
+from utils import ApplicationContext
 
 env = Environment(
     loader=PackageLoader('view', 'templates'),
@@ -42,32 +42,32 @@ def render_tuple_pair(tuple_pair):
 
 
 def compute_page_numbers(current_page):
-    if current_page - Constants.PAGE_DISPLAY_COUNT / 2 < 0:
+    if current_page - ApplicationContext.PAGE_DISPLAY_COUNT / 2 < 0:
         start_page = 0
-        end_page = Constants.PAGE_DISPLAY_COUNT
+        end_page = ApplicationContext.PAGE_DISPLAY_COUNT
     else:
-        start_page = current_page - Constants.PAGE_DISPLAY_COUNT // 2
-        end_page = start_page + Constants.PAGE_DISPLAY_COUNT
+        start_page = current_page - ApplicationContext.PAGE_DISPLAY_COUNT // 2
+        end_page = start_page + ApplicationContext.PAGE_DISPLAY_COUNT
     return [start_page, end_page]
 
 
 def render_main_page(tuple_pairs, attributes, current_page, count_per_page, number_of_pages, total_count,
-                     match_count, not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE,
-                     save_file_name=Constants.DEFAULT_SAVE_FILE_NAME):
+                     match_count, not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute=ApplicationContext.TOKENS_PER_ATTRIBUTE,
+                     save_file_name=ApplicationContext.DEFAULT_SAVE_FILE_NAME):
     # todo 4/14/17 check which attributes can be used from constants
 
     [start_page_number, end_page_number] = compute_page_numbers(current_page)
-    if Constants.CURRENT_TEMPLATE == "horizontal":
+    if ApplicationContext.CURRENT_TEMPLATE == "horizontal":
         return render_horizontal_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
                                           total_count,
                                           match_count,
                                           not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
-    elif Constants.CURRENT_TEMPLATE == "vertical":
+    elif ApplicationContext.CURRENT_TEMPLATE == "vertical":
         return render_vertical_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
                                         total_count,
                                         match_count,
                                         not_match_count, not_sure_count, unlabeled_count, tokens_per_attribute, save_file_name)
-    elif Constants.CURRENT_TEMPLATE == "single":
+    elif ApplicationContext.CURRENT_TEMPLATE == "single":
         return render_single_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages,
                                       total_count,
                                       match_count,
@@ -87,7 +87,7 @@ def render_horizontal_template(tuple_pairs, attributes, current_page, start_page
                                       unlabeled_count=unlabeled_count, total_count=total_count,
                                       completed_percent=str(round((total_count - unlabeled_count) * 100 / total_count)),
                                       tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name,
-                                      comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)
+                                      comments_col=ApplicationContext.COMMENTS_COLUMN, tags_col=ApplicationContext.TAGS_COLUMN)
 
 
 def render_vertical_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages, total_count,
@@ -102,7 +102,7 @@ def render_vertical_template(tuple_pairs, attributes, current_page, start_page_n
                                       unlabeled_count=unlabeled_count, total_count=total_count,
                                       completed_percent=str(round((total_count - unlabeled_count) * 100 / total_count)),
                                       tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name,
-                                      comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)
+                                      comments_col=ApplicationContext.COMMENTS_COLUMN, tags_col=ApplicationContext.TAGS_COLUMN)
 
 
 def render_single_template(tuple_pairs, attributes, current_page, start_page_number, end_page_number, count_per_page, number_of_pages, total_count,
@@ -118,4 +118,4 @@ def render_single_template(tuple_pairs, attributes, current_page, start_page_num
                                       unlabeled_count=unlabeled_count, total_count=total_count,
                                       completed_percent=str(round((total_count - unlabeled_count) * 100 / total_count)),
                                       tokens_per_attribute=tokens_per_attribute, save_file_name=save_file_name,
-                                      comments_col=Constants.COMMENTS_COLUMN, tags_col=Constants.TAGS_COLUMN)
+                                      comments_col=ApplicationContext.COMMENTS_COLUMN, tags_col=ApplicationContext.TAGS_COLUMN)

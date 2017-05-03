@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QObject, pyqtSlot
 from math import ceil
 
-from utils import Constants
+from utils import ApplicationContext
 from view import Renderer
 
 
@@ -19,18 +19,18 @@ class PaginationController(QObject):
         """
         assert count_per_page > 0, "count of tuple pairs per page can not be negative"
         # todo 3/26/17 this does not work
-        Constants.COUNT_PER_PAGE = count_per_page
+        ApplicationContext.COUNT_PER_PAGE = count_per_page
 
     @pyqtSlot()
     def set_current_page(self, current_page):
         assert current_page >= 0
         # todo 3/26/17 this does not work
-        Constants.CURRENT_PAGE = current_page
+        ApplicationContext.CURRENT_PAGE = current_page
 
     @pyqtSlot(int)
     def get_page(self, page_number):
         assert page_number >= 0
-        return Constants.current_data.iloc[page_number * Constants.COUNT_PER_PAGE: page_number * Constants.COUNT_PER_PAGE + Constants.COUNT_PER_PAGE]
+        return ApplicationContext.current_data.iloc[page_number * ApplicationContext.COUNT_PER_PAGE: page_number * ApplicationContext.COUNT_PER_PAGE + ApplicationContext.COUNT_PER_PAGE]
 
     @pyqtSlot(str)
     def respond(self, text):
@@ -38,49 +38,49 @@ class PaginationController(QObject):
 
     @pyqtSlot()
     def get_current_page(self):
-        return Constants.CURRENT_PAGE
+        return ApplicationContext.CURRENT_PAGE
 
     @pyqtSlot()
     def get_per_page_count(self):
-        return Constants.COUNT_PER_PAGE
+        return ApplicationContext.COUNT_PER_PAGE
 
     @pyqtSlot()
     def get_number_of_pages(self, data_frame):
-        return ceil(data_frame.shape[0] / Constants.COUNT_PER_PAGE)
+        return ceil(data_frame.shape[0] / ApplicationContext.COUNT_PER_PAGE)
 
     @pyqtSlot(int)
     def get_page_html(self, page_number):
         self.main_page.setHtml(
-            Renderer.render_main_page(tuple_pairs=self.get_page(page_number), attributes=Constants.attributes, current_page=page_number,
-                                      count_per_page=Constants.COUNT_PER_PAGE,
-                                      number_of_pages=ceil(Constants.current_data.shape[0] / Constants.COUNT_PER_PAGE),
-                                      total_count=Constants.current_data.shape[0],
-                                      match_count=Constants.current_data[Constants.current_data.label == Constants.MATCH].shape[0],
-                                      not_match_count=Constants.current_data[Constants.current_data.label == Constants.NON_MATCH].shape[0],
-                                      not_sure_count=Constants.current_data[Constants.current_data.label == Constants.NOT_SURE].shape[0],
-                                      unlabeled_count=Constants.current_data[Constants.current_data.label == Constants.NOT_LABELED].shape[0],
-                                      tokens_per_attribute=Constants.TOKENS_PER_ATTRIBUTE)
+            Renderer.render_main_page(tuple_pairs=self.get_page(page_number), attributes=ApplicationContext.attributes, current_page=page_number,
+                                      count_per_page=ApplicationContext.COUNT_PER_PAGE,
+                                      number_of_pages=ceil(ApplicationContext.current_data.shape[0] / ApplicationContext.COUNT_PER_PAGE),
+                                      total_count=ApplicationContext.current_data.shape[0],
+                                      match_count=ApplicationContext.current_data[ApplicationContext.current_data.label == ApplicationContext.MATCH].shape[0],
+                                      not_match_count=ApplicationContext.current_data[ApplicationContext.current_data.label == ApplicationContext.NON_MATCH].shape[0],
+                                      not_sure_count=ApplicationContext.current_data[ApplicationContext.current_data.label == ApplicationContext.NOT_SURE].shape[0],
+                                      unlabeled_count=ApplicationContext.current_data[ApplicationContext.current_data.label == ApplicationContext.NOT_LABELED].shape[0],
+                                      tokens_per_attribute=ApplicationContext.TOKENS_PER_ATTRIBUTE)
         )
 
         # todo 4/7/17 clean this
 
     @pyqtSlot(str)
     def change_layout(self, layout):
-        Constants.CURRENT_TEMPLATE = layout
+        ApplicationContext.CURRENT_TEMPLATE = layout
         if layout == 'single':
-            Constants.COUNT_PER_PAGE = 1
+            ApplicationContext.COUNT_PER_PAGE = 1
         else:
-            Constants.COUNT_PER_PAGE = Constants.HORIZONTAL_COUNT_PER_PAGE
+            ApplicationContext.COUNT_PER_PAGE = ApplicationContext.HORIZONTAL_COUNT_PER_PAGE
         self.get_page_html(0)
 
     @pyqtSlot(str)
     def save_data(self, save_file_name):
         # todo 4/26/17 handle no such directory errors
-        Constants.complete_data.to_csv(Constants.SAVEPATH + save_file_name)
-        Constants.SAVE_FILE_NAME = save_file_name
+        ApplicationContext.complete_data.to_csv(ApplicationContext.SAVEPATH + save_file_name)
+        ApplicationContext.SAVE_FILE_NAME = save_file_name
 
     @pyqtSlot(int)
     def change_token_count(self, token_count):
         # todo 4/26/17 minimum 3 for jinja
-        Constants.TOKENS_PER_ATTRIBUTE = token_count
-        self.get_page_html(Constants.CURRENT_PAGE)
+        ApplicationContext.TOKENS_PER_ATTRIBUTE = token_count
+        self.get_page_html(ApplicationContext.CURRENT_PAGE)
