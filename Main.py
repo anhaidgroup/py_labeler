@@ -20,7 +20,6 @@ from view import Renderer
 # do not auto clean imports! from OpenGL import GL is needed on linux
 # ref: https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
 
-# todo 3/26/17 move to constants file?
 # Global data frame so that it is common to the controllers
 
 def read_data_frame(file_name, attribute_list, label_column):
@@ -60,7 +59,7 @@ if not qwebchannel_js.open(QIODevice.ReadOnly):
         qwebchannel_js.errorString())
 qwebchannel_js = bytes(qwebchannel_js.readAll()).decode('utf-8')
 
-df = read_data_frame('./test/drug_sample.csv',
+df = read_data_frame('./test/data/drug_sample.csv',
                      ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
 
 
@@ -79,13 +78,7 @@ def suggest_tags_comments_column_name(df):
 
 def client_script():
     script = QWebEngineScript()
-    script.setSourceCode(qwebchannel_js + '''
-    var button = document.getElementById('hello');
-    button.onclick = function(){
-    new QWebChannel(qt.webChannelTransport, function(channel) {
-     channel.objects.bridge.respond('button clicked!!');
-    });}
-    ''')
+    script.setSourceCode(qwebchannel_js)
     script.setName('qWebChannelJS')
     script.setWorldId(QWebEngineScript.MainWorld)
     script.setInjectionPoint(QWebEngineScript.DocumentReady)
@@ -106,9 +99,8 @@ class MainPage(QWebEnginePage):
 
     @pyqtSlot(str, str)
     def respond(self, comments_col, tags_col):
-        # todo 4/26/17
+        # todo 4/26/17 use local version - global df may refer to other data frame
         global df
-        # use local version - global df may refer to other data frame
         df = initialize_tags_comments(df, comments_col, tags_col)
         html_str = Renderer.render_main_page(current_page_tuple_pairs=pagination_contoller.get_page(0),
                                              match_count=stats_controller.count_matched_tuple_pairs(df),

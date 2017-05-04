@@ -3,7 +3,6 @@ from PyQt5.QtCore import QObject, pyqtSlot
 from utils import ApplicationContext
 
 
-# todo should we pass around data frame or set in a context and use the same
 class StatsController(QObject):
     def __init__(self, main_page):
         super(StatsController, self).__init__(None)
