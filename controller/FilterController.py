@@ -1,6 +1,4 @@
-from math import ceil
-
-from PyQt5.QtCore import QObject, pyqtSlot, QJsonValue
+from PyQt5.QtCore import QObject, pyqtSlot
 
 from utils import ApplicationContext
 from view import Renderer
@@ -76,7 +74,6 @@ class FilterController(QObject):
         ApplicationContext.current_data_frame = data
         data = data.iloc[
                0 * ApplicationContext.tuple_pair_count_per_page: 0 * ApplicationContext.tuple_pair_count_per_page + ApplicationContext.tuple_pair_count_per_page]
-        # todo 4/7/17 get attributes from data
         self.main_page.setHtml(
             Renderer.render_main_page(current_page_tuple_pairs=data,
                                       match_count=ApplicationContext.COMPLETE_DATA_FRAME[
@@ -109,4 +106,3 @@ class FilterController(QObject):
                                          unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(ApplicationContext.current_data_frame)
                                          )
         self.main_page.setHtml(html)
-        print(attributes)

@@ -9,6 +9,7 @@ class StatsController(QObject):
         self.main_page = main_page
 
     @pyqtSlot()
+    # todo 5/4/17 if df = application context current_data will that keep up with changes?
     def count_matched_tuple_pairs(self, data_frame):
         """ Returns a count of tuple pairs whose label value is MATCH
 

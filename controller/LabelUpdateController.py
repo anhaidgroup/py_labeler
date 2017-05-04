@@ -16,7 +16,6 @@ class LabelUpdateController(QObject):
     @pyqtSlot(str, result=str)
     def show_tuple_pair(self, tuple_pair_id):
         string = Renderer.render_tuple_pair(ApplicationContext.COMPLETE_DATA_FRAME.loc[ApplicationContext.COMPLETE_DATA_FRAME['_id'] == int(tuple_pair_id)])
-        print(string)
         return string
 
     @pyqtSlot(str, str)

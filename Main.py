@@ -1,5 +1,3 @@
-from math import ceil
-
 import pandas as pd
 from OpenGL import GL
 from PyQt5.QtCore import QFile
@@ -19,8 +17,6 @@ from view import Renderer
 
 # do not auto clean imports! from OpenGL import GL is needed on linux
 # ref: https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
-
-# Global data frame so that it is common to the controllers
 
 def read_data_frame(file_name, attribute_list, label_column):
     df = pd.read_csv(file_name)
@@ -52,12 +48,6 @@ def initialize_tags_comments(df, comments_col, tags_col):
 
 
 # todo 3/10/17 move this under view?
-qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')
-if not qwebchannel_js.open(QIODevice.ReadOnly):
-    raise SystemExit(
-        'Failed to load qwebchannel.js with error: %s' %
-        qwebchannel_js.errorString())
-qwebchannel_js = bytes(qwebchannel_js.readAll()).decode('utf-8')
 
 df = read_data_frame('./test/data/drug_sample.csv',
                      ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
@@ -77,6 +67,12 @@ def suggest_tags_comments_column_name(df):
 
 
 def client_script():
+    qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')
+    if not qwebchannel_js.open(QIODevice.ReadOnly):
+        raise SystemExit(
+            'Failed to load qwebchannel.js with error: %s' %
+            qwebchannel_js.errorString())
+    qwebchannel_js = bytes(qwebchannel_js.readAll()).decode('utf-8')
     script = QWebEngineScript()
     script.setSourceCode(qwebchannel_js)
     script.setName('qWebChannelJS')
@@ -108,12 +104,9 @@ class MainPage(QWebEnginePage):
                                              not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
                                              unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df)
                                              )
-        print(html_str)
         self.setHtml(html_str)
 
-
 # execution starts here
-
 application = QApplication([])
 view = QWebEngineView()
 main_page = MainPage(df)

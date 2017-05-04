@@ -33,10 +33,6 @@ class PaginationController(QObject):
         return ApplicationContext.current_data_frame.iloc[
                page_number * ApplicationContext.tuple_pair_count_per_page: page_number * ApplicationContext.tuple_pair_count_per_page + ApplicationContext.tuple_pair_count_per_page]
 
-    @pyqtSlot(str)
-    def respond(self, text):
-        print(" in the pagination controller")
-
     @pyqtSlot()
     def get_current_page(self):
         return ApplicationContext.current_page_number
