@@ -202,18 +202,6 @@
             });
         }
 
-        function view_tuple_pair(tuple_id) {
-            new QWebChannel(qt.webChannelTransport, function (channel) {
-                {# todo 3/26/17 change function name #}
-                channel.objects.label_controller.show_tuple_pair(tuple_id, function (ret) {
-                    alert(ret);
-                });
-
-
-            });
-
-        }
-
         function filter_attributes() {
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 var checkedBoxes = document.querySelectorAll('input[name=attribute_filter]:checked');

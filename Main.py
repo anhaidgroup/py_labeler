@@ -110,16 +110,11 @@ class MainPage(QWebEnginePage):
         global df
         # use local version - global df may refer to other data frame
         df = initialize_tags_comments(df, comments_col, tags_col)
-
-        html_str = Renderer.render_main_page(tuple_pairs=pagination_contoller.get_page(0),
-                                             attributes=ApplicationContext.current_attributes, current_page=0,
-                                             count_per_page=ApplicationContext.tuple_pair_count_per_page, number_of_pages=ceil(df.shape[0] / ApplicationContext.tuple_pair_count_per_page),
-                                             total_count=stats_controller.count_tuple_pairs(df),
+        html_str = Renderer.render_main_page(current_page_tuple_pairs=pagination_contoller.get_page(0),
                                              match_count=stats_controller.count_matched_tuple_pairs(df),
                                              not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
                                              not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
-                                             unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df),
-                                             tokens_per_attribute=ApplicationContext.alphabets_per_attribute_display
+                                             unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df)
                                              )
         print(html_str)
         self.setHtml(html_str)

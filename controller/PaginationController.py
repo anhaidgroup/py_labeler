@@ -30,7 +30,8 @@ class PaginationController(QObject):
     @pyqtSlot(int)
     def get_page(self, page_number):
         assert page_number >= 0
-        return ApplicationContext.current_data_frame.iloc[page_number * ApplicationContext.tuple_pair_count_per_page: page_number * ApplicationContext.tuple_pair_count_per_page + ApplicationContext.tuple_pair_count_per_page]
+        return ApplicationContext.current_data_frame.iloc[
+               page_number * ApplicationContext.tuple_pair_count_per_page: page_number * ApplicationContext.tuple_pair_count_per_page + ApplicationContext.tuple_pair_count_per_page]
 
     @pyqtSlot(str)
     def respond(self, text):
@@ -51,15 +52,18 @@ class PaginationController(QObject):
     @pyqtSlot(int)
     def get_page_html(self, page_number):
         self.main_page.setHtml(
-            Renderer.render_main_page(tuple_pairs=self.get_page(page_number), attributes=ApplicationContext.current_attributes, current_page=page_number,
-                                      count_per_page=ApplicationContext.tuple_pair_count_per_page,
-                                      number_of_pages=ceil(ApplicationContext.current_data_frame.shape[0] / ApplicationContext.tuple_pair_count_per_page),
-                                      total_count=ApplicationContext.current_data_frame.shape[0],
-                                      match_count=ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.MATCH].shape[0],
-                                      not_match_count=ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.NON_MATCH].shape[0],
-                                      not_sure_count=ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.NOT_SURE].shape[0],
-                                      unlabeled_count=ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.NOT_LABELED].shape[0],
-                                      tokens_per_attribute=ApplicationContext.alphabets_per_attribute_display)
+            Renderer.render_main_page(
+                current_page_tuple_pairs=
+                self.get_page(page_number),
+                match_count=
+                ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.MATCH].shape[0],
+                not_match_count=
+                ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.NON_MATCH].shape[0],
+                not_sure_count=
+                ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.NOT_SURE].shape[0],
+                unlabeled_count=
+                ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.NOT_LABELED].shape[0],
+            )
         )
 
         # todo 4/7/17 clean this
