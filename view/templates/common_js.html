@@ -18,10 +18,15 @@
 
     function change_token_count() {
         var token_count = document.getElementById("token_number_input").value;
-        new QWebChannel(qt.webChannelTransport, function (channel) {
-            {# todo 3/26/17 change function name #}
-            channel.objects.pagination_controller.change_token_count(token_count);
-        });
+        if ($.isNumeric(token_count) && Math.floor(parseInt(token_count, 10)) >= 0) {
+            token_count = Math.floor(parseInt(token_count, 10));
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                channel.objects.pagination_controller.change_token_count(token_count);
+            });
+        }
+        else {
+            alert("Alphabet count value has to be a positive integer (0 or more)");
+        }
     }
 
     function filter_tuples(label) {
