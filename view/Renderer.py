@@ -52,7 +52,7 @@ def render_main_page(current_page_tuple_pairs, match_count, not_match_count, not
         template = env.get_template('single_layout.html')
 
     [start_page_number, end_page_number] = compute_page_numbers(ApplicationContext.current_page_number)
-    return template.render(tuple_pairs=current_page_tuple_pairs.to_dict(orient='records'),
+    return template.render(layout=ApplicationContext.current_layout, tuple_pairs=current_page_tuple_pairs.to_dict(orient='records'),
                            attributes=ApplicationContext.current_attributes,
                            count_per_page=ApplicationContext.tuple_pair_count_per_page,
                            number_of_pages=ceil(

@@ -1,0 +1,74 @@
+<nav class="navbar-fixed-top container-fluid">
+    <div class="row" id="menu-row">
+
+        <div class="col-sm-3 btn-group-vertical menu-section" id="filter-pane">
+            <h7 class="menu-section-header">filter tuples</h7>
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Yes')>Show Yes <span
+                    class="badge">{{ match_count|int }}</span>
+            </button>
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Matched')>Show No <span
+                    class="badge">{{ not_match_count|int }}</span>
+            </button>
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Sure')>Show Not-Sure <span
+                    class="badge"> {{ not_sure_count|int }}</span>
+            </button>
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Labeled')>Show Not Labelled <span
+                    class="badge">{{ unlabeled_count|int }}</span></button>
+            <button type="button" class="btn btn-info active" onclick=filter_tuples('All')>Show All <span
+                    class="badge">{{ total_count }}</span>
+            </button>
+
+        </div>
+
+
+        <div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
+            <h7 class="menu-section-header">select tuple pair display</h7>
+            <button type="button" class={% if layout == "horizontal" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
+            onclick=change_layout("horizontal")>Horizontal
+            </button>
+            <button type="button" class={% if layout == "vertical" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
+            onclick=change_layout("vertical")>Vertical</button>
+            <button type="button" class={% if layout == "single" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
+            onclick=change_layout("single")>One at a time</button>
+        </div>
+
+        <div class="col-sm-3 menu-section" id="attribute-display-pane">
+            <h7 class="menu-section-header">select which attributes to show</h7>
+            <div id="checkbox-div">
+                <div class="checkbox">
+                    <label>
+                        <input name="attribute_filter" type="checkbox" id="_show_all"> Show all Attributes
+                    </label>
+                </div>
+
+                {% for attribute in attributes %}
+                    <div class="checkbox">
+                        <label>
+                            <input name="attribute_filter" id={{ attribute }} type="checkbox"> {{ attribute }}
+                        </label>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <button type="button" class="btn btn-info" id="attribute-display-button" onclick=filter_attributes()>Change Displayed Attributes
+            </button>
+        </div>
+
+
+        <div class="col-sm-3 menu-section" id="misc-options-pane">
+            <h7 class="menu-section-header">Other options</h7>
+            <br>
+
+            <label>Maximum number of tokens to show per attribue</label>
+            <input type="number" name="attribute-token-count" value={{ tokens_per_attribute }} id="token_number_input">
+            <button type="button" class="btn btn-sm btn-info" id="options-change-button" onclick=change_token_count()>Change Number of Tokens</button>
+            <br><br>
+            {# todo: remove br and add padding #}
+            <button type="button" class="btn btn-md btn-info" id="save-button" onclick=save_data('{{ save_file_name }}')>
+                Save to file <br><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+            </button>
+
+        </div>
+    </div>
+</nav>
