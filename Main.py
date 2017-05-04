@@ -98,38 +98,48 @@ class MainPage(QWebEnginePage):
         # todo 4/26/17 use local version - global df may refer to other data frame
         global df
         df = initialize_tags_comments(df, comments_col, tags_col)
-        html_str = Renderer.render_main_page(current_page_tuple_pairs=pagination_contoller.get_page(0),
-                                             match_count=stats_controller.count_matched_tuple_pairs(df),
-                                             not_match_count=stats_controller.count_non_matched_tuple_pairs(df),
-                                             not_sure_count=stats_controller.count_not_sure_tuple_pairs(df),
-                                             unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(df)
+        html_str = Renderer.render_main_page(current_page_tuple_pairs=ApplicationContext.PAGINATION_CONTROLLER.get_tuples_for_page(0),
+                                             match_count=ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(df),
+                                             not_match_count=ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs(df),
+                                             not_sure_count=ApplicationContext.STATS_CONTROLLER.count_not_sure_tuple_pairs(df),
+                                             unlabeled_count=ApplicationContext.STATS_CONTROLLER.count_not_labeled_tuple_pairs(df)
                                              )
         self.setHtml(html_str)
 
+
+def launch_labeler():
+    application = QApplication([])
+    view = QWebEngineView()
+    main_page = MainPage(df)
+    main_page.profile().clearHttpCache()
+    main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
+    main_page.setHtml(Renderer.render_options_page(tags_col, comments_col))
+    view.setPage(main_page)
+
+    # create channel of communication between HTML & Py
+    channel = QWebChannel(main_page)
+    main_page.setWebChannel(channel)
+
+    # add controllers to the channel
+    filter_controller = FilterController(main_page)
+    stats_controller = StatsController(main_page)
+    pagination_controller = PaginationController(main_page)
+    label_controller = LabelUpdateController(main_page)
+
+    ApplicationContext.FILTER_CONTROLLER = filter_controller
+    ApplicationContext.STATS_CONTROLLER = stats_controller
+    ApplicationContext.PAGINATION_CONTROLLER = pagination_controller
+    ApplicationContext.LABEL_CONTROLLER = label_controller
+
+    channel.registerObject('bridge', main_page)
+    channel.registerObject('filter_controller', filter_controller)
+    channel.registerObject('stats_controller', stats_controller)
+    channel.registerObject('pagination_controller', pagination_controller)
+    channel.registerObject('label_controller', label_controller)
+    view.show()
+
+    application.exec_()
+
+
 # execution starts here
-application = QApplication([])
-view = QWebEngineView()
-main_page = MainPage(df)
-main_page.profile().clearHttpCache()
-main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
-main_page.setHtml(Renderer.render_options_page(tags_col, comments_col))
-view.setPage(main_page)
-
-# create channel of communication between HTML & Py
-channel = QWebChannel(main_page)
-main_page.setWebChannel(channel)
-
-# add controllers to the channel
-filter_controller = FilterController(main_page)
-stats_controller = StatsController(main_page)
-pagination_contoller = PaginationController(main_page)
-label_controller = LabelUpdateController(main_page)
-
-channel.registerObject('bridge', main_page)
-channel.registerObject('filter_controller', filter_controller)
-channel.registerObject('stats_controller', stats_controller)
-channel.registerObject('pagination_controller', pagination_contoller)
-channel.registerObject('label_controller', label_controller)
-view.show()
-
-application.exec_()
+launch_labeler()

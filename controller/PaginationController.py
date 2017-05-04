@@ -28,7 +28,7 @@ class PaginationController(QObject):
         ApplicationContext.current_page_number = current_page
 
     @pyqtSlot(int)
-    def get_page(self, page_number):
+    def get_tuples_for_page(self, page_number):
         assert page_number >= 0
         return ApplicationContext.current_data_frame.iloc[
                page_number * ApplicationContext.tuple_pair_count_per_page: page_number * ApplicationContext.tuple_pair_count_per_page + ApplicationContext.tuple_pair_count_per_page]
@@ -46,11 +46,11 @@ class PaginationController(QObject):
         return ceil(data_frame.shape[0] / ApplicationContext.tuple_pair_count_per_page)
 
     @pyqtSlot(int)
-    def get_page_html(self, page_number):
+    def change_page(self, page_number):
         self.main_page.setHtml(
             Renderer.render_main_page(
                 current_page_tuple_pairs=
-                self.get_page(page_number),
+                self.get_tuples_for_page(page_number),
                 match_count=
                 ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.MATCH].shape[0],
                 not_match_count=
@@ -71,7 +71,7 @@ class PaginationController(QObject):
             ApplicationContext.tuple_pair_count_per_page = 1
         else:
             ApplicationContext.tuple_pair_count_per_page = ApplicationContext.DEFAULT_TUPLE_PAIR_COUNT_PER_PAGE
-        self.get_page_html(0)
+        self.change_page(0)
 
     @pyqtSlot(str)
     def save_data(self, save_file_name):
@@ -83,4 +83,4 @@ class PaginationController(QObject):
     def change_token_count(self, token_count):
         # todo 4/26/17 minimum 3 for jinja
         ApplicationContext.alphabets_per_attribute_display = token_count
-        self.get_page_html(ApplicationContext.current_page_number)
+        self.change_page(ApplicationContext.current_page_number)

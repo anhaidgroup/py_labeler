@@ -14,7 +14,7 @@
             </button>
             <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Labeled')>Show Not Labelled <span
                     class="badge">{{ unlabeled_count|int }}</span></button>
-            <button type="button" class="btn btn-info active" onclick=filter_tuples('All')>Show All <span
+            <button type="button" class="btn btn-default" onclick=filter_tuples('All')>Show All <span
                     class="badge">{{ total_count }}</span>
             </button>
 
@@ -51,7 +51,7 @@
 
             </div>
 
-            <button type="button" class="btn btn-info" id="attribute-display-button" onclick=filter_attributes()>Change Displayed Attributes
+            <button type="button" class="btn btn-default" id="attribute-display-button" onclick=filter_attributes()>Change Displayed Attributes
             </button>
         </div>
 
@@ -62,11 +62,12 @@
 
             <label>Maximum number of tokens to show per attribue</label>
             <input type="number" name="attribute-token-count" value={{ tokens_per_attribute }} id="token_number_input">
-            <button type="button" class="btn btn-sm btn-info" id="options-change-button" onclick=change_token_count()>Change Number of Tokens</button>
+            <button type="button" class="btn btn-sm btn-default" id="options-change-button" onclick=change_token_count()>Change Number of Tokens
+            </button>
             <br><br>
             {# todo: remove br and add padding #}
-            <button type="button" class="btn btn-md btn-info" id="save-button" onclick=save_data('{{ save_file_name }}')>
-                Save to file <br><span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+            <button type="button" class="btn btn-md btn-default" id="save-button" onclick=save_data('{{ save_file_name }}')>
+                Save to file
             </button>
 
         </div>

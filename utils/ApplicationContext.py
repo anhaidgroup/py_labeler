@@ -33,4 +33,11 @@ save_file_name = DEFAULT_SAVE_FILE_NAME
 current_data_frame = None
 current_attributes = None
 
+# Controllers:
+# todo 5/4/17 a different approach - better imports - than maintaining in context
+FILTER_CONTROLLER = None
+STATS_CONTROLLER = None
+PAGINATION_CONTROLLER = None
+LABEL_CONTROLLER = None
+
 # todo 4/26/17 can these values linger if app crashes??

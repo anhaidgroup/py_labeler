@@ -95,14 +95,14 @@ class FilterController(QObject):
         else:
             attributes.remove("")
             ApplicationContext.current_attributes = attributes
-
-        from Main import pagination_contoller
-        # todo 5/3/17 this is causing a new window to open?
-        from Main import stats_controller
-        html = Renderer.render_main_page(current_page_tuple_pairs=pagination_contoller.get_page(0),
-                                         match_count=stats_controller.count_matched_tuple_pairs(ApplicationContext.current_data_frame),
-                                         not_match_count=stats_controller.count_non_matched_tuple_pairs(ApplicationContext.current_data_frame),
-                                         not_sure_count=stats_controller.count_not_sure_tuple_pairs(ApplicationContext.current_data_frame),
-                                         unlabeled_count=stats_controller.count_not_labeled_tuple_pairs(ApplicationContext.current_data_frame)
+        html = Renderer.render_main_page(current_page_tuple_pairs=ApplicationContext.PAGINATION_CONTROLLER.get_tuples_for_page(0),
+                                         match_count=ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(
+                                             ApplicationContext.current_data_frame),
+                                         not_match_count=ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs(
+                                             ApplicationContext.current_data_frame),
+                                         not_sure_count=ApplicationContext.STATS_CONTROLLER.count_not_sure_tuple_pairs(
+                                             ApplicationContext.current_data_frame),
+                                         unlabeled_count=ApplicationContext.STATS_CONTROLLER.count_not_labeled_tuple_pairs(
+                                             ApplicationContext.current_data_frame)
                                          )
         self.main_page.setHtml(html)
