@@ -34,17 +34,21 @@
                             </td>
                         </tr>
                     {% endfor %}
-                    <tr>
-                        <td><strong>Comments</strong></td>
-                        <td colspan="2">
-                            <em id="{{ 'comments_'+tuple_pair['_id']|string }}">{{ tuple_pair[comments_col] }}</em>
-                        </td>
+                    <tr id="{{ 'comments_row_'+tuple_pair['_id']|string }}"
+                        style={% if tuple_pair[comments_col] %} '' {% else %} 'display:none;'{% endif %}
+                    >
+                    <td><strong>Comments</strong></td>
+                    <td colspan="2">
+                        <em id="{{ 'comments_'+tuple_pair['_id']|string }}">{{ tuple_pair[comments_col] }}</em>
+                    </td>
                     </tr>
-                    <tr>
-                        <td><strong>Tags</strong></td>
-                        <td colspan="2">
-                            <em id="{{ 'tags_'+tuple_pair['_id']|string }}">{{ tuple_pair[tags_col] }}</em>
-                        </td>
+                    <tr id="{{ 'tags_row_'+tuple_pair['_id']|string }}"
+                        style={% if tuple_pair[tags_col] %} '' {% else %} 'display:none;'{% endif %}
+                    >
+                    <td><strong>Tags</strong></td>
+                    <td colspan="2">
+                        <em id="{{ 'tags_'+tuple_pair['_id']|string }}">{{ tuple_pair[tags_col] }}</em>
+                    </td>
                     </tr>
                 </table>
 

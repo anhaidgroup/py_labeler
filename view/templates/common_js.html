@@ -45,9 +45,14 @@
     }
 
     function edit_comments(tuple_pair_id, comments) {
+        var element = document.getElementById("comments_" + tuple_pair_id);
+        if (comments == null || !comments.trim()) {
+            comments = element.innerHTML;
+        }
         var comments = prompt("Edit comments", comments);
         if (comments == null) comments = "";
-        var element = document.getElementById("comments_" + tuple_pair_id);
+        var table_row = document.getElementById("comments_row_" + tuple_pair_id);
+        table_row.style = "";
         element.innerHTML = comments;
         new QWebChannel(qt.webChannelTransport, function (channel) {
             channel.objects.label_controller.edit_comments(tuple_pair_id, comments);
@@ -55,9 +60,14 @@
     }
 
     function edit_tags(tuple_pair_id, tags) {
+        var element = document.getElementById("tags_" + tuple_pair_id);
+        if (tags == null || !tags.trim()) {
+            tags = element.innerHTML;
+        }
         var tags = prompt("Enter comma separated tags", tags);
         if (tags == null) tags = "";
-        var element = document.getElementById("tags_" + tuple_pair_id);
+        var table_row = document.getElementById("tags_row_" + tuple_pair_id);
+        table_row.style = "";
         element.innerHTML = tags;
         new QWebChannel(qt.webChannelTransport, function (channel) {
             channel.objects.label_controller.edit_tags(tuple_pair_id, tags);
