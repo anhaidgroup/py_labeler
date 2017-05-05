@@ -4,8 +4,9 @@
 
 <script type="text/javascript">
 
+    var save_file_name = "{{ save_file_name}}";
     var current_page = {{ current_page|int }};
-
+    var valid_file_name = /^[\w\- ]+$/;
 
     function change_page(page_number) {
         current_page = page_number;
@@ -93,15 +94,14 @@
 
     }
 
-    function save_data(save_file_name) {
-        if (save_file_name == null || save_file_name == "default_save_file") {
-            {# todo: better way to do default file name#}
-            var save_file_name = prompt("Please enter your name", save_file_name);
-            if (save_file_name == null)
-                alert("Save file name can't be empty");
+    function save_data() {
+        save_file_name = prompt("Please enter your name", save_file_name);
+        if (save_file_name == null || !save_file_name.trim())
+            alert("Save file name can't be empty");
+        if (save_file_name == null || !save_file_name.trim() || !valid_file_name.test(save_file_name.trim())) {
+            alert("Valid file names must have only alphabets, numbers, _ , - and spaces")
         }
-        if (save_file_name != null) {
-            alert(save_file_name);
+        else {
             new QWebChannel(qt.webChannelTransport, function (channel) {
                 channel.objects.pagination_controller.save_data(save_file_name);
             });
