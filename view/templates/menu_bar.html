@@ -2,17 +2,17 @@
     <div class="row" id="menu-row">
 
         <div class="col-sm-3 btn-group-vertical menu-section" id="filter-pane">
-            <h7 class="menu-section-header">filter tuples</h7>
-            <button type="button" class="btn btn-default" onclick=filter_tuples('Yes')>Show Yes <span
+            <h7 class="menu-section-header">Filter tuple pairs</h7>
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Yes')>Show "Yes" <span
                     class="badge">{{ match_count|int }}</span>
             </button>
-            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Matched')>Show No <span
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Matched')>Show "No" <span
                     class="badge">{{ not_match_count|int }}</span>
             </button>
-            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Sure')>Show Not-Sure <span
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Sure')>Show "Not Sure" <span
                     class="badge"> {{ not_sure_count|int }}</span>
             </button>
-            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Labeled')>Show Not Labelled <span
+            <button type="button" class="btn btn-default" onclick=filter_tuples('Not-Labeled')>Show "Not Labelled" <span
                     class="badge">{{ unlabeled_count|int }}</span></button>
             <button type="button" class="btn btn-default" onclick=filter_tuples('All')>Show All <span
                     class="badge">{{ total_count }}</span>
@@ -22,7 +22,7 @@
 
 
         <div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
-            <h7 class="menu-section-header">select tuple pair display</h7>
+            <h7 class="menu-section-header">Select display mode for tuple pairs</h7>
             <button type="button" class={% if layout == "horizontal" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
             onclick=change_layout("horizontal")>Horizontal
             </button>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-sm-3 menu-section" id="attribute-display-pane">
-            <h7 class="menu-section-header">select which attributes to show</h7>
+            <h7 class="menu-section-header">Select which attributes to show</h7>
             <div id="checkbox-div">
                 <div class="checkbox">
                     <label>
