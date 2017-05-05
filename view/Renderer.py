@@ -60,7 +60,7 @@ def render_main_page(current_page_tuple_pairs, match_count, not_match_count, not
                            start_page_number=start_page_number, end_page_number=end_page_number,
                            current_page=ApplicationContext.current_page_number, match_count=match_count,
                            not_match_count=not_match_count, not_sure_count=not_sure_count,
-                           unlabeled_count=unlabeled_count, total_count=ApplicationContext.current_data_frame.shape[0],
+                           unlabeled_count=unlabeled_count, total_count=ApplicationContext.COMPLETE_DATA_FRAME.shape[0],
                            tokens_per_attribute=ApplicationContext.alphabets_per_attribute_display,
                            save_file_name=ApplicationContext.save_file_name,
                            comments_col=ApplicationContext.COMMENTS_COLUMN, tags_col=ApplicationContext.TAGS_COLUMN)

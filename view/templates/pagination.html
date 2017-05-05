@@ -1,5 +1,8 @@
 <div class="navbar-fixed-bottom" id="pagination-div">
     <ul class="pagination pagination-sm">
+        {% if current_page > 0 %}
+            <li><a href="#" onclick="change_page({{ current_page-1 }})"> < prev </a></li>
+        {% endif %}
         {% for i in range(start_page_number, end_page_number) %}
             {% if current_page == i %}
                 <li class="active"><a href="#" onclick="change_page({{ i }})">{{ i }}</a></li>
@@ -7,6 +10,9 @@
                 <li><a href="#" onclick="change_page({{ i }})">{{ i }}</a></li>
             {% endif %}
         {% endfor %}
+        {% if current_page < number_of_pages-3 %}
+            <li><a href="#" onclick="change_page({{ current_page+1}})"> next > </a></li>
+        {% endif %}
     </ul>
 
 </div>

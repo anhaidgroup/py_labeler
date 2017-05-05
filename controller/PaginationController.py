@@ -72,7 +72,7 @@ class PaginationController(QObject):
             ApplicationContext.tuple_pair_count_per_page = 1
         else:
             ApplicationContext.tuple_pair_count_per_page = ApplicationContext.DEFAULT_TUPLE_PAIR_COUNT_PER_PAGE
-        self.change_page(0)
+        self.change_page(ApplicationContext.current_page_number)
 
     @pyqtSlot(str)
     def save_data(self, save_file_name):
