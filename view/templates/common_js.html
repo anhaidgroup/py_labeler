@@ -35,12 +35,13 @@
         });
     }
 
-    function change_label(tuple_pair_id, new_label) {
-        {#            alert(tupleId + " " + newLabel);#}
-        new QWebChannel(qt.webChannelTransport, function (channel) {
-            document.getElementById(tuple_pair_id).className = "table table-bordered " + new_label;
-            channel.objects.label_controller.change_label(tuple_pair_id, new_label);
-        });
+    function change_label(tuple_pair_id, current_label, new_label) {
+        if (String(current_label) !== String(new_label)) {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                document.getElementById(tuple_pair_id).className = "table table-bordered " + new_label;
+                channel.objects.label_controller.change_label(tuple_pair_id, new_label);
+            });
+        }
     }
 
     function edit_comments(tuple_pair_id, comments) {

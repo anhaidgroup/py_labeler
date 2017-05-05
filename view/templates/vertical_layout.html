@@ -50,14 +50,14 @@
 
                     <div class="tuple-pair-buttons-div">
                         <button class="btn btn-md btn-success"
-                                onclick="change_label({{ tuple_pair['_id'] }}, 'Yes')">
+                                onclick="change_label({{ tuple_pair['_id'] }}, '{{ tuple_pair['label'] }}', 'Yes')">
                             yes
                         </button>
                         <button class="btn btn-md btn-danger"
-                                onclick="change_label({{ tuple_pair['_id'] }}, 'Not-Matched')">no
+                                onclick="change_label({{ tuple_pair['_id'] }}, '{{ tuple_pair['label'] }}', 'Not-Matched')">no
                         </button>
                         <button class="btn btn-sm btn-warning"
-                                onclick="change_label({{ tuple_pair['_id'] }}, 'Not-Sure')">maybe
+                                onclick="change_label({{ tuple_pair['_id'] }}, '{{ tuple_pair['label'] }}', 'Not-Sure')">maybe
                         </button>
                         <button class="btn btn-sm btn-default"
                                 onclick="edit_comments({{ tuple_pair['_id'] }}, '{{ tuple_pair[comments_col] }}')">edit comments
