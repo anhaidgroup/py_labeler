@@ -115,4 +115,13 @@
         }
 
     }
+
+    window.onresize = function () {
+
+        var pad = $("#menu-row").height();
+        $('body').css({
+            "padding-top": pad
+        })
+        ;
+    }
 </script>
