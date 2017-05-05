@@ -49,8 +49,6 @@ def initialize_tags_comments(df, comments_col, tags_col):
 
 # todo 3/10/17 move this under view?
 
-df = read_data_frame('./test/data/drug_sample.csv',
-                     ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
 
 
 def suggest_tags_comments_column_name(df):
@@ -61,9 +59,6 @@ def suggest_tags_comments_column_name(df):
     if "tags" not in df.columns:
         tags_col = "tags"
     return [tags_col, comments_col]
-
-
-[tags_col, comments_col] = suggest_tags_comments_column_name(df)
 
 
 def client_script():
@@ -83,9 +78,8 @@ def client_script():
 
 
 class MainPage(QWebEnginePage):
-    def __init__(self, df):
+    def __init__(self):
         super(MainPage, self).__init__(None)
-        self.df = df
 
     def javaScriptConsoleMessage(self, level, msg, linenumber, source_id):
         try:
@@ -96,21 +90,29 @@ class MainPage(QWebEnginePage):
     @pyqtSlot(str, str)
     def respond(self, comments_col, tags_col):
         # todo 4/26/17 use local version - global df may refer to other data frame
-        global df
-        df = initialize_tags_comments(df, comments_col, tags_col)
-        html_str = Renderer.render_main_page(current_page_tuple_pairs=ApplicationContext.PAGINATION_CONTROLLER.get_tuples_for_page(0),
-                                             match_count=ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(df),
-                                             not_match_count=ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs(df),
-                                             not_sure_count=ApplicationContext.STATS_CONTROLLER.count_not_sure_tuple_pairs(df),
-                                             unlabeled_count=ApplicationContext.STATS_CONTROLLER.count_not_labeled_tuple_pairs(df)
-                                             )
+        initialize_tags_comments(ApplicationContext.COMPLETE_DATA_FRAME, comments_col, tags_col)
+        html_str = Renderer.render_main_page(
+            current_page_tuple_pairs=ApplicationContext.PAGINATION_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
+            match_count=ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(ApplicationContext.current_data_frame),
+            not_match_count=ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs(ApplicationContext.current_data_frame),
+            not_sure_count=ApplicationContext.STATS_CONTROLLER.count_not_sure_tuple_pairs(ApplicationContext.current_data_frame),
+            unlabeled_count=ApplicationContext.STATS_CONTROLLER.count_not_labeled_tuple_pairs(ApplicationContext.current_data_frame)
+        )
         self.setHtml(html_str)
 
 
-def launch_labeler():
+def launch_labeler(file_name, attributes, label_column_name):
+    df = read_data_frame(file_name,
+                         attributes, label_column_name)
+
+    ApplicationContext.COMPLETE_DATA_FRAME = df
+    ApplicationContext.current_data_frame = df
+
+    [tags_col, comments_col] = suggest_tags_comments_column_name(ApplicationContext.COMPLETE_DATA_FRAME)
+
     application = QApplication([])
     view = QWebEngineView()
-    main_page = MainPage(df)
+    main_page = MainPage()
     main_page.profile().clearHttpCache()
     main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
     main_page.setHtml(Renderer.render_options_page(tags_col, comments_col))
@@ -142,4 +144,5 @@ def launch_labeler():
 
 
 # execution starts here
-launch_labeler()
+launch_labeler('./test/data/drug_sample.csv',
+               ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
