@@ -81,17 +81,24 @@
         });
     }
 
-    function filter_attributes() {
-        new QWebChannel(qt.webChannelTransport, function (channel) {
-            var checkedBoxes = document.querySelectorAll('input[name=attribute_filter]:checked');
-            var checkboxesChecked = "";
-            for (i = 0; i < checkedBoxes.length; i++) {
-                checkboxesChecked = checkboxesChecked.concat(checkedBoxes[i].id);
-                checkboxesChecked = checkboxesChecked.concat(",");
-            }
-            channel.objects.filter_controller.filter_attribute(checkboxesChecked);
-        });
-
+    function filter_attributes(all) {
+        if (all != null && all) {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                var checkboxesChecked = "_show_all";
+                channel.objects.filter_controller.filter_attribute(checkboxesChecked);
+            });
+        }
+        else {
+            new QWebChannel(qt.webChannelTransport, function (channel) {
+                var checkedBoxes = document.querySelectorAll('input[name=attribute_filter]:checked');
+                var checkboxesChecked = "";
+                for (i = 0; i < checkedBoxes.length; i++) {
+                    checkboxesChecked = checkboxesChecked.concat(checkedBoxes[i].id);
+                    checkboxesChecked = checkboxesChecked.concat(",");
+                }
+                channel.objects.filter_controller.filter_attribute(checkboxesChecked);
+            });
+        }
     }
 
     function save_data() {
@@ -108,12 +115,4 @@
         }
 
     }
-
-
-    $("#nav_menu").resize(function () {
-        $('#godown').height($("#nav_menu").height() + 10);
-        alert("reize");
-    });
-
-    if ($("#nav_menu").height() > $('#godown').height()) $('#godown').height($("#nav_menu").height() + 10);
 </script>

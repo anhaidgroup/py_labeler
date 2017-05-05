@@ -38,12 +38,6 @@
         <div class="col-sm-3 menu-section" id="attribute-display-pane">
             <h7 class="menu-section-header">Select which attributes to show</h7>
             <div id="checkbox-div">
-                <div class="checkbox">
-                    <label>
-                        <input name="attribute_filter" type="checkbox" id="_show_all"> Show all attributes
-                    </label>
-                </div>
-
                 {% for attribute in attributes %}
                     <div class="checkbox">
                         <label>
@@ -54,8 +48,11 @@
 
             </div>
 
-            <button type="button" class="btn btn-default" id="attribute-display-button" onclick=filter_attributes()>Change displayed attributes
-            </button>
+            <button type="button" class="btn btn-default" id="clear-attribute-display-button" onclick=filter_attributes(true)>Clear filter
+                <button type="button" class="btn btn-default" id="attribute-display-button" onclick=filter_attributes()>Change displayed attributes
+
+
+                </button>
         </div>
 
 
@@ -76,4 +73,3 @@
         </div>
     </div>
 </nav>
-<div class="godown-60" id="godown"></div>
