@@ -47,6 +47,7 @@ class PaginationController(QObject):
 
     @pyqtSlot(int)
     def change_page(self, page_number):
+        ApplicationContext.current_page_number = page_number
         self.main_page.setHtml(
             Renderer.render_main_page(
                 current_page_tuple_pairs=

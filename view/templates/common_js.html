@@ -108,4 +108,12 @@
         }
 
     }
+
+
+    $("#nav_menu").resize(function () {
+        $('#godown').height($("#nav_menu").height() + 10);
+        alert("reize");
+    });
+
+    if ($("#nav_menu").height() > $('#godown').height()) $('#godown').height($("#nav_menu").height() + 10);
 </script>
