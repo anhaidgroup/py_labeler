@@ -25,12 +25,15 @@
         <div class="col-sm-3 btn-group-vertical menu-section" id="select-display-pane">
             <h7 class="menu-section-header">Select display mode for tuple pairs</h7>
             <div class="layout-buttons">
-                <button type="button" class={% if layout == "horizontal" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
+                <button data-toggle="tooltip" title="Displays attributes horizontally and stacks tuple pairs" type="button"
+                        class={% if layout == "horizontal" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
                 onclick=change_layout("horizontal")>Horizontal
                 </button>
-                <button type="button" class={% if layout == "vertical" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
+                <button data-toggle="tooltip" title="Displays attributes one below each other and stacks tuple pairs" type="button"
+                        class={% if layout == "vertical" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
                 onclick=change_layout("vertical")>Vertical</button>
-                <button type="button" class={% if layout == "single" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
+                <button data-toggle="tooltip" title="Displays attributes horizontally and shows one tuple pair at a time" type="button"
+                        class={% if layout == "single" %} "btn btn-default active" {% else %} 'btn btn-default'{% endif %}
                 onclick=change_layout("single")>One at a time</button>
             </div>
         </div>

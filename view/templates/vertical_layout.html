@@ -120,6 +120,7 @@
                 </div>
 
             {% endfor %}
+            <button class="btn btn-default" id="next-page-btn" onclick="change_page({{ current_page + 1 }})">Next page</button>
 
         </div>
         {% include "pagination.html" %}

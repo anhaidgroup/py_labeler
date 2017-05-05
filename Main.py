@@ -47,10 +47,6 @@ def initialize_tags_comments(df, comments_col, tags_col):
     return df
 
 
-# todo 3/10/17 move this under view?
-
-
-
 def suggest_tags_comments_column_name(df):
     comments_col = ""
     tags_col = ""
