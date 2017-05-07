@@ -12,7 +12,7 @@
         current_page = page_number;
         new QWebChannel(qt.webChannelTransport, function (channel) {
             {# todo 3/26/17 change function name #}
-            channel.objects.pagination_controller.change_page(page_number);
+            channel.objects.tuple_pair_display_controller.change_page(page_number);
         });
 
     }
@@ -22,7 +22,7 @@
         if ($.isNumeric(token_count) && Math.floor(parseInt(token_count, 10)) >= 0) {
             token_count = Math.floor(parseInt(token_count, 10));
             new QWebChannel(qt.webChannelTransport, function (channel) {
-                channel.objects.pagination_controller.change_token_count(token_count);
+                channel.objects.tuple_pair_display_controller.change_token_count(token_count);
             });
         }
         else {
@@ -77,7 +77,7 @@
 
     function change_layout(new_layout) {
         new QWebChannel(qt.webChannelTransport, function (channel) {
-            channel.objects.pagination_controller.change_layout(new_layout);
+            channel.objects.tuple_pair_display_controller.change_layout(new_layout);
         });
     }
 
@@ -110,7 +110,7 @@
         }
         else {
             new QWebChannel(qt.webChannelTransport, function (channel) {
-                channel.objects.pagination_controller.save_data(save_file_name);
+                channel.objects.tuple_pair_display_controller.save_data(save_file_name);
             });
         }
 

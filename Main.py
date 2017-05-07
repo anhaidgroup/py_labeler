@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QApplication
 
 from controller.FilterController import FilterController
 from controller.LabelUpdateController import LabelUpdateController
-from controller.PaginationController import PaginationController
+from controller.TuplePairDisplayController import TuplePairDisplayController
 from controller.StatsController import StatsController
 from utils import ApplicationContext
 from view import Renderer
@@ -88,7 +88,7 @@ class MainPage(QWebEnginePage):
         # todo 4/26/17 use local version - global df may refer to other data frame
         initialize_tags_comments(ApplicationContext.COMPLETE_DATA_FRAME, comments_col, tags_col)
         html_str = Renderer.render_main_page(
-            current_page_tuple_pairs=ApplicationContext.PAGINATION_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
+            current_page_tuple_pairs=ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
             match_count=ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(ApplicationContext.current_data_frame),
             not_match_count=ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs(ApplicationContext.current_data_frame),
             not_sure_count=ApplicationContext.STATS_CONTROLLER.count_not_sure_tuple_pairs(ApplicationContext.current_data_frame),
@@ -121,18 +121,18 @@ def launch_labeler(file_name, attributes, label_column_name):
     # add controllers to the channel
     filter_controller = FilterController(main_page)
     stats_controller = StatsController(main_page)
-    pagination_controller = PaginationController(main_page)
+    tuple_pair_display_controller = TuplePairDisplayController(main_page)
     label_controller = LabelUpdateController(main_page)
 
     ApplicationContext.FILTER_CONTROLLER = filter_controller
     ApplicationContext.STATS_CONTROLLER = stats_controller
-    ApplicationContext.PAGINATION_CONTROLLER = pagination_controller
+    ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER = tuple_pair_display_controller
     ApplicationContext.LABEL_CONTROLLER = label_controller
 
     channel.registerObject('bridge', main_page)
     channel.registerObject('filter_controller', filter_controller)
     channel.registerObject('stats_controller', stats_controller)
-    channel.registerObject('pagination_controller', pagination_controller)
+    channel.registerObject('tuple_pair_display_controller', tuple_pair_display_controller)
     channel.registerObject('label_controller', label_controller)
     view.show()
 

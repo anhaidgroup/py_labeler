@@ -37,7 +37,7 @@ current_attributes = None
 # todo 5/4/17 a different approach - better imports - than maintaining in context
 FILTER_CONTROLLER = None
 STATS_CONTROLLER = None
-PAGINATION_CONTROLLER = None
+TUPLE_PAIR_DISPLAY_CONTROLLER = None
 LABEL_CONTROLLER = None
 
 # todo 4/26/17 can these values linger if app crashes??

@@ -15,7 +15,7 @@ class LabelUpdateController(QObject):
         self.main_page.setHtml(
             Renderer.render_main_page(
                 current_page_tuple_pairs=
-                ApplicationContext.PAGINATION_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
+                ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
                 match_count=
                 ApplicationContext.current_data_frame[ApplicationContext.current_data_frame.label == ApplicationContext.MATCH].shape[0],
                 not_match_count=

@@ -96,7 +96,7 @@ class FilterController(QObject):
             attributes.remove("")
             ApplicationContext.current_attributes = attributes
         html = Renderer.render_main_page(
-            current_page_tuple_pairs=ApplicationContext.PAGINATION_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
+            current_page_tuple_pairs=ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
             match_count=ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(
                 ApplicationContext.current_data_frame),
             not_match_count=ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs(
