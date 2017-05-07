@@ -5,60 +5,82 @@ from view import Renderer
 
 
 class FilterController(QObject):
+    """
+    Responds to requests to apply filters on tuple pairs
+    """
+
     def __init__(self, main_page):
         super(FilterController, self).__init__(None)
         self.main_page = main_page
 
-    @pyqtSlot(str)
     def get_matching_tuple_pairs(self):
-        """Gets tuple pairs whose label value is currently "MATCH"
+        """Gets tuple pairs whose label value is currently "MATCH" from complete data frame.
 
-        :param
-            dataFrame: Data Frame consisting of matched and non-matched tuple pairs
-        :return:
-            Data frame with tuple pairs whose label value is currently NON-MATCH
+        Args:
+            None
+            
+        Returns:
+            Data frame with tuple pairs whose label value is currently NON-MATCH.
+            
+        Raises:
+                
         """
-        # todo check data type of label column
         return ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME.label == ApplicationContext.MATCH]
 
-    @pyqtSlot()
     def get_non_matched_tuple_pairs(self):
-        """Gets tuple pairs whose label value is currently NON-MATCH
+        """Gets tuple pairs whose label value is currently NON-MATCH from complete data frame.
 
-        :param
-            dataFrame: Data Frame consisting of matched and non-matched tuple pairs
-        :return:
-            Data frame with tuple pairs whose label value is currently NON-MATCH
+        Args:
+            None
+        
+        Returns:
+            Data frame with tuple pairs whose label value is currently NON-MATCH.
+            
+        Raises:
         """
-        # todo check if assertion is correct thing to do
         return ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME.label == ApplicationContext.NON_MATCH]
 
-    @pyqtSlot()
     def get_non_sure_tuple_pairs(self):
-        """Gets tuple pairs whose label value is currently NON-MATCH
+        """Gets tuple pairs whose label value is currently NON-MATCH from complete data frame.
 
-        :param
-            dataFrame: Data Frame consisting of matched and non-matched tuple pairs
-        :return:
-            Data frame with tuple pairs whose label value is currently NON-MATCH
+        Args:
+            None.
+            
+        Returns:
+            Data frame with tuple pairs whose label value is currently NON-MATCH.
+        
+        Raises:    
+            
         """
-        # todo check data type of label column
         return ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME.label == ApplicationContext.NOT_SURE]
 
-    @pyqtSlot()
     def get_not_labeled_tuple_pairs(self):
-        """Gets tuple pairs whose label value is currently NON-MATCH
+        """Gets tuple pairs whose label value is currently NON-MATCH from complete data frame.
 
-        :param
-            dataFrame: Data Frame consisting of matched and non-matched tuple pairs
-        :return:
-            Data frame with tuple pairs whose label value is currently NON-MATCH
+        Args:
+            None.
+            
+        Returns:
+            Data frame with tuple pairs whose label value is currently NON-MATCH.
+            
+        Raises:
         """
-        # todo check data type of label column
         return ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME.label == ApplicationContext.NOT_LABELED]
 
     @pyqtSlot(str)
     def get_filtered_tuple_pairs(self, label):
+        """ Filters tuple pairs by label value and renders them.
+        
+        Args: 
+            label (str): label value to filter by. Has to be one of the valid constant
+            label values from ApplicationContext.
+            
+        Returns:
+            None
+            
+        Raises:
+            
+        """
         data = None
         if label == ApplicationContext.MATCH:
             data = self.get_matching_tuple_pairs()
@@ -71,9 +93,11 @@ class FilterController(QObject):
         elif label == ApplicationContext.ALL:
             data = ApplicationContext.COMPLETE_DATA_FRAME
 
+        # todo 5/7/17 check if data is still null
         ApplicationContext.current_data_frame = data
         data = data.iloc[
-               0 * ApplicationContext.tuple_pair_count_per_page: 0 * ApplicationContext.tuple_pair_count_per_page + ApplicationContext.tuple_pair_count_per_page]
+               0 * ApplicationContext.tuple_pair_count_per_page: 0 * ApplicationContext.tuple_pair_count_per_page +
+                                                                 ApplicationContext.tuple_pair_count_per_page]
         self.main_page.setHtml(
             Renderer.render_main_page(current_page_tuple_pairs=data,
                                       match_count=ApplicationContext.COMPLETE_DATA_FRAME[
@@ -89,10 +113,22 @@ class FilterController(QObject):
 
     @pyqtSlot(str)
     def filter_attribute(self, attributes):
+        """ Filters the attributes shown for every tuple pair and renders them.
+        
+        Args:
+            attributes (list[str]): List of attributes to show for each tuple pair
+            
+        Returns:
+            None
+            
+        Raises:
+        """
+
         attributes = attributes.split(",")
         if "_show_all" in attributes:
             ApplicationContext.current_attributes = ApplicationContext.ALL_ATTRIBUTES
         else:
+            # todo 5/7/17 check if attributes are valid
             attributes.remove("")
             ApplicationContext.current_attributes = attributes
         html = Renderer.render_main_page(
