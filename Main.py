@@ -19,9 +19,23 @@ from view import Renderer
 # ref: https://riverbankcomputing.com/pipermail/pyqt/2014-January/033681.html
 
 def read_data_frame(file_name, attribute_list, label_column):
+    """ Reads complete data frame from a csv file and sets the list of attributes and 
+        name of label column to be used by Labeler.
+    
+    Args:
+        file_name (str): Name of CSV file containing tuple pairs.
+        attribute_list (list[str]): Complete list of attributes Labeler should use for display.
+        label_column (str): Name of DataFrame column containing labels. This column is created if it doesn't already exist.
+        
+    Returns:
+        Data frame (DataFrame): Complete DataFrame that will be used by the Labeler
+        
+    Raises:
+    """
     df = pd.read_csv(file_name)
 
     ApplicationContext.current_attributes = attribute_list
+    # todo 5/7/17 check if attributes exist
     ApplicationContext.ALL_ATTRIBUTES = ApplicationContext.current_attributes
 
     if label_column not in df.columns:
@@ -32,6 +46,20 @@ def read_data_frame(file_name, attribute_list, label_column):
 
 
 def initialize_tags_comments(df, comments_col, tags_col):
+    """Creates or sets the DataFrame columns to be used for comments and tags.
+    
+    Args:
+        df (DataFrame): DataFrame to which comments and tags column will be added.
+        comments_col (str): Name of the comments column. This column wll be created and initialized to empty string 
+                        if it doesn't already exist.
+        tags_col (str): Name of the tags column. This column wll be created and initialized to empty string 
+                        if it doesn't already exist.
+    
+    Returns:
+        Data Frame (DataFrame): Complete DataFrame with comments and tags columns that will be used by the Labeler.
+        
+    Raises:
+    """
     if comments_col not in df.columns:
         # initialize empty col
         df[comments_col] = ""
@@ -48,6 +76,17 @@ def initialize_tags_comments(df, comments_col, tags_col):
 
 
 def suggest_tags_comments_column_name(df):
+    """ Checks if the column names 'comments' and 'tags' are not used in the data frame. If not used
+        suggests them as names for comments and tags column. Suggests empty strings otherwise.
+    
+    Args: 
+        df (DataFrame): DataFrame of tuple pairs
+        
+    Returns:
+        [tags_col, comments_col] (str, str): Suggestions for Tags column name and Comments column name.
+   
+    Raises: 
+    """
     comments_col = ""
     tags_col = ""
     if "comments" not in df.columns:
@@ -58,6 +97,17 @@ def suggest_tags_comments_column_name(df):
 
 
 def client_script():
+    """ Reads qtwebchannel.js from disk and creates QWebEngineScript to inject to QT window.
+        This allows for JavaScript code to call python methods marked by pyqtSlot in registered objects.
+     
+    Args:
+        None.
+    
+    Returns:
+        None.
+    
+    Raises:
+    """
     qwebchannel_js = QFile(':/qtwebchannel/qwebchannel.js')
     if not qwebchannel_js.open(QIODevice.ReadOnly):
         raise SystemExit(
@@ -74,18 +124,26 @@ def client_script():
 
 
 class MainPage(QWebEnginePage):
+    """ Main web page of the labeler application. The HTML content of this will change in response to events."""
+
     def __init__(self):
         super(MainPage, self).__init__(None)
 
-    def javaScriptConsoleMessage(self, level, msg, linenumber, source_id):
-        try:
-            print('%s:%s: %s' % (source_id, linenumber, msg))
-        except OSError:
-            pass
-
     @pyqtSlot(str, str)
     def respond(self, comments_col, tags_col):
-        # todo 4/26/17 use local version - global df may refer to other data frame
+        """ Called when user confirms name of comments and tags columns to be used. Renders the main page of the Labeler.
+        
+        Args:
+            comments_col (str): Name of comments column confirmed by user.
+            tags_col (str): Name of tags column confirmed by user.
+            
+
+        Returns: 
+            None.
+        
+        Raises:
+            None.
+        """
         initialize_tags_comments(ApplicationContext.COMPLETE_DATA_FRAME, comments_col, tags_col)
         html_str = Renderer.render_main_page(
             current_page_tuple_pairs=ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
@@ -98,6 +156,20 @@ class MainPage(QWebEnginePage):
 
 
 def launch_labeler(file_name, attributes, label_column_name):
+    """ Method to be invoked to launch the Labeler application.
+
+    Args:
+        file_name (str): Path of CSV file containing tuple pairs.
+        attributes (list[str]): List of attribute column names the Labeler will display to the user.
+        label_column_name (str): Name of column to be used to save tuple pair labels. 
+                                This column will be created if it doesn't already exist.
+                                
+    Returns:
+        None.
+    
+    Raises:
+        None.
+    """
     df = read_data_frame(file_name,
                          attributes, label_column_name)
 
