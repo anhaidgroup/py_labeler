@@ -10,29 +10,50 @@ env = Environment(
 )
 
 
-# todo 5/3/17 Delete this method. This is just used to stub jinja changes
-def renderSampleTemplate(title, users, data):
-    # get a template from the folder
-    template = env.get_template('sample.html')
-    return template.render(title="templated page", users=["me", "them", "who"], data=data)
-
-
 def render_options_page(tags_col, comments_col):
+    """ Renders page asking user to enter/validate column names for tags and comments.
+    
+    Args:
+        tags_col (str): Suggestion for the name of the tags column.
+        comments_col (str): Suggestion for the name of the comments column.
+        
+    Returns:
+        Options page HTML (str).
+    
+    Raises:
+    """
     options_page = env.get_template('options.html')
     return options_page.render(tags_col=tags_col, comments_col=comments_col)
 
 
-def render_dummy_page():
-    main_window = env.get_template('dummy_page.html');
-    return main_window.render()
-
-
 def render_tuple_pair(tuple_pair):
+    """ Renders a single tuple pair using template tuple_pair.html.
+
+    Args:
+        tuple_pair : Single tuple pair to be rendered.
+        
+    Returns:
+        Tuple pair HTML (str).
+        
+    Raises:
+    """
     tuple_pair_template = env.get_template('tuple_pair.html');
+    # todo 5/7/17 check tuple pair to be 1 row only
     return tuple_pair_template.render(row=tuple_pair.to_dict(orient='records'), headers=['ID', 'birth_year', 'name']);
 
 
 def compute_page_numbers(current_page):
+    """ Utility method to compute start and end page numbers to show in pagination footer.
+
+    Args:
+        current_page (int): Page number of the current page being displayed.
+        
+    Returns:
+        [start_page, end_page] (int, int): Starting page number and ending page number to be 
+        displayed in pagination footer.
+        
+    Raises:
+    """
     if current_page - ApplicationContext.PAGE_DISPLAY_COUNT / 2 < 0:
         start_page = 0
         end_page = ApplicationContext.PAGE_DISPLAY_COUNT
@@ -43,6 +64,19 @@ def compute_page_numbers(current_page):
 
 
 def render_main_page(current_page_tuple_pairs, match_count, not_match_count, not_sure_count, unlabeled_count):
+    """ Renders complete main window based on current layout.
+
+    Args:
+        current_page_tuple_pairs (DataFrame): Tuple pairs to be displayed in the current page
+        match_count (int):
+        not_match_count (int):
+        not_sure_count (int):
+        unlabeled_count (int):
+        
+    Returns: Complete window HTML (str)
+    
+    Raises:
+    """
     template = env.get_template('horizontal_layout.html')
     if ApplicationContext.current_layout == "horizontal":
         template = env.get_template('horizontal_layout.html')
