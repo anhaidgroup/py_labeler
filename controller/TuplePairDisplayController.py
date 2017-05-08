@@ -3,6 +3,7 @@ from math import ceil
 
 from utils import ApplicationContext
 from view import Renderer
+import os
 
 
 class TuplePairDisplayController(QObject):
@@ -180,9 +181,15 @@ class TuplePairDisplayController(QObject):
         Raises:
 
         """
-        # todo 4/26/17 handle no such directory errors
-        ApplicationContext.save_file_name = save_file_name
-        ApplicationContext.COMPLETE_DATA_FRAME.to_csv(ApplicationContext.SAVEPATH + save_file_name)
+        path = save_file_name.split("/")
+        path.remove("/")
+        path.remove("")
+
+        if os.path.isdir("/".join(path[:len(path) - 1])):
+            ApplicationContext.save_file_name = save_file_name
+            ApplicationContext.COMPLETE_DATA_FRAME.to_csv(ApplicationContext.SAVEPATH + save_file_name)
+        else:
+            return
 
     @pyqtSlot(int)
     def change_token_count(self, token_count):
