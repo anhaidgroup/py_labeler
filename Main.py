@@ -13,6 +13,7 @@ from controller.TuplePairDisplayController import TuplePairDisplayController
 from controller.StatsController import StatsController
 from utils import ApplicationContext
 from view import Renderer
+import sys
 
 
 # do not auto clean imports! from OpenGL import GL is needed on linux
@@ -212,5 +213,19 @@ def launch_labeler(file_name, attributes, label_column_name):
 
 
 # execution starts here
-launch_labeler('./test/data/drug_sample.csv',
-               ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
+# launch_labeler('./test/data/drug_sample.csv',
+#                ["id", "ProductNo", "Form", "Dosage", "drugname", "activeingred", "ReferenceDrug", "ProductMktStatus"], "label")
+
+if len(sys.argv) < 4:
+    print(" required parameters: file_path label_column_name column_1_name column_2_name column_3_name... ")
+else:
+    file_path = sys.argv[1]
+    label = sys.argv[2]
+    columns = []
+
+    for i in range(3, len(sys.argv)):
+        columns.insert(i, sys.argv[i])
+    print("Launching labeler on file: ", file_path)
+    print("Label column name: ", label)
+    print("Columns: ", str(columns))
+    launch_labeler(file_path, columns, label)

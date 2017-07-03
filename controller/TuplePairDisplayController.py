@@ -181,6 +181,7 @@ class TuplePairDisplayController(QObject):
         Raises:
 
         """
+        # todo WINDOWS
         path = save_file_name.split("/")
         path.remove("/")
         path.remove("")
