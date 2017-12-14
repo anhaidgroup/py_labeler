@@ -54,7 +54,7 @@ def _vis_debug_dt(matcher, train, test, exclude_attrs, target_attr,
 
     try:
         from PyQt5 import QtWidgets
-        from py_entitymatching.gui.debug_gui_base import MainWindowManager
+        from magellan_labeler.gui import MainWindowManager
     except ImportError:
         raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
                           'GUI related functions in py_entitymatching.')

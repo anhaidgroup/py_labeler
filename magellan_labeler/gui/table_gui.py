@@ -4,8 +4,8 @@ import logging
 import six
 import sys
 
-import py_entitymatching as em
-from py_entitymatching.utils.generic_helper import remove_non_ascii
+import magellan_labeler as em
+from magellan_labeler.utils.generic_helper import remove_non_ascii
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ def view_table(table, edit_flag=False, show_flag=True):
         from PyQt5 import QtWidgets
     except ImportError:
         raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
-                      'GUI related functions in py_entitymatching.')
+                          'GUI related functions in py_entitymatching.')
 
     em._viewapp = QtWidgets.QApplication.instance()
     if em._viewapp is None:
@@ -51,7 +51,6 @@ def view_table(table, edit_flag=False, show_flag=True):
     datatable.setHorizontalHeaderLabels(list_col)
 
     # set window size
-
 
     width = min((j + 1) * 105, app.desktop().screenGeometry().width() - 50)
     height = min((i + 1) * 41, app.desktop().screenGeometry().width() - 100)
@@ -81,19 +80,18 @@ def edit_table(table, show_flag=True):
         from PyQt5 import QtGui
     except ImportError:
         raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
-                      'GUI related functions in py_entitymatching.')
+                          'GUI related functions in py_entitymatching.')
 
     datatable = view_table(table, edit_flag=True, show_flag=show_flag)
     cols = list(table.columns)
     idxv = list(table.index)
     j = len(table.columns) - 1
     for i in range(len(table.index)):
-            val = datatable.item(i, j).text()
-            inp = table.iat[i, j]
-            val = _cast_val(val, inp)
-            table.set_value(idxv[i], cols[j], val)
+        val = datatable.item(i, j).text()
+        inp = table.iat[i, j]
+        val = _cast_val(val, inp)
+        table.set_value(idxv[i], cols[j], val)
 
-            
 
 def _cast_val(v, i):
     # need to cast string values from edit window
@@ -114,4 +112,3 @@ def _cast_val(v, i):
     else:
         logger.warning('Input value did not match any of the known types')
         return v
-

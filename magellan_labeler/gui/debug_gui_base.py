@@ -9,7 +9,7 @@ except ImportError:
 
 import py_entitymatching as em
 import py_entitymatching.catalog.catalog_manager as cm
-from  py_entitymatching.gui.gui_utils import DictTableViewWithLabel, \
+from magellan_labeler.gui import DictTableViewWithLabel, \
     DataFrameTableViewWithLabel, TreeViewWithLabel
 
 class MainWindowManager(QtWidgets.QWidget):

@@ -1,8 +1,8 @@
 import logging
 
-import py_entitymatching.catalog.catalog_manager as cm
-import py_entitymatching.utils.catalog_helper as ch
-import py_entitymatching.utils.generic_helper as gh
+import magellan_labeler.catalog.catalog_manager as cm
+import magellan_labeler.utils.catalog_helper as ch
+import magellan_labeler.utils.generic_helper as gh
 
 logger = logging.getLogger(__name__)
 
@@ -25,7 +25,7 @@ def project_cols(df, col_list):
     if cm.is_dfinfo_present(df):
         if _is_table_or_candset(df):
             if not _is_table(df):
-                key, fk_ltable, fk_rtable, ltable, rtable, l_key, r_key\
+                key, fk_ltable, fk_rtable, ltable, rtable, l_key, r_key \
                     = cm.get_metadata_for_candset(df, logger, False)
                 updated_col_list = [key, fk_ltable, fk_rtable]
                 updated_col_list.extend(col_list)
@@ -85,13 +85,14 @@ def mutate_col(df, **kwargs):
 
     return new_df
 
+
 def drop_cols(df, col_list):
     if not isinstance(col_list, list):
         col_list = [col_list]
     if cm.is_dfinfo_present(df):
         if _is_table_or_candset(df):
             if not _is_table(df):
-                key, fk_ltable, fk_rtable, ltable, rtable, l_key, r_key\
+                key, fk_ltable, fk_rtable, ltable, rtable, l_key, r_key \
                     = cm.get_metadata_for_candset(df, logger, False)
                 col_list = gh.list_diff(col_list, [key, fk_ltable, fk_rtable])
                 col_list = gh.list_drop_duplicates(col_list)
@@ -112,10 +113,10 @@ def preserve_metadata(df, new_df):
     if cm.is_dfinfo_present(df):
         if _is_table_or_candset(df):
             if not _is_table(df):
-                key, fk_ltable, fk_rtable, ltable, rtable, l_key, r_key\
+                key, fk_ltable, fk_rtable, ltable, rtable, l_key, r_key \
                     = cm.get_metadata_for_candset(df, logger, False)
                 if not ch.check_attrs_present(new_df, [key, fk_ltable,
-                                                     fk_rtable]):
+                                                       fk_rtable]):
                     logger.warning('Not setting the metadata as some attrs '
                                    'are not present')
                     return new_df
@@ -125,7 +126,6 @@ def preserve_metadata(df, new_df):
                     logger.warning('Not setting the metadata as some attrs '
                                    'are not present')
                     return new_df
-
 
         cm.init_properties(new_df)
         cm.copy_properties(df, new_df)
@@ -143,6 +143,7 @@ def _is_table_or_candset(df):
         return True
     else:
         return False
+
 
 def _is_table(df):
     table_props = ['key']

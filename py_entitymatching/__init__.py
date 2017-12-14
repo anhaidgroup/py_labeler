@@ -9,7 +9,6 @@ _catalog = Catalog.Instance()
 from py_entitymatching.sampler.down_sample import down_sample
 # # io related methods
 #
-from py_entitymatching.io.parsers import read_csv_metadata, to_csv_metadata
 from py_entitymatching.io.pickles import load_object, load_table, save_object, save_table
 #
 # import catalog related methods
@@ -39,7 +38,7 @@ from py_entitymatching.blockercombiner.blockercombiner import combine_blocker_ou
 from py_entitymatching.sampler.single_table import sample_table
 
 # #
-from py_entitymatching.gui.table_gui import view_table, edit_table
+from magellan_labeler.gui import view_table, edit_table
 
 # # labeling
 from py_entitymatching.labeler.labeler import label_table
