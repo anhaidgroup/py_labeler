@@ -1,8 +1,9 @@
 import logging
 
-import py_entitymatching.catalog.catalog_manager as cm
 import py_entitymatching.utils.catalog_helper as ch
-import py_entitymatching.utils.generic_helper as gh
+
+import py_entitymatching.catalog.catalog_manager as cm
+import utils.generic_helper as gh
 
 logger = logging.getLogger(__name__)
 
