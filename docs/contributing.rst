@@ -1,7 +1,7 @@
 .. _contributing:
 
 *********************************
-Contributing to py_entitymatching
+Contributing to magellan_labeler
 *********************************
 
 .. contents:: Table of contents:
@@ -9,7 +9,7 @@ Contributing to py_entitymatching
 
 This document is adapted from `pandas how to contribute guidelines
 <http://pandas.pydata.org/pandas-docs/stable/contributing.html>`_ for
-*py_entitymatching* package.
+*magellan_labeler* package.
 
 Where to start?
 ===============
@@ -17,11 +17,11 @@ Where to start?
 All contributions, bug reports, bug fixes, documentation improvements,
 enhancements and ideas are welcome.
 
-If you are simply looking to start working with the *py_entitymatching* codebase, navigate to the
-`GitHub "issues" tab <https://github.com/anhaidgroup/py_entitymatching/issues>`_ and start looking through
+If you are simply looking to start working with the *magellan_labeler* codebase, navigate to the
+`GitHub "issues" tab <https://github.com/anhaidgroup/magellan_labeler/issues>`_ and start looking through
 interesting issues.
 
-Or maybe through using *py_entitymatching* you have an idea of your own or are looking for something
+Or maybe through using *magellan_labeler* you have an idea of your own or are looking for something
 in the documentation and thinking 'this can be improved'...you can do something
 about it!
 
@@ -31,10 +31,10 @@ Feel free to ask questions on the `mailing list
 Bug reports and enhancement requests
 ====================================
 
-Bug reports are an important part of making *py_entitymatching* more stable.Having a
+Bug reports are an important part of making *magellan_labeler* more stable.Having a
 complete bug report will allow others to reproduce the bug and provide insight into
 fixing. We use GitHub issue tracker to track bugs. It is important that you provide the
-exact version of *py_entitymatching* where the bug is found. Trying the bug-producing
+exact version of *magellan_labeler* where the bug is found. Trying the bug-producing
 code out on the *master* branch is often a worthwhile exercise to confirm the bug still
 exists. It is also worth searching existing bug reports and pull requests to see if the
 issue has already been reported and/or fixed.
@@ -51,15 +51,15 @@ Bug reports must:
       ...
       ```
 
-#. Include the full version string of *py_entitymatching*. You can find the version as follows::
+#. Include the full version string of *magellan_labeler*. You can find the version as follows::
 
-      >>> import py_entitymatching as em
+      >>> import magellan_labeler as em
       >>> em.__version__
 
 #. Explain why the current behavior is wrong/not desired and what you expect instead.
 
 
-The issue will then show up to the *py_entitymatching* community and be open to
+The issue will then show up to the *magellan_labeler* community and be open to
 comments/ideas from others.
 
 
@@ -67,17 +67,17 @@ Working with the code
 =====================
 
 Now that you have an issue you want to fix, enhancement to add, or documentation to
-improve, you need to learn how to work with GitHub and the *py_entitymatching* code base.
+improve, you need to learn how to work with GitHub and the *magellan_labeler* code base.
 
 Version control, Git, and GitHub
 --------------------------------
 
 To the new user, working with Git is one of the more daunting aspects of contributing
-to *py_entitymatching*. It can very quickly become overwhelming, but sticking to the 
-guidelines below will help keep the process straightforward and mostly trouble free.  
+to *magellan_labeler*. It can very quickly become overwhelming, but sticking to the
+guidelines below will help keep the process straightforward and mostly trouble free.
 As always, if you are having difficulties please feel free to ask for help.
 
-The code is hosted on `GitHub <https://www.github.com/anhaidgroup/py_entitymatching>`_. To
+The code is hosted on `GitHub <https://www.github.com/anhaidgroup/magellan_labeler>`_. To
 contribute you will need to sign up for a `free GitHub account
 <https://github.com/signup/free>`_. We use `Git <http://git-scm.com/>`_ for
 version control to allow many people to work together on the project.
@@ -99,16 +99,16 @@ you can work seamlessly between your local repository and GitHub.
 Forking
 -------
 
-You will need your own fork to work on the code. Go to the `py_entitymatching project
-page <https://github.com/anhaidgroup/py_entitymatching>`_ and hit the ``Fork`` button. You will
+You will need your own fork to work on the code. Go to the `magellan_labeler project
+page <https://github.com/anhaidgroup/magellan_labeler>`_ and hit the ``Fork`` button. You will
 want to clone your fork to your machine::
 
-    git clone git@github.com:<your-user-name>/py_entitymatching.git <local-repo-name>
+    git clone git@github.com:<your-user-name>/magellan_labeler.git <local-repo-name>
     cd <local-repo-name>
-    git remote add upstream git://github.com/anhaidgroup/py_entitymatching.git
+    git remote add upstream git://github.com/anhaidgroup/magellan_labeler.git
 
 This creates the directory `local-repo-name` and connects your repository to
-the upstream (main project) *py_entitymatching* repository.
+the upstream (main project) *magellan_labeler* repository.
 
 The testing suite will run automatically on Travis-CI once your pull request is
 submitted.  However, if you wish to run the test suite on a branch prior to
@@ -131,7 +131,7 @@ The above can be simplified to::
 
 This changes your working directory to the *new_feature* branch.  Keep any
 changes in this branch specific to one bug or feature so it is clear
-what the branch brings to *py_entitymatching*. You can have many new features
+what the branch brings to *magellan_labeler*. You can have many new features
 and switch in between them using the git checkout command.
 
 To update this branch, you need to retrieve the changes from the master branch::
@@ -139,7 +139,7 @@ To update this branch, you need to retrieve the changes from the master branch::
     git fetch upstream
     git rebase upstream/master
 
-This will replay your commits on top of the lastest py_entitymatching git master.  If this
+This will replay your commits on top of the lastest magellan_labeler git master.  If this
 leads to merge conflicts, you must resolve them before submitting your pull
 request.  If you have uncommitted changes, you will need to ``stash`` them prior
 to updating.  This will effectively store your changes and they can be reapplied
@@ -150,37 +150,37 @@ after updating.
 Creating a development environment
 ----------------------------------
 
-An easy way to create a *py_entitymatching* development environment is as follows.
+An easy way to create a *magellan_labeler* development environment is as follows.
 
 - Install either :ref:`Anaconda <install.anaconda>` or :ref:`miniconda <install.miniconda>`
 - Make sure that you have :ref:`cloned the repository <contributing.forking>`
-- ``cd`` to the *py_entitymatching* source directory
+- ``cd`` to the *magellan_labeler* source directory
 
-Tell conda to create a new environment, named ``py_entitymatching_dev``, or any other
+Tell conda to create a new environment, named ``magellan_labeler_dev``, or any other
 name you would like for this environment, by running::
 
-    conda create -n py_entitymatching_dev --file requirements.yml
+    conda create -n magellan_labeler_dev --file requirements.yml
 
 
 For a python 3 environment::
 
-      conda create -n py_entitymatching_dev python=3 --file requirements.yml
+      conda create -n magellan_labeler_dev python=3 --file requirements.yml
 
 
 This will create the new environment, and not touch any of your existing environments,
 nor any existing python installation. It will install all of the basic dependencies of
-*py_entitymatching*. You need to install the *nose* package which is used for 
+*magellan_labeler*. You need to install the *nose* package which is used for
 testing, as follows::
 
-      conda install -n py_entitymatching_dev nose
+      conda install -n magellan_labeler_dev nose
 
 To work in this environment, Windows users should ``activate`` it as follows::
 
-      activate py_entitymatching_dev
+      activate magellan_labeler_dev
 
 Mac OSX / Linux users should use::
 
-      source activate py_entitymatching_dev
+      source activate magellan_labeler_dev
 
 You will then see a confirmation message to indicate you are in the new development environment.
 
@@ -206,7 +206,7 @@ Contributing to the documentation
 
 If you're not the developer type, contributing to the documentation is still
 of huge value. You don't even have to be an expert on
-*py_entitymatching* to do so! Something as simple as rewriting small passages for clarity
+*magellan_labeler* to do so! Something as simple as rewriting small passages for clarity
 as you reference the docs is a simple but effective way to contribute. The
 next person to read that passage will be in your debt!
 
@@ -216,9 +216,9 @@ relevant section after you figure it out is a simple way to ensure it will
 help the next person.
 
 .. contents:: Documentation:
-   :local:
+    :local:
 
-About the *py_entitymatching* documentation
+About the *magellan_labeler* documentation
 -------------------------------------------
 
 The documentation is written in **reStructuredText**, which is almost like writing
@@ -229,8 +229,8 @@ complex changes to the documentation as well.
 
 Some other important things to know about the docs:
 
-- The *py_entitymatching* documentation consists of two parts: the docstrings in the code
-  itself and the docs in this folder ``py_entitymatching/docs/``.
+- The *magellan_labeler* documentation consists of two parts: the docstrings in the code
+  itself and the docs in this folder ``magellan_labeler/docs/``.
 
   The docstrings provide a clear explanation of the usage of the individual
   functions, while the documentation in this folder consists of tutorial-like
@@ -244,28 +244,28 @@ Some other important things to know about the docs:
   extend it in a similar manner.
 
 
-How to build the *py_entitymatching* documentation
+How to build the *magellan_labeler* documentation
 --------------------------------------------------
 
 Requirements
 ~~~~~~~~~~~~
 
-To build the *py_entitymatching* docs there are some extra requirements: you will need to
+To build the *magellan_labeler* docs there are some extra requirements: you will need to
 have ``sphinx`` and ``ipython`` installed.
 
 It is easiest to :ref:`create a development environment <contributing.dev_env>`, then install::
 
-      conda install -n py_entitymatching_dev sphinx ipython
+      conda install -n magellan_labeler_dev sphinx ipython
 
 Building the documentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 So how do you build the docs? Navigate to your local
-``py_entitymatching/docs/`` directory in the console and run::
+``magellan_labeler/docs/`` directory in the console and run::
 
     make html
 
-Then you can find the HTML output in the folder ``py_entitymatching/docs/_build/html/``.
+Then you can find the HTML output in the folder ``magellan_labeler/docs/_build/html/``.
 
 If you want to do a full clean build, do::
 
@@ -279,25 +279,25 @@ Contributing to the code base
 =============================
 
 .. contents:: Code Base:
-   :local:
+    :local:
 
 Code standards
 --------------
-*py_entitymatching* follows `Google Python Style Guide <https://google.github.io/styleguide/pyguide.html>`_.
+*magellan_labeler* follows `Google Python Style Guide <https://google.github.io/styleguide/pyguide.html>`_.
 
-Please try to maintain backward compatibility. *py_entitymatching* has lots of users with lots of
+Please try to maintain backward compatibility. *magellan_labeler* has lots of users with lots of
 existing code, so don't break it if at all possible.  If you think breakage is required,
 clearly state why as part of the pull request.  Also, be careful when changing method
 signatures and add deprecation warnings where needed.
 
 Writing tests
 -------------
-Adding tests is one of the most common requests after code is pushed to *py_entitymatching*.  Therefore,
+Adding tests is one of the most common requests after code is pushed to *magellan_labeler*.  Therefore,
 it is worth getting in the habit of writing tests ahead of time so this is never an issue.
 
 Unit testing
 ~~~~~~~~~~~~
-Like many packages, *py_entitymatching* uses the `Nose testing system
+Like many packages, *magellan_labeler* uses the `Nose testing system
 <http://nose.readthedocs.org/en/latest/index.html>`_.
 
 All tests should go into the ``tests`` subdirectory of the specific package.
@@ -305,34 +305,13 @@ This folder contains many current examples of tests, and we suggest looking to t
 inspiration.
 
 The tests can then be run directly inside your Git clone (without having to
-install *py_entitymatching*) by typing::
+install *magellan_labeler*) by typing::
 
     nosetests
 
 
-Performance testing
-~~~~~~~~~~~~~~~~~~~
-Performance matters and it is worth considering whether your code has introduced
-performance regressions.  *py_entitymatching* uses
-`asv <https://github.com/spacetelescope/asv>`_ for performance testing.
-The benchmark test cases are all found in the ``benchmarks/asv_benchmarks`` directory.  asv
-supports both python2 and python3.
 
-To install asv::
-
-    pip install git+https://github.com/spacetelescope/asv
-
-If you need to run a benchmark, run the following from the ``benchmarks`` directory::
-
-    asv run
-
-This command uses ``conda`` by default for creating the benchmark environments.
-
-Information on how to write a benchmark and how to use asv can be found in the
-`asv documentation <http://asv.readthedocs.org/en/latest/writing_benchmarks.html>`_.
-
-
-Contributing your changes to *py_entitymatching*
+Contributing your changes to *magellan_labeler*
 ================================================
 
 Committing your code
@@ -394,12 +373,12 @@ You can see the remote repositories::
 If you added the upstream repository as described above you will see something
 like::
 
-    origin  git@github.com:<yourname>/py_entitymatching.git (fetch)
-    origin  git@github.com:<yourname>/py_entitymatching.git (push)
-    upstream        git://github.com/anhaidgroup/py_entitymatching.git (fetch)
-    upstream        git://github.com/anhaidgroup/py_entitymatching.git (push)
+    origin  git@github.com:<yourname>/magellan_labeler.git (fetch)
+    origin  git@github.com:<yourname>/magellan_labeler.git (push)
+    upstream        git://github.com/anhaidgroup/magellan_labeler.git (fetch)
+    upstream        git://github.com/anhaidgroup/magellan_labeler.git (push)
 
-Now your code is on GitHub, but it is not yet a part of the *py_entitymatching* project.  For that to
+Now your code is on GitHub, but it is not yet a part of the *magellan_labeler* project.  For that to
 happen, a pull request needs to be submitted on GitHub.
 
 Review your code
@@ -410,7 +389,7 @@ again make sure that you have followed all the guidelines outlined in this docum
 regarding code style, tests, performance tests, and documentation. You should also
 double check your branch changes against the branch it was based on:
 
-#. Navigate to your repository on GitHub -- https://github.com/<your-user-name>/py_entitymatching
+#. Navigate to your repository on GitHub -- https://github.com/<your-user-name>/magellan_labeler
 #. Click on ``Branches``
 #. Click on the ``Compare`` button for your feature branch
 #. Select the ``base`` and ``compare`` branches, if necessary. This will be ``master`` and
