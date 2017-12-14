@@ -38,7 +38,7 @@ def get_property(data_frame, property_name):
             in the catalog.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_key(A, 'id')
@@ -98,7 +98,7 @@ def set_property(data_frame, property_name, property_value):
         AssertionError: If `property_name` is not of type string.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_property(A, 'key', 'id')
@@ -224,7 +224,7 @@ def del_property(data_frame, property_name):
             in the catalog.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_property(A, 'key', 'id')
@@ -320,7 +320,7 @@ def get_catalog():
         and their properties as value.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> catalog = em.get_catalog()
 
     """
@@ -339,7 +339,7 @@ def del_catalog():
         A Boolean value of True is returned if the deletion was successful.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> em.del_catalog()
     """
     # Get the catalog instance
@@ -358,7 +358,7 @@ def is_catalog_empty():
         else returns False.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_key(A, 'id')
@@ -391,7 +391,7 @@ def is_dfinfo_present(data_frame):
          DataFrame.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_key(A, 'id')
@@ -435,7 +435,7 @@ def is_property_present_for_df(data_frame, property_name):
 
     Examples:
 
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_key(A, 'id')
@@ -476,7 +476,7 @@ def get_catalog_len():
         The number of entries in the catalog as an integer.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> len = em.get_catalog_len()
 
     """
@@ -589,7 +589,7 @@ def copy_properties(source_data_frame, target_data_frame, replace=True):
 
     Examples:
 
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_key(A, 'id')
@@ -645,7 +645,7 @@ def get_key(data_frame):
         A string value containing the key column name is returned (if present).
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_key(A, 'id')
@@ -654,7 +654,7 @@ def get_key(data_frame):
 
 
     See Also:
-        :meth:`~py_entitymatching.get_property`
+        :meth:`~magellan_labeler.get_property`
 
     """
     # This function is just a sugar to get the 'key' property for a DataFrame
@@ -691,7 +691,7 @@ def set_key(data_frame, key_attribute):
         KeyError: If given `key_attribute` is not in the DataFrame columns.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> em.set_key(A, 'id')
@@ -700,7 +700,7 @@ def set_key(data_frame, key_attribute):
 
 
     See Also:
-        :meth:`~py_entitymatching.set_property`
+        :meth:`~magellan_labeler.set_property`
 
 
     """
@@ -723,7 +723,7 @@ def set_key(data_frame, key_attribute):
     # Note: Currently it is not clear, whether we should return False from
     # here or raise an exception. As of now resorting to just returning
     # False, because this function is used by other computation
-    # intensive commands in py_entitymatching and raising an exception might make all
+    # intensive commands in magellan_labeler and raising an exception might make all
     # the work done in those commands go in vain (or those commands should
     # catch the exception correctly, which may be complicated and require
     # changes to the current code). We need to revisit this
@@ -743,7 +743,7 @@ def get_fk_ltable(data_frame):
     catalog.
 
     Specifically this function is a sugar function that will get the foreign
-    key to left table using underlying :meth:`~py_entitymatching.get_property` function.
+    key to left table using underlying :meth:`~magellan_labeler.get_property` function.
     This function is typically called on a DataFrame which contains metadata
     such as fk_ltable, fk_rtable, ltable, rtable.
 
@@ -757,7 +757,7 @@ def get_fk_ltable(data_frame):
 
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -769,7 +769,7 @@ def get_fk_ltable(data_frame):
         # 'ltable_id'
 
     See Also:
-        :meth:`~py_entitymatching.get_property`
+        :meth:`~magellan_labeler.get_property`
 
     """
     # Call the get_property function and relay the result.
@@ -781,7 +781,7 @@ def get_fk_rtable(data_frame):
     Gets the foreign key to right table for a DataFrame from the catalog.
 
     Specifically this function is a sugar function that will get the foreign
-    key to right table using :meth:`py_entitymatching.get_property` function. This
+    key to right table using :meth:`magellan_labeler.get_property` function. This
     function is typically called on a DataFrame which contains metadata such as
     fk_ltable, fk_rtable, ltable, rtable.
 
@@ -793,7 +793,7 @@ def get_fk_rtable(data_frame):
         A Python object, (typically a string) is returned.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -806,7 +806,7 @@ def get_fk_rtable(data_frame):
 
 
     See Also:
-        :meth:`~py_entitymatching.get_property`
+        :meth:`~magellan_labeler.get_property`
     """
     # Call the get_property function and relay the result.
     return get_property(data_frame, 'fk_rtable')
@@ -817,7 +817,7 @@ def set_fk_ltable(data_frame, fk_ltable):
     Sets the foreign key to ltable for a DataFrame in the catalog.
 
     Specifically this function is a sugar function that will set the foreign
-    key to the left table using :meth:`py_entitymatching.set_property` function. This
+    key to the left table using :meth:`magellan_labeler.set_property` function. This
     function is typically called on a DataFrame which contains metadata such as
     fk_ltable, fk_rtable, ltable, rtable.
 
@@ -840,7 +840,7 @@ def set_fk_ltable(data_frame, fk_ltable):
             DataFrame.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -854,7 +854,7 @@ def set_fk_ltable(data_frame, fk_ltable):
 
 
     See Also:
-        :meth:`~py_entitymatching.set_property`
+        :meth:`~magellan_labeler.set_property`
 
     """
     # Validate the input parameters
@@ -1010,7 +1010,7 @@ def set_fk_rtable(data_frame, foreign_key_rtable):
             DataFrame.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -1023,7 +1023,7 @@ def set_fk_rtable(data_frame, foreign_key_rtable):
 
 
     See Also:
-        :meth:`~py_entitymatching.set_property`
+        :meth:`~magellan_labeler.set_property`
 
     """
     # Validate the input parameters
@@ -1319,7 +1319,7 @@ def get_ltable(candset):
         table.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -1332,7 +1332,7 @@ def get_ltable(candset):
 
 
     See Also:
-        :meth:`~py_entitymatching.get_property`
+        :meth:`~magellan_labeler.get_property`
     """
     # Return the ltable for a candidate set. This function is just a sugar
     return get_property(candset, 'ltable')
@@ -1351,7 +1351,7 @@ def get_rtable(candset):
         table.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -1364,7 +1364,7 @@ def get_rtable(candset):
 
 
     See Also:
-        :meth:`~py_entitymatching.get_property`
+        :meth:`~magellan_labeler.get_property`
     """
     # Return the rtable for a candidate set. This function is just a sugar
 
@@ -1384,7 +1384,7 @@ def set_ltable(candset, table):
         A Boolean value of True is returned, if the update was successful.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -1397,7 +1397,7 @@ def set_ltable(candset, table):
 
 
     See Also:
-        :meth:`~py_entitymatching.set_property`
+        :meth:`~magellan_labeler.set_property`
     """
     # Return the ltable for a candidate set. This function is just a sugar
     return set_property(candset, 'ltable', table)
@@ -1417,7 +1417,7 @@ def set_rtable(candset, table):
         A Boolean value of True is returned, if the update was successful.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
         >>> em.set_key(A, 'id')
@@ -1430,7 +1430,7 @@ def set_rtable(candset, table):
 
 
     See Also:
-        :meth:`~py_entitymatching.set_property`
+        :meth:`~magellan_labeler.set_property`
     """
     # Return the rtable for a candidate set. This function is just a sugar
 

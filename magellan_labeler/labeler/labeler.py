@@ -49,7 +49,7 @@ def label_table(table, label_column_name, verbose=False):
             input table.
 
     Examples:
-        >>> import py_entitymatching as em
+        >>> import magellan_labeler as em
         >>> G = em.label_table(S, label_column_name='label') # S is the (sampled) table that has to be labeled.
 
     """
@@ -66,7 +66,7 @@ def label_table(table, label_column_name, verbose=False):
         from PyQt5 import QtGui
     except ImportError:
         raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
-                          'GUI related functions in py_entitymatching.')
+                          'GUI related functions in magellan_labeler.')
 
     from magellan_labeler.gui.table_gui import edit_table
     edit_table(labeled_table)

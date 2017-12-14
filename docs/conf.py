@@ -68,7 +68,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'py_entitymatching'
+project = u'magellan_labeler'
 copyright = u'2016, anhaidgroup'
 author = u'anhaidgroup'
 
@@ -231,7 +231,7 @@ html_theme_path = ['themes']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'py_entitymatchingdoc'
+htmlhelp_basename = 'magellan_labelerdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -253,7 +253,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'py_entitymatching.tex', u'py_entitymatching Documentation',
+    (master_doc, 'magellan_labeler.tex', u'magellan_labeler Documentation',
      u'anhaidgroup', 'manual'),
 ]
 
@@ -283,7 +283,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'py_entitymatching', u'py_entitymatching Documentation',
+    (master_doc, 'magellan_labeler', u'magellan_labeler Documentation',
      [author], 1)
 ]
 
@@ -297,8 +297,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'py_entitymatching', u'py_entitymatching Documentation',
-     author, 'py_entitymatching', 'One line description of project.',
+    (master_doc, 'magellan_labeler', u'magellan_labeler Documentation',
+     author, 'magellan_labeler', 'One line description of project.',
      'Miscellaneous'),
 ]
 

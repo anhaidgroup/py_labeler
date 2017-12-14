@@ -3,7 +3,7 @@ try:
     from PyQt5.QtCore import pyqtSlot
 except ImportError:
     raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
-                      'GUI related functions in py_entitymatching.')
+                      'GUI related functions in magellan_labeler.')
 
 from math import ceil
 

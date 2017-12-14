@@ -12,7 +12,7 @@ specified column name (in `label_col_name` parameter) fill it with 0 (i.e non-ma
 and open a GUI for you to update the labels. You must specify 0 for non-matches and
 1 for matches. Once you close the GUI, the updated table will be returned.
 
-Please refer to the API reference of :py:meth:`~py_entitymatching.label_table`
+Please refer to the API reference of :py:meth:`~magellan_labeler.label_table`
 for more details.
 
 
@@ -33,5 +33,5 @@ additional label, comment, and tags columns. The command will open a GUI that
 allows the user to label each pair of tuples with with either 'Yes', 'No', or
 'Not-Sure'.
 
-Please refer to the API reference of :py:meth:`~py_entitymatching.new_label_table`
+Please refer to the API reference of :py:meth:`~magellan_labeler.new_label_table`
 for more details

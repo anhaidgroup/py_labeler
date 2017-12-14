@@ -1,5 +1,5 @@
 # coding=utf-8
-""" This module defines the functions to load and save py_entitymatching objects
+""" This module defines the functions to load and save magellan_labeler objects
 """
 # coding=utf-8
 import collections

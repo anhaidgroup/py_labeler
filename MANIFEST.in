@@ -1,11 +1,11 @@
 include MANIFEST.in
 include README.rst
 include setup.py
-include py_entitymatching/datasets/*.csv
-recursive-include py_entitymatching/tests *.csv
+include magellan_labeler/datasets/*.csv
+recursive-include magellan_labeler/tests *.csv
 
 
-graft py_entitymatching
+graft magellan_labeler
 
 global-exclude *.so
 global-exclude *.pyd
