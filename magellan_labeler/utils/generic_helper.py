@@ -5,16 +5,16 @@ import os
 import pandas as pd
 import six
 
-import py_entitymatching.catalog.catalog_manager as cm
-from py_entitymatching.utils import install_path
-from py_entitymatching.utils.catalog_helper import check_fk_constraint
+import magellan_labeler.catalog.catalog_manager as cm
+from magellan_labeler.utils import install_path
+from magellan_labeler.utils.catalog_helper import check_fk_constraint
 
 logger = logging.getLogger(__name__)
 
 
 def get_install_path():
     path_list = install_path.split(os.sep)
-    return os.sep.join(path_list[0:len(path_list)-1])
+    return os.sep.join(path_list[0:len(path_list) - 1])
 
 
 def remove_non_ascii(s):
@@ -28,7 +28,6 @@ def remove_non_ascii(s):
 
 # find list difference
 def list_diff(a_list, b_list):
-
     if not isinstance(a_list, list) and not isinstance(a_list, set):
         logger.error('a_list is not of type list or set')
         raise AssertionError('a_list is not of type list or set')
@@ -46,7 +45,7 @@ def load_dataset(file_name, key=None, **kwargs):
         logger.error('file name is not a string')
         raise AssertionError('file name is not a string')
     p = get_install_path()
-    p = os.sep.join([p, 'datasets', file_name+'.csv'])
+    p = os.sep.join([p, 'datasets', file_name + '.csv'])
     table = pd.read_csv(p, **kwargs)
     if key is not None:
         cm.set_key(table, key)
@@ -81,11 +80,11 @@ def list_drop_duplicates(lst):
             a.append(i)
     return a
 
+
 # data frame with output attributes
 def add_output_attributes(candset, l_output_attrs=None, r_output_attrs=None, l_output_prefix='ltable_',
                           r_output_prefix='rtable_', validate=True, copy_props=True,
                           delete_from_catalog=True, verbose=False):
-
     if not isinstance(candset, pd.DataFrame):
         logger.error('Input object is not of type pandas data frame')
         raise AssertionError('Input object is not of type pandas data frame')
@@ -110,13 +109,11 @@ def add_output_attributes(candset, l_output_attrs=None, r_output_attrs=None, l_o
     return df
 
 
-
 def _add_output_attributes(candset, fk_ltable, fk_rtable, ltable=None, rtable=None,
                            l_key=None, r_key=None,
                            l_output_attrs=None, r_output_attrs=None,
                            l_output_prefix='ltable_', r_output_prefix='rtable_',
                            validate=True):
-
     if not isinstance(candset, pd.DataFrame):
         logger.error('Input object is not of type pandas data frame')
         raise AssertionError('Input object is not of type pandas data frame')
@@ -140,7 +137,7 @@ def _add_output_attributes(candset, fk_ltable, fk_rtable, ltable=None, rtable=No
 
         if validate:
             check_fk_constraint(candset, fk_ltable, ltable, l_key)
-        col_names = [l_output_prefix+c for c in l_output_attrs]
+        col_names = [l_output_prefix + c for c in l_output_attrs]
         l_df = create_proj_dataframe(ltable, l_key, candset[fk_ltable], l_output_attrs, col_names)
 
     if r_output_attrs is not None:
@@ -152,7 +149,7 @@ def _add_output_attributes(candset, fk_ltable, fk_rtable, ltable=None, rtable=No
             raise AssertionError('rtable key cannot be None')
         if validate:
             check_fk_constraint(candset, fk_rtable, rtable, r_key)
-        col_names = [r_output_prefix+c for c in r_output_attrs]
+        col_names = [r_output_prefix + c for c in r_output_attrs]
         r_df = create_proj_dataframe(rtable, r_key, candset[fk_rtable], r_output_attrs, col_names)
 
     if l_output_attrs is not None:
@@ -175,7 +172,6 @@ def create_proj_dataframe(df, key, key_vals, attrs, col_names):
         logger.error('Input key is not in the dataframe columns')
         raise KeyError('Input key is not in the dataframe columns')
 
-
     df = df.set_index(key, drop=False)
     df = df.ix[key_vals, attrs]
     df.reset_index(drop=True, inplace=True)
@@ -185,11 +181,12 @@ def create_proj_dataframe(df, key, key_vals, attrs, col_names):
 
 def del_files_in_dir(dir):
     if os.path.isdir(dir):
-        filelist = [ f for f in os.listdir(dir)  ]
+        filelist = [f for f in os.listdir(dir)]
         for f in filelist:
             p = os.sep.join([dir, f])
             # print(p)
             os.remove(p)
+
 
 def creat_dir_ifnot_exists(dir):
     if not os.path.exists(dir):
@@ -197,7 +194,6 @@ def creat_dir_ifnot_exists(dir):
 
 
 def convert_to_str_unicode(input_string):
-
     if not isinstance(input_string, six.string_types):
         input_string = six.u(str(input_string))
 

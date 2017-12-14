@@ -7,15 +7,14 @@ import logging
 import math
 import os
 import random
-from py_entitymatching.utils.catalog_helper import log_info
-
+from magellan_labeler.utils.catalog_helper import log_info
 
 import pandas as pd
 import pyprind
 from numpy.random import RandomState
 
-import py_entitymatching.catalog.catalog_manager as cm
-from py_entitymatching.utils.generic_helper import get_install_path
+import magellan_labeler.catalog.catalog_manager as cm
+from magellan_labeler.utils.generic_helper import get_install_path
 
 logger = logging.getLogger(__name__)
 
@@ -76,7 +75,7 @@ def _inv_index(table):
 
         # tokenize them
         str_val = set(str_val.split())
-        #str_val = str_val.difference(stop_words)
+        # str_val = str_val.difference(stop_words)
 
         # building inverted index I from set of tokens
         for token in str_val:
@@ -90,7 +89,6 @@ def _inv_index(table):
 
 
 def _probe_index(table_b, y_param, s_tbl_sz, s_inv_index, show_progress=True, seed=None):
-
     """
     This is probe index function that probes the second table into inverted index to get
     good coverage in the down sampled output

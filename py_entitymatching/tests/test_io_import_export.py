@@ -6,7 +6,7 @@ import unittest
 import pandas as pd
 from nose.tools import raises
 
-from py_entitymatching.io.parsers import read_csv_metadata, to_csv_metadata, _get_metadata_from_file
+from magellan_labeler.io.parsers import read_csv_metadata, to_csv_metadata, _get_metadata_from_file
 from py_entitymatching.utils.generic_helper import get_install_path, del_files_in_dir, creat_dir_ifnot_exists
 import py_entitymatching.catalog.catalog_manager as cm
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])

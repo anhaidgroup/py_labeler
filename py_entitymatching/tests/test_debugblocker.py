@@ -8,7 +8,7 @@ import py_entitymatching as em
 from py_entitymatching.utils.generic_helper import get_install_path
 import py_entitymatching.catalog.catalog_manager as cm
 import py_entitymatching.utils.catalog_helper as ch
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 import py_entitymatching.debugblocker.debugblocker as db
 
 from operator import itemgetter

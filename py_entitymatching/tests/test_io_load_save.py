@@ -7,7 +7,7 @@ import pandas as pd
 from nose.tools import *
 
 from py_entitymatching.io.pickles import load_object, load_table, save_object, save_table
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 from py_entitymatching.blocker.rule_based_blocker import RuleBasedBlocker
 from py_entitymatching.feature.autofeaturegen import get_features_for_blocking
 from py_entitymatching.utils.generic_helper import get_install_path, del_files_in_dir, creat_dir_ifnot_exists

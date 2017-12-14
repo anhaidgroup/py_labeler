@@ -7,9 +7,9 @@ import logging
 import pandas as pd
 import six
 
-import py_entitymatching.utils.catalog_helper as ch
-from py_entitymatching.catalog.catalog import Catalog
-from py_entitymatching.utils.validation_helper import validate_object_type
+import magellan_labeler.utils.catalog_helper as ch
+from magellan_labeler.catalog.catalog import Catalog
+from magellan_labeler.utils.validation_helper import validate_object_type
 
 logger = logging.getLogger(__name__)
 
@@ -256,9 +256,9 @@ def del_property(data_frame, property_name):
     # DataFrame in the catalog, if not raise an error.
     if not catalog.is_property_present_for_df(data_frame, property_name):
         logger.error('Requested metadata ( %s ) for the given DataFrame is '
-                     'not present in the catalog' %property_name)
+                     'not present in the catalog' % property_name)
         raise KeyError('Requested metadata ( %s ) for the given DataFrame is '
-                       'not present in the catalog' %property_name)
+                       'not present in the catalog' % property_name)
 
     # Delete the property using the underlying catalog object and relay the
     # return value. Typically the return value is True if the deletion was
@@ -533,7 +533,7 @@ def set_properties(data_frame, properties, replace=True):
         if not replace:
             logger.warning(
                 'Properties already exists for df ( %s ). Not replacing it'
-                %str(id(data_frame)))
+                % str(id(data_frame)))
             return False
         else:
             # DataFrame information is present and replace flag is True. We
@@ -1369,6 +1369,7 @@ def get_rtable(candset):
     # Return the rtable for a candidate set. This function is just a sugar
 
     return get_property(candset, 'rtable')
+
 
 def set_ltable(candset, table):
     """

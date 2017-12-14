@@ -3,10 +3,10 @@ from nose.tools import *
 import unittest
 import pandas as pd
 
-from py_entitymatching.utils.generic_helper import get_install_path
-import py_entitymatching.catalog.catalog_manager as cm
-import py_entitymatching.utils.catalog_helper as ch
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.utils.generic_helper import get_install_path
+import magellan_labeler.catalog.catalog_manager as cm
+import magellan_labeler.utils.catalog_helper as ch
+from magellan_labeler.io.parsers import read_csv_metadata
 
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])
 catalog_datasets_path = os.sep.join([get_install_path(), 'tests',
@@ -753,13 +753,13 @@ class CatalogManagerTestCases(unittest.TestCase):
 
     #--- catalog ---
     def test_catalog_singleton_isinstance(self):
-        from py_entitymatching.catalog.catalog import Singleton
+        from magellan_labeler.catalog.catalog import Singleton
         x = Singleton(object)
         x.__instancecheck__(object)
 
     @raises(TypeError)
     def test_catalog_singleton_call(self):
-        from py_entitymatching.catalog.catalog import Singleton
+        from magellan_labeler.catalog.catalog import Singleton
         x = Singleton(object)
         x.__call__()
 

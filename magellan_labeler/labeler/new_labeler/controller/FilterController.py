@@ -6,8 +6,8 @@ except ImportError:
     raise ImportError("PyQt5 is not installed. Please install PyQt5 to use "
                       "GUI related functions in py_entitymatching.")
 
-from py_entitymatching.labeler.new_labeler.utils import ApplicationContext
-from py_entitymatching.labeler.new_labeler.view import Renderer
+from magellan_labeler.labeler.new_labeler.utils import ApplicationContext
+from magellan_labeler.labeler.new_labeler.view import Renderer
 
 
 class FilterController(QObject):

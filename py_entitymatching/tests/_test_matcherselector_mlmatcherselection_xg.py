@@ -2,10 +2,9 @@ import os
 from nose.tools import *
 import unittest
 import pandas as pd
-import six
 
 from py_entitymatching.utils.generic_helper import get_install_path, list_diff
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 from py_entitymatching.matcherselector.mlmatcherselection import select_matcher
 from py_entitymatching.matcher.dtmatcher import DTMatcher
 from py_entitymatching.matcher.linregmatcher import LinRegMatcher

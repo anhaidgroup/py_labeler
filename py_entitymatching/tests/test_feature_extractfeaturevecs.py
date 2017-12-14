@@ -4,7 +4,7 @@ import unittest
 import pandas as pd
 
 from py_entitymatching.utils.generic_helper import get_install_path
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 
 from py_entitymatching.feature.extractfeatures import extract_feature_vecs
 from py_entitymatching.feature.autofeaturegen import get_features_for_matching

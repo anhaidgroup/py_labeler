@@ -1,6 +1,5 @@
 # coding=utf-8
 import os
-import unittest
 from nose.tools import *
 
 import six
@@ -12,7 +11,7 @@ from py_entitymatching.matcher.nbmatcher import NBMatcher
 from py_entitymatching.matcher.rfmatcher import RFMatcher
 from py_entitymatching.matcher.svmmatcher import SVMMatcher
 
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 import py_entitymatching.matcher.matcherutils as mu
 import py_entitymatching.catalog.catalog_manager as cm
 from py_entitymatching.utils.generic_helper import get_install_path, list_diff

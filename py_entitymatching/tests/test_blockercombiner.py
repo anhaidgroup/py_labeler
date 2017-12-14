@@ -7,7 +7,7 @@ import six
 
 from py_entitymatching.utils.generic_helper import get_install_path
 import py_entitymatching.catalog.catalog_manager as cm
-from py_entitymatching.io.parsers import read_csv_metadata, to_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata, to_csv_metadata
 from py_entitymatching.blockercombiner.blockercombiner import combine_blocker_outputs_via_union
 
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])

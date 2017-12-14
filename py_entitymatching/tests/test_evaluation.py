@@ -8,7 +8,7 @@ import pandas as pd
 
 import py_entitymatching.catalog.catalog_manager as cm
 from py_entitymatching.evaluation.evaluation import eval_matches
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 from py_entitymatching.utils.generic_helper import get_install_path
 
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])

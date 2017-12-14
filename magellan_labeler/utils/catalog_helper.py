@@ -4,13 +4,12 @@ import logging
 import pandas as pd
 import six
 
-from py_entitymatching.utils.validation_helper import validate_object_type
+from magellan_labeler.utils.validation_helper import validate_object_type
 
 logger = logging.getLogger(__name__)
 
 
 def check_attrs_present(table, attrs):
-
     validate_object_type(table, pd.DataFrame)
 
     if attrs is None:
@@ -22,8 +21,8 @@ def check_attrs_present(table, attrs):
     status = are_all_attrs_in_df(table, attrs, verbose=True)
     return status
 
-def are_all_attrs_in_df(df, col_names, verbose=False):
 
+def are_all_attrs_in_df(df, col_names, verbose=False):
     validate_object_type(df, pd.DataFrame)
 
     if col_names is None:
@@ -34,13 +33,15 @@ def are_all_attrs_in_df(df, col_names, verbose=False):
     for c in col_names:
         if c not in df_columns_names:
             if verbose:
-                logger.warning('Column name (' +c+ ') is not present in dataframe')
+                logger.warning('Column name (' + c + ') is not present in dataframe')
             return False
     return True
+
 
 def log_info(lgr, s, verbose):
     if verbose:
         lgr.info(s)
+
 
 def is_attr_unique(df, attr):
     """
@@ -93,6 +94,7 @@ def does_contain_missing_vals(df, attr):
         return False
     else:
         return True
+
 
 def is_key_attribute(df, attr, verbose=False):
     """
@@ -154,7 +156,7 @@ def check_fk_constraint(df_foreign, attr_foreign, df_base, attr_base):
     validate_object_type(attr_base, six.string_types, error_prefix='Input attr (attr_base)')
 
     if not check_attrs_present(df_base, attr_base):
-        logger.warning('The attribute %s is not in df_base' %attr_base)
+        logger.warning('The attribute %s is not in df_base' % attr_base)
         return False
 
     if not check_attrs_present(df_foreign, attr_foreign):
@@ -162,7 +164,7 @@ def check_fk_constraint(df_foreign, attr_foreign, df_base, attr_base):
         return False
 
     if any(pd.isnull(df_foreign[attr_foreign])):
-        logger.warning('The attribute %s in foreign table contains null values' %attr_foreign)
+        logger.warning('The attribute %s in foreign table contains null values' % attr_foreign)
         return False
 
     uniq_fk_vals = set(pd.unique(df_foreign[attr_foreign]))
@@ -170,7 +172,7 @@ def check_fk_constraint(df_foreign, attr_foreign, df_base, attr_base):
     d = uniq_fk_vals.difference(base_attr_vals)
     if len(d) > 0:
         logger.warning('For some attr. values in (%s) in the foreign table there are no values in '
-                       '(%s) in the base table' %(attr_foreign, attr_base))
+                       '(%s) in the base table' % (attr_foreign, attr_base))
         return False
 
     # check whether those values are unique in the base table.
@@ -179,11 +181,10 @@ def check_fk_constraint(df_foreign, attr_foreign, df_base, attr_base):
 
     if status == False:
         logger.warning('Key attr. constraint for the subset of values (derived from. %s)'
-                       'in %s is not satisifed' %(attr_foreign, attr_base))
+                       'in %s is not satisifed' % (attr_foreign, attr_base))
         return False
     else:
         return True
-
 
 
 def does_contain_rows(df):

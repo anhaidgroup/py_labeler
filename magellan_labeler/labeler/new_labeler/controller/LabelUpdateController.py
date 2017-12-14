@@ -6,8 +6,8 @@ except ImportError:
     raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
                       'GUI related functions in py_entitymatching.')
 
-from py_entitymatching.labeler.new_labeler.utils import ApplicationContext
-from py_entitymatching.labeler.new_labeler.view import Renderer
+from magellan_labeler.labeler.new_labeler.utils import ApplicationContext
+from magellan_labeler.labeler.new_labeler.view import Renderer
 
 
 class LabelUpdateController(QObject):
@@ -50,16 +50,16 @@ class LabelUpdateController(QObject):
                 ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_tuples_for_page(ApplicationContext.current_page_number),
                 match_count=
                 ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.LABEL_COLUMN]
-                                                      == ApplicationContext.MATCH].shape[0],
+                                                       == ApplicationContext.MATCH].shape[0],
                 not_match_count=
                 ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.LABEL_COLUMN]
-                                                      == ApplicationContext.NON_MATCH].shape[0],
+                                                       == ApplicationContext.NON_MATCH].shape[0],
                 not_sure_count=
                 ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.LABEL_COLUMN]
-                                                      == ApplicationContext.NOT_SURE].shape[0],
+                                                       == ApplicationContext.NOT_SURE].shape[0],
                 unlabeled_count=
                 ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.LABEL_COLUMN]
-                                                      == ApplicationContext.NOT_LABELED].shape[0],
+                                                       == ApplicationContext.NOT_LABELED].shape[0],
             )
         )
 

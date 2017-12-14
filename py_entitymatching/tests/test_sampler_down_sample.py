@@ -1,16 +1,12 @@
 # coding=utf-8
-import sys
-import py_entitymatching
 import os
 from nose.tools import *
 import unittest
 import pandas as pd
-import six
 
 from py_entitymatching.utils.generic_helper import get_install_path
 from py_entitymatching.sampler.down_sample import _inv_index, _probe_index, down_sample, _get_str_cols_list
-import py_entitymatching.catalog.catalog_manager as cm
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])
 path_a = os.sep.join([datasets_path, 'restA.csv'])

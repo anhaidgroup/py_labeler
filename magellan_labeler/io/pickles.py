@@ -11,9 +11,9 @@ import cloudpickle
 import pandas as pd
 import six
 
-import py_entitymatching.catalog.catalog_manager as cm
-import py_entitymatching.io.parsers as ps
-from py_entitymatching.utils.validation_helper import validate_object_type
+import magellan_labeler.catalog.catalog_manager as cm
+import magellan_labeler.io.parsers as ps
+from magellan_labeler.utils.validation_helper import validate_object_type
 
 logger = logging.getLogger(__name__)
 

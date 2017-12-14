@@ -3,11 +3,10 @@ import os
 from nose.tools import *
 import unittest
 import pandas as pd
-import six
 
 from py_entitymatching.utils.generic_helper import get_install_path
 import py_entitymatching.catalog.catalog_manager as cm
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 from py_entitymatching.sampler.single_table import sample_table
 
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])

@@ -5,7 +5,7 @@ import pandas as pd
 import six
 
 from py_entitymatching.utils.generic_helper import get_install_path
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.io.parsers import read_csv_metadata
 from py_entitymatching.feature.simfunctions import get_sim_funs_for_matching
 from py_entitymatching.feature.tokenizers import get_tokenizers_for_matching
 from py_entitymatching.feature.autofeaturegen import get_features_for_matching

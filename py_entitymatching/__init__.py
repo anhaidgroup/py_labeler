@@ -1,5 +1,4 @@
-
-from py_entitymatching.catalog.catalog import Catalog
+from magellan_labeler.catalog.catalog import Catalog
 
 __version__ = '0.2.0'
 
@@ -14,22 +13,14 @@ from py_entitymatching.io.parsers import read_csv_metadata, to_csv_metadata
 from py_entitymatching.io.pickles import load_object, load_table, save_object, save_table
 #
 # import catalog related methods
-from py_entitymatching.catalog.catalog_manager import get_property, get_all_properties, \
-    set_property, del_property, del_all_properties, init_properties, copy_properties
 from py_entitymatching.catalog.catalog_manager import get_catalog, del_catalog, \
     get_catalog_len, show_properties, show_properties_for_id
 from py_entitymatching.catalog.catalog_manager import is_property_present_for_df, \
     is_dfinfo_present, is_catalog_empty
-from py_entitymatching.catalog.catalog_manager import get_key, set_key, set_fk_ltable,\
-    set_fk_rtable, get_ltable, get_rtable, validate_and_set_fk_ltable, \
-    validate_and_set_fk_rtable, set_ltable, set_rtable, get_fk_rtable,  \
-    get_fk_ltable
-
 
 # # data exploration wrappers
 from py_entitymatching.explorer.openrefine.openrefine_wrapper import data_explore_openrefine
 from py_entitymatching.explorer.pandastable.pandastable_wrapper import data_explore_pandastable
-
 
 #
 # # blockers
@@ -52,6 +43,7 @@ from py_entitymatching.gui.table_gui import view_table, edit_table
 
 # # labeling
 from py_entitymatching.labeler.labeler import label_table
+
 try:
     import PyQt5
     from py_entitymatching.labeler.new_labeler.new_labeler import new_label_table
@@ -76,6 +68,7 @@ from py_entitymatching.matcher.logregmatcher import LogRegMatcher
 from py_entitymatching.matcher.nbmatcher import NBMatcher
 from py_entitymatching.matcher.rfmatcher import RFMatcher
 from py_entitymatching.matcher.svmmatcher import SVMMatcher
+
 try:
     from py_entitymatching.matcher.xgboostmatcher import XGBoostMatcher
 except ImportError:
@@ -100,14 +93,9 @@ from py_entitymatching.debugmatcher.debug_gui_randomforest_matcher import \
 from py_entitymatching.evaluation.evaluation import eval_matches, \
     get_false_negatives_as_df, get_false_positives_as_df, print_eval_summary
 
-
 # # generic helper functions
-from py_entitymatching.utils.generic_helper import get_install_path, load_dataset, \
-    add_output_attributes
 
 # # pandas helper functions
-from py_entitymatching.utils.pandas_helper import filter_rows, project_cols, \
-    mutate_col, rename_col, preserve_metadata, drop_cols
 
 # global vars
 _block_t = None

@@ -2,16 +2,17 @@ from nose.tools import *
 import unittest
 import os
 import sys
-from py_entitymatching.utils.generic_helper import get_install_path
-from py_entitymatching.io.parsers import read_csv_metadata
+from magellan_labeler.utils.generic_helper import get_install_path
+from magellan_labeler.io.parsers import read_csv_metadata
+
 if sys.version_info >= (3, 5):
-    from py_entitymatching.labeler.new_labeler.new_labeler import new_label_table
-    from py_entitymatching.labeler.new_labeler.utils import ApplicationContext
-    from py_entitymatching.labeler.new_labeler.controller.FilterController import FilterController
-    from py_entitymatching.labeler.new_labeler.controller.StatsController import StatsController
-    from py_entitymatching.labeler.new_labeler.controller.LabelUpdateController import LabelUpdateController
-    from py_entitymatching.labeler.new_labeler.controller.TuplePairDisplayController import TuplePairDisplayController
-    from py_entitymatching.labeler.new_labeler.view import Renderer
+    from magellan_labeler.labeler.new_labeler.new_labeler import new_label_table
+    from magellan_labeler.labeler.new_labeler.utils import ApplicationContext
+    from magellan_labeler.labeler.new_labeler.controller.FilterController import FilterController
+    from magellan_labeler.labeler.new_labeler.controller.StatsController import StatsController
+    from magellan_labeler.labeler.new_labeler.controller.LabelUpdateController import LabelUpdateController
+    from magellan_labeler.labeler.new_labeler.controller.TuplePairDisplayController import TuplePairDisplayController
+    from magellan_labeler.labeler.new_labeler.view import Renderer
 else:
     print('Skipping new_labeler imports for {0}'.format(sys.version_info))
 
