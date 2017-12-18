@@ -1,5 +1,3 @@
-
-
 # check if pip is installed. If not, raise an ImportError
 PIP_INSTALLED = True
 
@@ -11,6 +9,7 @@ except ImportError:
 if not PIP_INSTALLED:
     raise ImportError('pip is not installed.')
 
+
 def install_and_import(package):
     import importlib
     try:
@@ -20,12 +19,12 @@ def install_and_import(package):
     finally:
         globals()[package] = importlib.import_module(package)
 
+
 # check if setuptools is installed. If not, install setuptools
 # automatically using pip.
 install_and_import('setuptools')
 
 if __name__ == "__main__":
-
     # find packages to be included.
     packages = setuptools.find_packages()
 
@@ -65,13 +64,13 @@ if __name__ == "__main__":
         ],
         packages=packages,
         install_requires=[
-            'PyPrind',
-            'py_stringsimjoin==0.1.0',
+            # 'PyPrind',
+            # 'py_stringsimjoin==0.1.0',
             # dependencies such as py_stringmatching, joblib, pyprind
-            'cloudpickle >= 0.2.1',
-            'pyparsing >= 2.1.4',
-            'scikit-learn >= 0.18',
-            'pandas-profiling >= 1.4.0',
+            # 'cloudpickle >= 0.2.1',
+            # 'pyparsing >= 2.1.4',
+            # 'scikit-learn >= 0.18',
+            # 'pandas-profiling >= 1.4.0',
             'requests'
         ],
         include_package_data=True,
