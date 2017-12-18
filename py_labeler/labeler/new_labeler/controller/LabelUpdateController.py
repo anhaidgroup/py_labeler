@@ -4,10 +4,10 @@ try:
     from PyQt5.QtCore import QObject
 except ImportError:
     raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
-                      'GUI related functions in magellan_labeler.')
+                      'GUI related functions in py_labeler.')
 
-from magellan_labeler.labeler.new_labeler.utils import ApplicationContext
-from magellan_labeler.labeler.new_labeler.view import Renderer
+from py_labeler.utils import ApplicationContext
+from py_labeler.labeler.new_labeler.view import Renderer
 
 
 class LabelUpdateController(QObject):

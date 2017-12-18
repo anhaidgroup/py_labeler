@@ -7,9 +7,9 @@ import logging
 import pandas as pd
 import six
 
-import magellan_labeler.utils.catalog_helper as ch
-from magellan_labeler.catalog.catalog import Catalog
-from magellan_labeler.utils.validation_helper import validate_object_type
+import py_labeler.utils.catalog_helper as ch
+from py_labeler.catalog.catalog import Catalog
+from py_labeler.utils.validation_helper import validate_object_type
 
 logger = logging.getLogger(__name__)
 

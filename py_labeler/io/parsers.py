@@ -6,8 +6,8 @@ import os
 import pandas as pd
 import six
 
-import magellan_labeler.catalog.catalog_manager as cm
-from magellan_labeler.utils.validation_helper import validate_object_type
+import py_labeler.catalog.catalog_manager as cm
+from py_labeler.utils.validation_helper import validate_object_type
 
 logger = logging.getLogger(__name__)
 

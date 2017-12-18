@@ -1,11 +1,10 @@
 from jinja2 import Environment, PackageLoader, select_autoescape
-from math import ceil
 
-from magellan_labeler.labeler.new_labeler.utils import ApplicationContext
+from py_labeler.utils import ApplicationContext
 
 # load all templates from 'view' package and 'templates' folder
 env = Environment(
-    loader=PackageLoader('magellan_labeler.labeler.new_labeler.view', 'templates'),
+    loader=PackageLoader('py_labeler.labeler.new_labeler.view', 'templates'),
     autoescape=select_autoescape(['html', 'xml'])
 )
 

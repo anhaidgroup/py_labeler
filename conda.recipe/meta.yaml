@@ -1,5 +1,5 @@
 package:
-  name: magellan_labeler
+  name: py_labeler
   version: "0.2.0"
 
 source:

@@ -14,16 +14,16 @@ except ImportError:
     raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
                       'GUI related functions in py_entitymatching.')
 
-from magellan_labeler.labeler.new_labeler.controller.FilterController import FilterController
-from magellan_labeler.labeler.new_labeler.controller.LabelUpdateController import LabelUpdateController
-from magellan_labeler.labeler.new_labeler.controller.TuplePairDisplayController import TuplePairDisplayController
-from magellan_labeler.labeler.new_labeler.controller.StatsController import StatsController
-from magellan_labeler.labeler.new_labeler.utils import ApplicationContext
-from magellan_labeler.labeler.new_labeler.view import Renderer
+from py_labeler.labeler.new_labeler.controller.FilterController import FilterController
+from py_labeler.labeler.new_labeler.controller.LabelUpdateController import LabelUpdateController
+from py_labeler.labeler.new_labeler.controller.TuplePairDisplayController import TuplePairDisplayController
+from py_labeler.labeler.new_labeler.controller.StatsController import StatsController
+from py_labeler.utils import ApplicationContext
+from py_labeler.labeler.new_labeler.view import Renderer
 
-import magellan_labeler as em
+import py_labeler as em
 import six
-from magellan_labeler.utils.validation_helper import validate_object_type
+from py_labeler.utils.validation_helper import validate_object_type
 
 
 def initialize_tags_comments(df, comments_col, tags_col):
