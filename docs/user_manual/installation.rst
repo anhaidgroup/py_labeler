@@ -8,49 +8,28 @@ Requirements
 
 Platforms
 ---------
-py_entitymatching has been tested on Linux (Redhat enterprise Linux with 2.6
-.32 kernel), OS X (Sierra), and Windows 10.
+py_labeler has been tested on Linux (Ubuntu 15, 16, 17), OS X (Sierra), and Windows 10.
 
 Dependencies
 ------------
 * pandas (provides data structures to store and manage tables)
-* scikit-learn (provides implementations for common machine learning algorithms)
-* joblib (provides multiprocessing capabilities)
 * pyqt5 (provides tools to build GUIs)
 * py_stringsimjoin (provides implementations for string similarity joins)
 * py_stringmatching (provides a set of string tokenizers and string similarity functions)
-* cloudpickle (provides functions to serialize Python constructs)
-* pyprind (library to display progress indicators)
 * pyparsing (library to parse strings)
 * six (provides functions to write compatible code across Python 2 and 3)
-* xgboost (provides an implementation for xgboost classifier)
-* pandas-profiling (provides implementation for profiling pandas dataframe)
-* pandas-table (provides data exploration tool for pandas dataframe)
-* openrefine (provides data exploration tool for tables)
-
-
 
 Installing Using conda
 ----------------------
 The easiest and recommended way to install the package is to use the command conda,
 which will retrieve py_entitymatching from Anaconda repository then install it::
 
-    conda install -c uwmagellan py_entitymatching
+    conda install -c uwmagellan py_labeler
 
-The above command will install py_entitymatching and all of its dependencies except
-XGBoost, pandastable and openrefine. As these packages are either not available from
-anaconda cloud (for some Python versions or operating systems) or they are not Python
-packages (openrefine).
-
-* To install XGBoost manually from the source follow the instructions on `this page <https://XGBoost.readthedocs.io/en/latest/build.html>`_.
-
-* To install pandastable follow the instructions at `this page <https://github.com/dmnfarrell/pandastable>`_.
-
-* To install openrefine follow the instructions at `this page <https://github.com/OpenRefine/OpenRefine/wiki/Installation-Instructions>`_.
-
+The above command will install py_labeler and all of its dependencies
 
 .. note::
-    To use the command conda, first you must install Miniconda or Anaconda. For
+To use the command conda, first you must install Miniconda or Anaconda. For
     more details refer to this `conda page <http://conda.pydata.org/docs/using/index.html>`_.
 
 
