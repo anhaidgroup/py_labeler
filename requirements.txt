@@ -1,5 +1,0 @@
-pandas
-six
-nose
-numpy
-Jinja2

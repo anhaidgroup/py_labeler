@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>User Manual for py_labeler &mdash; py_labeler 0.1 documentation</title>
+
+
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css"/>
+
+
+    <link rel="index" title="Index"
+          href="index.html.html"/>
+    <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="py_labeler 0.1 documentation" href="#"/>
+    <link rel="next" title="What is New?" href="WhatIsNew.html"/>
+    <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+
+{#<div class="wy-grid-for-nav">#}
+{##}
+{##}
+{#    <nav data-toggle="wy-nav-shift" class="wy-nav-side">#}
+{#        <div class="wy-side-scroll">#}
+{#            <div class="wy-side-nav-search">#}
+{#                <a href="#" class="icon icon-home"> py_labeler</a>#}
+{#                <div class="version">#}
+{#                    0.1#}
+{#                </div>#}
+{##}
+{##}
+{#                <div role="search">#}
+{#                    <form id="rtd-search-form" class="wy-form" action="search.html" method="get">#}
+{#                        <input type="text" name="q" placeholder="Search docs"/>#}
+{#                        <input type="hidden" name="check_keywords" value="yes"/>#}
+{#                        <input type="hidden" name="area" value="default"/>#}
+{#                    </form>#}
+{#                </div>#}
+{##}
+{##}
+{#            </div>#}
+{##}
+{#            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">#}
+{##}
+{##}
+{#                <ul>#}
+{#                    <li class="toctree-l1"><a class="reference internal" href="WhatIsNew.html">What is New?</a></li>#}
+{#                    <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>#}
+{#                    <li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>#}
+{#                    <li class="toctree-l1"><a class="reference internal" href="Tokenizer.html">Tokenizers</a></li>#}
+{#                    <li class="toctree-l1"><a class="reference internal" href="SimilarityMeasure.html">Similarity Measures</a></li>#}
+{#                    <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Runtime Benchmark</a></li>#}
+{#                </ul>#}
+{##}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </nav>#}
+{##}
+{#    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">#}
+{##}
+{##}
+{#        <nav class="wy-nav-top" role="navigation" aria-label="top navigation">#}
+{##}
+{#            <i data-toggle="wy-nav-top" class="fa fa-bars"></i>#}
+{#            <a href="#">py_stringmatching</a>#}
+{##}
+{#        </nav>#}
+{##}
+{##}
+{#        <div class="wy-nav-content">#}
+{#            <div class="rst-content">#}
+{##}
+{##}
+{#                <div role="navigation" aria-label="breadcrumbs navigation">#}
+{##}
+{#                    <ul class="wy-breadcrumbs">#}
+{##}
+{#                        <li><a href="#">Docs</a> &raquo;</li>#}
+{##}
+{#                        <li>User Manual for py_stringmatching</li>#}
+{##}
+{##}
+{#                        <li class="wy-breadcrumbs-aside">#}
+{##}
+{##}
+{#                            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>#}
+{##}
+{##}
+{#                        </li>#}
+{##}
+{#                    </ul>#}
+{##}
+{##}
+{#                    <hr/>#}
+{#                </div>#}
+{#                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">#}
+{#                    <div itemprop="articleBody">#}
+{##}
+{#                        <div class="section" id="user-manual-for-py-stringmatching">#}
+{#                            <h1>User Manual for py_stringmatching<a class="headerlink" href="#user-manual-for-py-stringmatching"#}
+{#                                                                    title="Permalink to this headline">¶</a></h1>#}
+{#                            <p>This document shows the users how to install and use the package. To contribute to or further develop the package, see the#}
+{#                                <a class="reference external"#}
+{#                                   href="https://sites.google.com/site/anhaidgroup/projects/py_stringmatching">project website</a>, section “For Contributors and Developers”.#}
+{#                            </p>#}
+{#                        </div>#}
+{#                        <div class="section" id="contents">#}
+{#                            <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>#}
+{#                            <div class="toctree-wrapper compound">#}
+{#                                <ul>#}
+{#                                    <li class="toctree-l1"><a class="reference internal" href="WhatIsNew.html">What is New?</a></li>#}
+{#                                    <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a>#}
+{#                                        <ul>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Installation.html#requirements">Requirements</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Installation.html#platforms">Platforms</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Installation.html#dependencies">Dependencies</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Installation.html#installing-using-pip">Installing Using pip</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Installation.html#installing-from-source-distribution">Installing from Source Distribution</a>#}
+{#                                            </li>#}
+{#                                        </ul>#}
+{#                                    </li>#}
+{#                                    <li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a>#}
+{#                                        <ul>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#selecting-a-similarity-measure">1. Selecting a Similarity Measure</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#selecting-a-tokenizer-type">2. Selecting a Tokenizer Type</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#creating-a-tokenizer-object-and-using-it-to-tokenize-the-input-strings">3. Creating a Tokenizer Object and Using It to Tokenize the Input Strings</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#creating-a-similarity-measure-object-and-using-it-to-compute-a-similarity-score">4. Creating a Similarity Measure Object and Using It to Compute a Similarity Score</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#handling-a-large-number-of-string-pairs">Handling a Large Number of String Pairs</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#handling-missing-values">Handling Missing Values</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#adding-prefix-and-suffix-to-the-input-string-for-qgram-tokenizers">Adding Prefix and Suffix to the Input String for Qgram Tokenizers</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Tutorial.html#class-hierarchy-for-tokenizers-and-similarity-measures">Class Hierarchy for Tokenizers and Similarity Measures</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Tutorial.html#references">References</a></li>#}
+{#                                        </ul>#}
+{#                                    </li>#}
+{#                                    <li class="toctree-l1"><a class="reference internal" href="Tokenizer.html">Tokenizers</a>#}
+{#                                        <ul>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="AlphabeticTokenizer.html">Alphabetic Tokenizer</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="AlphanumericTokenizer.html">Alphanumeric Tokenizer</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="DelimiterTokenizer.html">Delimiter Tokenizer</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="QgramTokenizer.html">Qgram Tokenizer</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="WhitespaceTokenizer.html">Whitespace Tokenizer</a></li>#}
+{#                                        </ul>#}
+{#                                    </li>#}
+{#                                    <li class="toctree-l1"><a class="reference internal" href="SimilarityMeasure.html">Similarity Measures</a>#}
+{#                                        <ul>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Affine.html">Affine Gap</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="BagDistance.html">Bag Distance</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Cosine.html">Cosine</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Dice.html">Dice</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Editex.html">Editex</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="GeneralizedJaccard.html">Generalized Jaccard</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="HammingDistance.html">Hamming Distance</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Jaccard.html">Jaccard</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Jaro.html">Jaro</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="JaroWinkler.html">Jaro Winkler</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Levenshtein.html">Levenshtein</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="MongeElkan.html">Monge Elkan</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="NeedlemanWunsch.html">Needleman Wunsch</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="OverlapCoefficient.html">Overlap Coefficient</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="PartialRatio.html">Partial Ratio</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="PartialTokenSort.html">Partial Token Sort</a>#}
+{#                                            </li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Ratio.html">Ratio</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="SmithWaterman.html">Smith Waterman</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="SoftTfIdf.html">Soft TF/IDF</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="Soundex.html">Soundex</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="TfIdf.html">TF/IDF</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="TokenSort.html">Token Sort</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal" href="TverskyIndex.html">Tversky Index</a></li>#}
+{#                                        </ul>#}
+{#                                    </li>#}
+{#                                    <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Runtime Benchmark</a>#}
+{#                                        <ul>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Benchmark.html#running-the-benchmark">Running the Benchmark</a></li>#}
+{#                                            <li class="toctree-l2"><a class="reference internal"#}
+{#                                                                      href="Benchmark.html#interpreting-the-results">Interpreting the Results</a></li>#}
+{#                                        </ul>#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="section" id="indices-and-tables">#}
+{#                            <h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>#}
+{#                            <ul class="simple">#}
+{#                                <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>#}
+{#                                <li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>#}
+{#                                <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{##}
+{##}
+{#                    </div>#}
+{#                    <div class="articleComments">#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#                <footer>#}
+{##}
+{#                    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">#}
+{##}
+{#                        <a href="WhatIsNew.html" class="btn btn-neutral float-right" title="What is New?" accesskey="n" rel="next">Next <span#}
+{#                                class="fa fa-arrow-circle-right"></span></a>#}
+{##}
+{##}
+{#                    </div>#}
+{##}
+{##}
+{#                    <hr/>#}
+{##}
+{#                    <div role="contentinfo">#}
+{#                        <p>#}
+{#                            &copy; Copyright 2017, py_stringmatching Team.#}
+{##}
+{#                        </p>#}
+{#                    </div>#}
+{#                    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a#}
+{#                        href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.#}
+{##}
+{#                </footer>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{##}
+{#    </section>#}
+{##}
+{#</div>#}
+
+
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT: './',
+        VERSION: '0.4',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE: true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+</script>
+<script type="text/javascript" src="_static/jquery.js"></script>
+{#<script type="text/javascript" src="_static/doctools.js"></script>#}
+{#<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>#}
+
+
+<script type="text/javascript" src="_static/js/theme.js"></script>
+
+
+<script type="text/javascript">
+    jQuery(function () {
+        SphinxRtdTheme.StickyNav.enable();
+    });
+</script>
+
+
+</body>
+</html>
