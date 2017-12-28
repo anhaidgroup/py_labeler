@@ -1,11 +1,10 @@
 include MANIFEST.in
 include README.rst
 include setup.py
-include magellan_labeler/datasets/*.csv
-recursive-include magellan_labeler/tests *.csv
+recursive-include py_labeler/tests *.csv
 
 
-graft magellan_labeler
+graft py_labeler
 
 global-exclude *.so
 global-exclude *.pyd
