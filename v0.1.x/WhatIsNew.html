@@ -55,9 +55,6 @@
                     <li class="toctree-l1 current"><a class="current reference internal" href="#">What is New?</a></li>
                     <li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
                     <li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
-                    <li class="toctree-l1"><a class="reference internal" href="Tokenizer.html">Tokenizers</a></li>
-                    <li class="toctree-l1"><a class="reference internal" href="SimilarityMeasure.html">Similarity Measures</a></li>
-                    <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Runtime Benchmark</a></li>
                 </ul>
 
             </div>
@@ -99,15 +96,17 @@
 
                         <div class="section" id="what-is-new">
                             <h1>What is New?<a class="headerlink" href="#what-is-new" title="Permalink to this headline">¶</a></h1>
-                            <p>Compared to Version 0.3.0, the followings are new:</p>
+                            <p>This is the initial version of the py_labeler GUI. Compared to the labeler in py_entitymatching the following are new:</p>
                             <blockquote>
                                 <div>
                                     <ul class="simple">
-                                        <li>Five similarity measures written in Python have been Cythonized to run much faster. These are Affine, Jaro, Jaro Winkler, Needleman Wunsch, and Smith Waterman.</li>
-                                        <li>We have also empirically evaluated the runtime of Jaccard (written in Python) and found that it is already very fast. Thus, Cythonizing it is unlikely to yield much of a speedup.</li>
-                                        <li>Note that in Version 0.3.x (and earlier versions), edit distance has been Cythonized. Thus, the set of all Cythonized similarity measures consists of edit distance, Affine, Jaro, Jaro Winkler, Needleman Wunsch, and Smith Waterman.</li>
-                                        <li>In subsequent versions, it would be highly desirable to Cythonize remaining similarity measures, including Dice, cosine, etc.</li>
-                                        <li>For this package, we add a runtime benchmark (consisting of a script and several datasets) to measure the runtime performance of similarity measures. This benchmark can be used by users to judge whether similarity measures are fast enough for their purposes, and used by developers to speed up the measures.</li>
+                                        <li>The implementation is in PyQt 5 & Bootstrap.js</li>
+                                        <li>Saving intermediate labeled state to csv file</li>
+                                        <li>Adding comments and tags to candidate tuple pairs</li>
+                                        <li>Filtering tuple pairs based on label</li>
+                                        <li>Selectively viewing attributes</li>
+                                        <li>Viewing entire original tuples</li>
+                                        <li>3 tuple pair viewing orientations</li>
                                     </ul>
                                 </div>
                             </blockquote>
