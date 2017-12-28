@@ -64,11 +64,7 @@
                         </ul>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
-                    <li class="toctree-l1"><a class="reference internal" href="Tokenizer.html">Tokenizers</a></li>
-                    <li class="toctree-l1"><a class="reference internal" href="SimilarityMeasure.html">Similarity Measures</a></li>
-                    <li class="toctree-l1"><a class="reference internal" href="Benchmark.html">Runtime Benchmark</a></li>
                 </ul>
-
             </div>
         </div>
     </nav>
@@ -78,7 +74,7 @@
         <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
 
             <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-            <a href="index.html">py_stringmatching</a>
+            <a href="index.html">py_labeler</a>
 
         </nav>
 
@@ -113,29 +109,32 @@
                                 <blockquote>
                                     <div>
                                         <ul class="simple">
-                                            <li>Python 2.7 or Python 3.3+</li>
-                                            <li>C or C++ compiler (parts of the package are in Cython for efficiency reasons, and you need C or C++ compiler to compile these parts)</li>
+                                            <li>Python 3.5+</li>
+                                            <li>PyQt5</li>
                                         </ul>
                                     </div>
                                 </blockquote>
                             </div>
                             <div class="section" id="platforms">
                                 <h2>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h2>
-                                <p>py_stringmatching has been tested on Linux (Ubuntu with Kernel Version 3.13.0-40-generic), OS X (Darwin with Kernel Version 13.4.0), and Windows 8.1.</p>
+                                <p>py_stringmatching has been tested on Linux (Ubuntu with Kernel Version 3.13.0-40-generic), OS X (Darwin with Kernel Version 13.4.0), Windows 8.1, and Windows 10.</p>
                             </div>
                             <div class="section" id="dependencies">
                                 <h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
                                 <blockquote>
                                     <div>
                                         <ul class="simple">
-                                            <li>numpy 1.7.0 or higher</li>
+                                            <li>pandas</li>
                                             <li>six</li>
+                                            <li>nose</li>
+                                            <li>numpy</li>
+                                            <li>Jinja2</li>
                                         </ul>
                                     </div>
                                 </blockquote>
                                 <div class="admonition note">
                                     <p class="first admonition-title">Note</p>
-                                    <p class="last">The py_stringmatching installer will automatically install the above required packages.</p>
+                                    <p class="last">The py_labeler installer will automatically install the above required packages.</p>
                                 </div>
                                 <p>There are two ways to install py_stringmatching package: using pip or source distribution.</p>
                             </div>
@@ -145,7 +144,7 @@
                                 <p>The easiest way to install the package is to use pip, which will retrieve py_stringmatching from PyPI then install it:</p>
                                 <div class="highlight-default">
                                     <div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span
-                                            class="n">py_stringmatching</span>
+                                            class="n">py_labeler</span>
 </pre>
                                     </div>
                                 </div>
@@ -153,8 +152,8 @@
                             <div class="section" id="installing-from-source-distribution">
                                 <h2>Installing from Source Distribution<a class="headerlink" href="#installing-from-source-distribution"
                                                                           title="Permalink to this headline">¶</a></h2>
-                                <p>Step 1: Download the py_stringmatching package from <a class="reference external"
-                                                                                          href="https://sites.google.com/site/anhaidgroup/projects/py_stringmatching">here</a>.
+                                <p>Step 1: Download the py_labeler package from <a class="reference external"
+                                                                                   href="https://sites.google.com/site/anhaidgroup/projects/py_stringmatching">here</a>.
                                 </p>
                                 <p>Step 2: Unzip the package and execute the following command from the package root:</p>
                                 <div class="highlight-default">
@@ -165,7 +164,7 @@
                                 </div>
                                 <div class="admonition note">
                                     <p class="first admonition-title">Note</p>
-                                    <p>The above command will try to install py_stringmatching into the defaul Python directory on your machine. If you do not have installation permission for that directory then you can install the package in your home directory as follows:</p>
+                                    <p>The above command will try to install py_labeler into the defaul Python directory on your machine. If you do not have installation permission for that directory then you can install the package in your home directory as follows:</p>
                                     <div class="highlight-default">
                                         <div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span
                                                 class="o">.</span><span class="n">py</span> <span class="n">install</span> <span
