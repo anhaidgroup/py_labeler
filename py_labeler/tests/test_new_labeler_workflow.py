@@ -7,11 +7,11 @@ import sys
 
 if sys.version_info >= (3, 5):
     from py_labeler.utils import ApplicationContext
-    from py_labeler.labeler.new_labeler.view import Renderer
-    from py_labeler.labeler.new_labeler.controller.FilterController import FilterController
-    from py_labeler.labeler.new_labeler.controller.StatsController import StatsController
-    from py_labeler.labeler.new_labeler.controller.LabelUpdateController import LabelUpdateController
-    from py_labeler.labeler.new_labeler.controller.TuplePairDisplayController import TuplePairDisplayController
+    from py_labeler.labeler.view import Renderer
+    from py_labeler.labeler.controller import FilterController
+    from py_labeler.labeler.controller.StatsController import StatsController
+    from py_labeler.labeler.controller.LabelUpdateController import LabelUpdateController
+    from py_labeler.labeler.controller.TuplePairDisplayController import TuplePairDisplayController
 else:
     print('Skipping new_labeler imports for {0}'.format(sys.version_info))
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])

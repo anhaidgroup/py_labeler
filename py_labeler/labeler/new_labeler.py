@@ -14,12 +14,12 @@ except ImportError:
     raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
                       'GUI related functions in py_entitymatching.')
 
-from py_labeler.labeler.new_labeler.controller.FilterController import FilterController
-from py_labeler.labeler.new_labeler.controller.LabelUpdateController import LabelUpdateController
-from py_labeler.labeler.new_labeler.controller.TuplePairDisplayController import TuplePairDisplayController
-from py_labeler.labeler.new_labeler.controller.StatsController import StatsController
+from py_labeler.labeler.controller import FilterController
+from py_labeler.labeler.controller.LabelUpdateController import LabelUpdateController
+from py_labeler.labeler.controller.TuplePairDisplayController import TuplePairDisplayController
+from py_labeler.labeler.controller.StatsController import StatsController
 from py_labeler.utils import ApplicationContext
-from py_labeler.labeler.new_labeler.view import Renderer
+from py_labeler.labeler.view import Renderer
 
 import py_labeler as em
 import six

@@ -8,7 +8,7 @@ except ImportError:
 from math import ceil
 
 from py_labeler.utils import ApplicationContext
-from py_labeler.labeler.new_labeler.view import Renderer
+from py_labeler.labeler.view import Renderer
 import os
 
 

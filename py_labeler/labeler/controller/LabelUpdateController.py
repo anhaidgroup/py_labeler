@@ -7,7 +7,7 @@ except ImportError:
                       'GUI related functions in py_labeler.')
 
 from py_labeler.utils import ApplicationContext
-from py_labeler.labeler.new_labeler.view import Renderer
+from py_labeler.labeler.view import Renderer
 
 
 class LabelUpdateController(QObject):

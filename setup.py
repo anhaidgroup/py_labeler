@@ -32,9 +32,9 @@ if __name__ == "__main__":
         LONG_DESCRIPTION = f.read()
 
     setuptools.setup(
-        name='py_entitymatching',
-        version='0.2.0',
-        description='Python library for end to end Entity Matching.',
+        name='py_labeler',
+        version='0.0.1',
+        description='Python GUI for labeling in Entity Matching process.',
         long_description=LONG_DESCRIPTION,
         url='https://sites.google.com/site/anhaidgroup/projects/magellan/py_entitymatching',
         author='UW Magellan Team',
@@ -52,10 +52,6 @@ if __name__ == "__main__":
             'Operating System :: MacOS',
             'Operating System :: Microsoft :: Windows',
             'Programming Language :: Python',
-            'Programming Language :: Python :: 2',
-            'Programming Language :: Python :: 3',
-            'Programming Language :: Python :: 2.7',
-            'Programming Language :: Python :: 3.4',
             'Programming Language :: Python :: 3.5',
             'Programming Language :: Python :: 3.6',
             'Topic :: Scientific/Engineering',
