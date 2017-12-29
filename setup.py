@@ -60,14 +60,10 @@ if __name__ == "__main__":
         ],
         packages=packages,
         install_requires=[
-            # 'PyPrind',
-            # 'py_stringsimjoin==0.1.0',
-            # dependencies such as py_stringmatching, joblib, pyprind
-            # 'cloudpickle >= 0.2.1',
-            # 'pyparsing >= 2.1.4',
-            # 'scikit-learn >= 0.18',
-            # 'pandas-profiling >= 1.4.0',
-            'requests'
+            'pandas',
+            'nose',
+            'Jinja2',
+            'pyqt5'
         ],
         include_package_data=True,
         zip_safe=False

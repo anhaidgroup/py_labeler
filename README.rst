@@ -37,7 +37,6 @@ The required dependencies to build the packages are:
 * pandas (provides data structures to store and manage tables)
 * pyqt5 (provides tools to build GUIs)
 * jinja2 (provides templating for GUI)
-* numpy (required by pandas)
 
 Platforms
 =========

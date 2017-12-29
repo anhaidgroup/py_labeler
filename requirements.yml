@@ -5,11 +5,8 @@ channels:
   - defaults
 dependencies:
     - setuptools
-    - py_stringsimjoin
-    - cloudpickle
-    - pyparsing
-    - scikit-learn >= 0.18
-    - pyqt
-    - py_stringmatching
-    - pandas-profiling
-#    - xgboost
+    - pandas
+    - nose
+    - numpy
+    - Jinja2
+    - pyqt5

@@ -2,7 +2,7 @@
 Guides
 ======
 
-The goal of this page  is to give you some concrete examples for using py_entitymatching.
+The goal of this page  is to give you some concrete examples for using py_labeler.
 These are examples with sample data that is already bundled along with the package. The
 examples are in the form of Jupyter notebooks.
 

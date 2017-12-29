@@ -1,4 +1,4 @@
 pandas
 nose
-numpy
 Jinja2
+pyqt5
