@@ -158,7 +158,7 @@ def _validate_inputs(data_frame, label_column_name):
     return True
 
 
-def new_label_table(df, label_column_name):
+def label_table(df, label_column_name):
     """ Method to be invoked to launch the Labeler application.
 
     Args:

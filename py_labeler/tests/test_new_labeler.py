@@ -1,20 +1,16 @@
 from nose.tools import *
 import unittest
 import os
-import sys
 from py_labeler.utils.generic_helper import get_install_path
 from py_labeler.io.parsers import read_csv_metadata
 
-if sys.version_info >= (3, 5):
-    from py_labeler.labeler.new_labeler import new_label_table
-    from py_labeler.utils import ApplicationContext
-    from py_labeler.labeler.controller.FilterController import FilterController
-    from py_labeler.labeler.controller.StatsController import StatsController
-    from py_labeler.labeler.controller.LabelUpdateController import LabelUpdateController
-    from py_labeler.labeler.controller.TuplePairDisplayController import TuplePairDisplayController
-    from py_labeler.labeler.view import Renderer
-else:
-    print('Skipping new_labeler imports for {0}'.format(sys.version_info))
+from py_labeler.labeler.new_labeler import label_table
+from py_labeler.utils import ApplicationContext
+from py_labeler.labeler.controller.FilterController import FilterController
+from py_labeler.labeler.controller.StatsController import StatsController
+from py_labeler.labeler.controller.LabelUpdateController import LabelUpdateController
+from py_labeler.labeler.controller.TuplePairDisplayController import TuplePairDisplayController
+from py_labeler.labeler.view import Renderer
 
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])
 path_a = os.sep.join([datasets_path, 'A.csv'])
@@ -28,27 +24,25 @@ class DummyPage:
         pass
 
 
-@unittest.skipIf(sys.version_info < (3, 5), "New labeler not supported in this version. Skipping tests")
 class NewLabelerTestCases(unittest.TestCase):
     @raises(AssertionError)
     def test_label_table_invalid_df(self):
         col_name = 'label'
-        new_label_table(None, col_name)
+        label_table(None, col_name)
 
     @raises(AssertionError)
     def test_label_table_invalid_colname(self):
         A = read_csv_metadata(path_a)
-        new_label_table(A, None)
+        label_table(A, None)
 
     @raises(AssertionError)
     def test_label_invalid_column(self):
         C = read_csv_metadata(path_a)
         col_name = "zipcode"
-        new_label_table(C, col_name)
+        label_table(C, col_name)
 
 
 # Test Controlers
-@unittest.skipIf(sys.version_info < (3, 5), "New labeler not supported in this version. Skipping tests for FilterController")
 class FilterControllerTestCases(unittest.TestCase):
     def setUp(self):
         # setup Application Context
@@ -82,7 +76,6 @@ class FilterControllerTestCases(unittest.TestCase):
         self.assertEqual(rows.shape[1], 7)
 
 
-@unittest.skipIf(sys.version_info < (3, 5), "New labeler not supported in this version. Skipping test for StatsController")
 class StatsControllerTestCases(unittest.TestCase):
     def setUp(self):
         # setup Application Context
@@ -122,7 +115,6 @@ class StatsControllerTestCases(unittest.TestCase):
                                                                                         ApplicationContext.LABEL_COLUMN), 3)
 
 
-@unittest.skipIf(sys.version_info < (3, 5), "New labeler not supported in this version. Skipping test for TupleDisplayController")
 class TuplePairDisplayControllerTestCases(unittest.TestCase):
     def setUp(self):
         # setup Application Context
@@ -279,7 +271,6 @@ class TuplePairDisplayControllerTestCases(unittest.TestCase):
         # def get_tuples_for_page(self, page_number):
 
 
-@unittest.skipIf(sys.version_info < (3, 5), "New labeler not supported in this version. Skipping test for LabelUpdateController")
 class LabelUpdateControllerTestCases(unittest.TestCase):
     def setUp(self):
         ApplicationContext.LABEL_COLUMN = "label"

@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     setuptools.setup(
         name='py_labeler',
-        version='0.0.1',
+        version='0.1.0',
         description='Python GUI for labeling in Entity Matching process.',
         long_description=LONG_DESCRIPTION,
         url='https://sites.google.com/site/anhaidgroup/projects/magellan/py_entitymatching',
