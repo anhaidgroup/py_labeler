@@ -4,7 +4,7 @@ from py_labeler.utils import ApplicationContext
 
 # load all templates from 'view' package and 'templates' folder
 env = Environment(
-    loader=PackageLoader('py_labeler.labeler.new_labeler.view', 'templates'),
+    loader=PackageLoader('py_labeler.labeler.view', 'templates'),
     autoescape=select_autoescape(['html', 'xml'])
 )
 

@@ -35,15 +35,9 @@ Dependencies
 The required dependencies to build the packages are:
 
 * pandas (provides data structures to store and manage tables)
-* scikit-learn (provides implementations for common machine learning algorithms)
-* joblib (provides multiprocessing capabilities)
 * pyqt5 (provides tools to build GUIs)
-* py_stringsimjoin (provides implementations for string similarity joins)
-* py_stringmatching (provides a set of string tokenizers and string similarity functions)
-* cloudpickle (provides functions to serialize Python constructs)
-* pyprind (library to display progress indicators)
-* pyparsing (library to parse strings)
-* six (provides functions to write compatible code across Python 2 and 3)
+* jinja2 (provides templating for GUI)
+* numpy (required by pandas)
 
 Platforms
 =========

@@ -8,7 +8,7 @@ import sys
 if sys.version_info >= (3, 5):
     from py_labeler.utils import ApplicationContext
     from py_labeler.labeler.view import Renderer
-    from py_labeler.labeler.controller import FilterController
+    from py_labeler.labeler.controller.FilterController import FilterController
     from py_labeler.labeler.controller.StatsController import StatsController
     from py_labeler.labeler.controller.LabelUpdateController import LabelUpdateController
     from py_labeler.labeler.controller.TuplePairDisplayController import TuplePairDisplayController
