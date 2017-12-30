@@ -1,4 +1,4 @@
-New tool for labeling (experimental)
+New tool for labeling
 ------------------------------------
 
 WARNING: The new labeler is only available in python version 3.5 and above only.

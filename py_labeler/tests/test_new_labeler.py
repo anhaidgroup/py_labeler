@@ -15,7 +15,7 @@ from py_labeler.labeler.view import Renderer
 datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])
 path_a = os.sep.join([datasets_path, 'A.csv'])
 path_c = os.sep.join([datasets_path, 'C.csv'])
-path_d = os.sep.join([datasets_path, 'D.csv'])
+path_d = os.sep.join([datasets_path, 'labeled_data_demo.csv'])
 
 
 # dummy page === to MainPage in new_labeler.py
