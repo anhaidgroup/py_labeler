@@ -10,7 +10,7 @@ try:
     from PyQt5.QtWebChannel import QWebChannel
     from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEnginePage, QWebEngineScript
     from PyQt5.QtWidgets import QApplication
-    from PyQt5.QtCore import QT_VERSION_STR
+#   from PyQt5.QtCore import QT_VERSION_STR
 except ImportError:
     raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
                       'GUI related functions in py_labeler.')
@@ -176,8 +176,8 @@ def label_table(df, label_column_name):
     """
     if sys.version_info < (3, 5):
         raise ImportError("Python 3.3 or greater is required")
-    if QT_VERSION_STR < '5.9.3':
-        raise ImportError("PyQt 5.9.3 or greater is required")
+    # if QT_VERSION_STR < '5.9.2':
+    #    raise ImportError("PyQt 5.9.2 or greater is required")
     _validate_inputs(df, label_column_name)
     df = df.copy(deep=True)
 
