@@ -1,4 +1,4 @@
-_id,ltable_ID,rtable_ID,ltable_name,ltable_zipcode,ltable_birth_year,rtable_name,rtable_zipcode,rtable_birth_year, label
+_id,ltable_ID,rtable_ID,ltable_name,ltable_zipcode,ltable_birth_year,rtable_name,rtable_zipcode,rtable_birth_year,label
 0,a1,b1,Kevin Smith,94107,1989,Mark Levene,94107,1987,Yes
 1,a1,b2,Kevin Smith,94107,1989,Bill Bridge,94107,1986,Not-Matched
 2,a1,b6,Kevin Smith,94107,1989,Michael Brodie,94107,1987,Yes
@@ -8,8 +8,8 @@ _id,ltable_ID,rtable_ID,ltable_name,ltable_zipcode,ltable_birth_year,rtable_name
 3,a3,b1,William Bridge,94107,1986,Mark Levene,94107,1987,Yes
 4,a3,b2,William Bridge,94107,1986,Bill Bridge,94107,1986,Not-Sure
 5,a3,b6,William Bridge,94107,1986,Michael Brodie,94107,1987,Not-Matched
-9,a4,b3,Binto George,94122,1987,Mike Franklin,94122,1988, Yes
+9,a4,b3,Binto George,94122,1987,Mike Franklin,94122,1988,Yes
 10,a4,b4,Binto George,94122,1987,Joseph Kuan,94122,1982,Not-Matched
-11,a4,b5,Binto George,94122,1987,Alfons Kemper,94122,1984, Yes
-12,a5,b3,Alphonse Kemper,94122,1984,Mike Franklin,94122,1988, Yes
+11,a4,b5,Binto George,94122,1987,Alfons Kemper,94122,1984,Yes
+12,a5,b3,Alphonse Kemper,94122,1984,Mike Franklin,94122,1988,Yes
 13,a5,b4,Alphonse Kemper,94122,1984,Joseph Kuan,94122,1982,Not-Labeled

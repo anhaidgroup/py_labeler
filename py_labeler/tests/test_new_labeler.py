@@ -98,7 +98,7 @@ class StatsControllerTestCases(unittest.TestCase):
         self.assertRaises(KeyError, ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs, ApplicationContext.COMPLETE_DATA_FRAME,
                           "non-existent-column-name")
         self.assertEqual(ApplicationContext.STATS_CONTROLLER.count_non_matched_tuple_pairs(ApplicationContext.COMPLETE_DATA_FRAME,
-                                                                                           ApplicationContext.LABEL_COLUMN), 3)
+                                                                                           ApplicationContext.LABEL_COLUMN), 4)
 
     @istest
     def test_count_not_labeled_tuple_pairs(self):
@@ -112,7 +112,7 @@ class StatsControllerTestCases(unittest.TestCase):
         self.assertRaises(KeyError, ApplicationContext.STATS_CONTROLLER.count_not_sure_tuple_pairs, ApplicationContext.COMPLETE_DATA_FRAME,
                           "non-existent-column-name")
         self.assertEqual(ApplicationContext.STATS_CONTROLLER.count_not_sure_tuple_pairs(ApplicationContext.COMPLETE_DATA_FRAME,
-                                                                                        ApplicationContext.LABEL_COLUMN), 3)
+                                                                                        ApplicationContext.LABEL_COLUMN), 2)
 
 
 class TuplePairDisplayControllerTestCases(unittest.TestCase):
@@ -300,7 +300,7 @@ class LabelUpdateControllerTestCases(unittest.TestCase):
             self.assertRaises(KeyError, ApplicationContext.LABEL_CONTROLLER.change_label, 99, ApplicationContext.MATCH)
             self.assertRaises(ValueError, ApplicationContext.LABEL_CONTROLLER.change_label, 1, "non-existent-column")
 
-            self.assertEqual(ApplicationContext.COMPLETE_DATA_FRAME.loc[4][ApplicationContext.LABEL_COLUMN], ApplicationContext.NON_MATCH)
+            self.assertEqual(ApplicationContext.COMPLETE_DATA_FRAME.loc[4][ApplicationContext.LABEL_COLUMN], ApplicationContext.NOT_SURE)
             ApplicationContext.LABEL_CONTROLLER.change_label("4", ApplicationContext.MATCH)
             self.assertEqual(ApplicationContext.COMPLETE_DATA_FRAME.loc[4][ApplicationContext.LABEL_COLUMN], ApplicationContext.MATCH)
         finally:
