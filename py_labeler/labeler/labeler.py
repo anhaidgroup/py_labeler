@@ -14,15 +14,14 @@ except ImportError:
     raise ImportError('PyQt5 is not installed. Please install PyQt5 to use '
                       'GUI related functions in py_entitymatching.')
 
-from py_labeler.labeler.controller import FilterController
+from py_labeler.labeler.controller.FilterController import FilterController
 from py_labeler.labeler.controller.LabelUpdateController import LabelUpdateController
 from py_labeler.labeler.controller.TuplePairDisplayController import TuplePairDisplayController
 from py_labeler.labeler.controller.StatsController import StatsController
 from py_labeler.utils import ApplicationContext
 from py_labeler.labeler.view import Renderer
 
-import py_labeler as em
-import six
+import py_labeler as pl
 from py_labeler.utils.validation_helper import validate_object_type
 
 
@@ -145,7 +144,7 @@ def _validate_inputs(data_frame, label_column_name):
     validate_object_type(data_frame, pd.DataFrame)
     if data_frame.empty:
         raise AssertionError
-    validate_object_type(label_column_name, six.string_types, error_prefix='Input attr.')
+    validate_object_type(label_column_name, str, error_prefix='Input attr.')
 
     # If the label column already exists, validate that the label column has only one of the 3 allowed values
     if label_column_name in data_frame.columns:
@@ -177,6 +176,7 @@ def label_table(df, label_column_name):
     if sys.version_info < (3, 5):
         raise ImportError("Python 3.3 or greater is required")
     _validate_inputs(df, label_column_name)
+    df = df.copy(deep=True)
 
     # Remove warning for this case
     pd.options.mode.chained_assignment = None  # default='warn'
@@ -208,9 +208,9 @@ def label_table(df, label_column_name):
 
     [tags_col, comments_col] = suggest_tags_comments_column_name(ApplicationContext.COMPLETE_DATA_FRAME)
 
-    em._viewapp = QApplication.instance()
-    if em._viewapp is None:
-        em._viewapp = QApplication([])
+    pl._viewapp = QApplication.instance()
+    if pl._viewapp is None:
+        pl._viewapp = QApplication([])
 
     view = QWebEngineView()
     main_page = MainPage()
@@ -241,7 +241,7 @@ def label_table(df, label_column_name):
     channel.registerObject('label_controller', label_controller)
     view.show()
 
-    app = em._viewapp
+    app = pl._viewapp
     app.exec_()
 
     return df

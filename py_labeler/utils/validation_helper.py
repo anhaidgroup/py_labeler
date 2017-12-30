@@ -1,10 +1,9 @@
 import pandas as pd
-import six
 
 
 def type_name(expected_type):
     messages = {
-        six.string_types: 'string',
+        str: 'string',
         pd.DataFrame: 'pandas dataframe',
         list: 'list',
         bool: 'bool',

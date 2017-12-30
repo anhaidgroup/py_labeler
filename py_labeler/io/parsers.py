@@ -62,8 +62,8 @@ def read_csv_metadata(file_path, **kwargs):
     Examples:
         *Example 1:* Read from CSV file and set metadata
 
-        >>> A = em.read_csv_metadata('path_to_csv_file', key='id')
-        >>> em.get_key(A)
+        >>> A = pl.read_csv_metadata('path_to_csv_file', key='id')
+        >>> pl.get_key(A)
          # 'id'
 
         *Example 2:*  Read from CSV file (with metadata file in the same directory
@@ -72,8 +72,8 @@ def read_csv_metadata(file_path, **kwargs):
 
           #key = id
 
-        >>> A = em.read_csv_metadata('path_to_csv_file')
-        >>> em.get_key(A)
+        >>> A = pl.read_csv_metadata('path_to_csv_file')
+        >>> pl.get_key(A)
          # 'id'
 
     See Also:
@@ -186,8 +186,8 @@ def to_csv_metadata(data_frame, file_path, **kwargs):
 
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
-        >>> em.to_csv_metadata(A, 'path_to_csv_file')
+        >>> pl.set_key(A, 'id')
+        >>> pl.to_csv_metadata(A, 'path_to_csv_file')
 
 
     See Also:

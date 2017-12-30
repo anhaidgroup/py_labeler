@@ -38,11 +38,11 @@ def get_property(data_frame, property_name):
             in the catalog.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
-        >>> em.get_property(A, 'key')
+        >>> pl.set_key(A, 'id')
+        >>> pl.get_property(A, 'key')
          # id
     """
     # Validate input parameters
@@ -98,13 +98,13 @@ def set_property(data_frame, property_name, property_value):
         AssertionError: If `property_name` is not of type string.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_property(A, 'key', 'id')
-        >>> em.get_property(A, 'key')
+        >>> pl.set_property(A, 'key', 'id')
+        >>> pl.get_property(A, 'key')
          # id
-        >>> em.get_key(A)
+        >>> pl.get_key(A)
          # id
 
 
@@ -224,14 +224,14 @@ def del_property(data_frame, property_name):
             in the catalog.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_property(A, 'key', 'id')
-        >>> em.get_property(A, 'key')
+        >>> pl.set_property(A, 'key', 'id')
+        >>> pl.get_property(A, 'key')
         # id
-        >>> em.del_property(A, 'key')
-        >>> em.is_property_present_for_df(A, 'key')
+        >>> pl.del_property(A, 'key')
+        >>> pl.is_property_present_for_df(A, 'key')
         # False
 
     """
@@ -320,8 +320,8 @@ def get_catalog():
         and their properties as value.
 
     Examples:
-        >>> import magellan_labeler as em
-        >>> catalog = em.get_catalog()
+        >>> import magellan_labeler as pl
+        >>> catalog = pl.get_catalog()
 
     """
     # Get the catalog instance
@@ -339,8 +339,8 @@ def del_catalog():
         A Boolean value of True is returned if the deletion was successful.
 
     Examples:
-        >>> import magellan_labeler as em
-        >>> em.del_catalog()
+        >>> import magellan_labeler as pl
+        >>> pl.del_catalog()
     """
     # Get the catalog instance
     catalog = Catalog.Instance()
@@ -358,11 +358,11 @@ def is_catalog_empty():
         else returns False.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
-        >>> em.is_catalog_empty()
+        >>> pl.set_key(A, 'id')
+        >>> pl.is_catalog_empty()
          # False
 
     """
@@ -391,11 +391,11 @@ def is_dfinfo_present(data_frame):
          DataFrame.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
-        >>> em.is_dfinfo_present(A)
+        >>> pl.set_key(A, 'id')
+        >>> pl.is_dfinfo_present(A)
          # True
 
     """
@@ -435,13 +435,13 @@ def is_property_present_for_df(data_frame, property_name):
 
     Examples:
 
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
-        >>> em.is_property_present_for_df(A, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.is_property_present_for_df(A, 'id')
          # True
-        >>> em.is_property_present_for_df(A, 'fk_ltable')
+        >>> pl.is_property_present_for_df(A, 'fk_ltable')
          # False
 
     """
@@ -476,8 +476,8 @@ def get_catalog_len():
         The number of entries in the catalog as an integer.
 
     Examples:
-        >>> import magellan_labeler as em
-        >>> len = em.get_catalog_len()
+        >>> import magellan_labeler as pl
+        >>> len = pl.get_catalog_len()
 
     """
     # Get the catalog instance
@@ -589,13 +589,13 @@ def copy_properties(source_data_frame, target_data_frame, replace=True):
 
     Examples:
 
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
+        >>> pl.set_key(A, 'id')
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.copy_properties(A, B)
-        >>> em.get_key(B)
+        >>> pl.copy_properties(A, B)
+        >>> pl.get_key(B)
         # 'id'
     """
     # Validate input parameters
@@ -645,11 +645,11 @@ def get_key(data_frame):
         A string value containing the key column name is returned (if present).
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
-        >>> em.get_key(A)
+        >>> pl.set_key(A, 'id')
+        >>> pl.get_key(A)
         # 'id'
 
 
@@ -691,11 +691,11 @@ def set_key(data_frame, key_attribute):
         KeyError: If given `key_attribute` is not in the DataFrame columns.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> import pandas as pd
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'id')
-        >>> em.get_key(A)
+        >>> pl.set_key(A, 'id')
+        >>> pl.get_key(A)
         # 'id'
 
 
@@ -757,15 +757,15 @@ def get_fk_ltable(data_frame):
 
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_fk_ltable(C, 'ltable_id')
-        >>> em.get_fk_ltable(C)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_fk_ltable(C, 'ltable_id')
+        >>> pl.get_fk_ltable(C)
         # 'ltable_id'
 
     See Also:
@@ -793,15 +793,15 @@ def get_fk_rtable(data_frame):
         A Python object, (typically a string) is returned.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_fk_rtable(C, 'rtable_id')
-        >>> em.get_fk_rtable(C)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_fk_rtable(C, 'rtable_id')
+        >>> pl.get_fk_rtable(C)
         # 'rtable_id'
 
 
@@ -840,15 +840,15 @@ def set_fk_ltable(data_frame, fk_ltable):
             DataFrame.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_fk_ltable(C, 'ltable_id')
-        >>> em.get_fk_ltable(C)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_fk_ltable(C, 'ltable_id')
+        >>> pl.get_fk_ltable(C)
         # 'ltable_id'
 
 
@@ -1010,15 +1010,15 @@ def set_fk_rtable(data_frame, foreign_key_rtable):
             DataFrame.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_fk_rtable(C, 'rtable_id')
-        >>> em.get_fk_rtable(C)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_fk_rtable(C, 'rtable_id')
+        >>> pl.get_fk_rtable(C)
         # 'rtable_id'
 
 
@@ -1053,8 +1053,8 @@ def show_properties(data_frame):
 
     Examples:
         >>> A = pd.DataFrame({'key_attr' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'key_attr')
-        >>> em.show_properties(A)
+        >>> pl.set_key(A, 'key_attr')
+        >>> pl.show_properties(A)
         # id: 4572922488  # This will change dynamically
         # key: key_attr
 
@@ -1098,8 +1098,8 @@ def show_properties_for_id(object_id):
 
     Examples:
         >>> A = pd.DataFrame({'key_attr' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
-        >>> em.set_key(A, 'key_attr')
-        >>> em.show_properties_for_id(id(A))
+        >>> pl.set_key(A, 'key_attr')
+        >>> pl.show_properties_for_id(id(A))
         # id: 4572922488  # This will change dynamically
         # key: key_attr
 
@@ -1319,15 +1319,15 @@ def get_ltable(candset):
         table.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_ltable(C, A)
-        >>> id(em.get_ltable(A) == id(A)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_ltable(C, A)
+        >>> id(pl.get_ltable(A) == id(A)
         # True
 
 
@@ -1351,15 +1351,15 @@ def get_rtable(candset):
         table.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_rtable(C, B)
-        >>> id(em.get_rtable(B) == id(B)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_rtable(C, B)
+        >>> id(pl.get_rtable(B) == id(B)
         # True
 
 
@@ -1384,15 +1384,15 @@ def set_ltable(candset, table):
         A Boolean value of True is returned, if the update was successful.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_ltable(C, A)
-        >>> id(em.get_ltable(A) == id(A)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_ltable(C, A)
+        >>> id(pl.get_ltable(A) == id(A)
         # True
 
 
@@ -1417,15 +1417,15 @@ def set_rtable(candset, table):
         A Boolean value of True is returned, if the update was successful.
 
     Examples:
-        >>> import magellan_labeler as em
+        >>> import magellan_labeler as pl
         >>> A = pd.DataFrame({'id' : [1, 2], 'colA':['a', 'b'], 'colB' : [10, 20]})
         >>> B = pd.DataFrame({'id' : [1, 2], 'colA':['c', 'd'], 'colB' : [30, 40]})
-        >>> em.set_key(A, 'id')
-        >>> em.set_key(B, 'id')
+        >>> pl.set_key(A, 'id')
+        >>> pl.set_key(B, 'id')
         >>> C = pd.DataFrame({'id':[1, 2], 'ltable_id':[1, 2], 'rtable_id':[2, 1]})
-        >>> em.set_key(C, 'id')
-        >>> em.set_rtable(C, B)
-        >>> id(em.get_rtable(B) == id(B)
+        >>> pl.set_key(C, 'id')
+        >>> pl.set_rtable(C, B)
+        >>> id(pl.get_rtable(B) == id(B)
         # True
 
 

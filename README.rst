@@ -38,6 +38,7 @@ The required dependencies to build the packages are:
 * pyqt5 (provides tools to build GUIs)
 * jinja2 (provides templating for GUI)
 
+
 Platforms
 =========
 

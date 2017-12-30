@@ -2,9 +2,9 @@ from nose.tools import *
 import unittest
 import os
 from py_labeler.utils.generic_helper import get_install_path
-from py_labeler.io.parsers import read_csv_metadata
+from pandas import read_csv
 
-from py_labeler.labeler.new_labeler import label_table
+from py_labeler.labeler.labeler import label_table
 from py_labeler.utils import ApplicationContext
 from py_labeler.labeler.controller.FilterController import FilterController
 from py_labeler.labeler.controller.StatsController import StatsController
@@ -18,13 +18,13 @@ path_c = os.sep.join([datasets_path, 'C.csv'])
 path_d = os.sep.join([datasets_path, 'labeled_data_demo.csv'])
 
 
-# dummy page === to MainPage in new_labeler.py
+# dummy page === to MainPage in labeler.py
 class DummyPage:
     def setHtml(self, arg):
         pass
 
 
-class NewLabelerTestCases(unittest.TestCase):
+class LabelerTestCases(unittest.TestCase):
     @raises(AssertionError)
     def test_label_table_invalid_df(self):
         col_name = 'label'
@@ -32,12 +32,12 @@ class NewLabelerTestCases(unittest.TestCase):
 
     @raises(AssertionError)
     def test_label_table_invalid_colname(self):
-        A = read_csv_metadata(path_a)
+        A = read_csv(path_a)
         label_table(A, None)
 
     @raises(AssertionError)
     def test_label_invalid_column(self):
-        C = read_csv_metadata(path_a)
+        C = read_csv(path_a)
         col_name = "zipcode"
         label_table(C, col_name)
 
@@ -46,7 +46,7 @@ class NewLabelerTestCases(unittest.TestCase):
 class FilterControllerTestCases(unittest.TestCase):
     def setUp(self):
         # setup Application Context
-        A = read_csv_metadata(path_a)
+        A = read_csv(path_a)
         ApplicationContext.LABEL_COLUMN = "label"
         A[ApplicationContext.LABEL_COLUMN] = "Not-Labeled"
         ApplicationContext.COMPLETE_DATA_FRAME = A
@@ -80,7 +80,7 @@ class StatsControllerTestCases(unittest.TestCase):
     def setUp(self):
         # setup Application Context
         ApplicationContext.LABEL_COLUMN = "label"
-        ApplicationContext.COMPLETE_DATA_FRAME = read_csv_metadata(path_d)
+        ApplicationContext.COMPLETE_DATA_FRAME = read_csv(path_d)
         ApplicationContext.STATS_CONTROLLER = StatsController(None)
 
     def tearDown(self):
@@ -119,7 +119,7 @@ class TuplePairDisplayControllerTestCases(unittest.TestCase):
     def setUp(self):
         # setup Application Context
         ApplicationContext.LABEL_COLUMN = "label"
-        ApplicationContext.COMPLETE_DATA_FRAME = read_csv_metadata(path_d)
+        ApplicationContext.COMPLETE_DATA_FRAME = read_csv(path_d)
         ApplicationContext.current_data_frame = ApplicationContext.COMPLETE_DATA_FRAME
         ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER = TuplePairDisplayController(DummyPage())
         ApplicationContext.current_page_number = 1
@@ -274,7 +274,7 @@ class TuplePairDisplayControllerTestCases(unittest.TestCase):
 class LabelUpdateControllerTestCases(unittest.TestCase):
     def setUp(self):
         ApplicationContext.LABEL_COLUMN = "label"
-        ApplicationContext.COMPLETE_DATA_FRAME = read_csv_metadata(path_d)
+        ApplicationContext.COMPLETE_DATA_FRAME = read_csv(path_d)
         ApplicationContext.COMPLETE_DATA_FRAME.set_index("_id", inplace=True, drop=False)
         ApplicationContext.current_data_frame = ApplicationContext.COMPLETE_DATA_FRAME
         # ApplicationContext.COMPLETE_DATA_FRAME[ApplicationContext.LABEL_COLUMN] = "Not-Labeled"

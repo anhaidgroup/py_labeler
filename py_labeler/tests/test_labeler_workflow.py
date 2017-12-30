@@ -2,7 +2,7 @@ from nose.tools import *
 import unittest
 import os
 from py_labeler.utils.generic_helper import get_install_path
-from py_labeler.io.parsers import read_csv_metadata
+from pandas import read_csv
 
 from py_labeler.utils import ApplicationContext
 from py_labeler.labeler.view import Renderer
@@ -15,7 +15,7 @@ datasets_path = os.sep.join([get_install_path(), 'tests', 'test_datasets'])
 path_c = os.sep.join([datasets_path, 'C1.csv'])
 
 
-# dummy page === to MainPage in new_labeler.py
+# dummy page === to MainPage in labeler.py
 class DummyPage:
     def setHtml(self, arg):
         pass
@@ -24,7 +24,7 @@ class DummyPage:
 class WorkflowTest(unittest.TestCase):
     def setUp(self):
         # setup Application Context
-        C = read_csv_metadata(path_c)
+        C = read_csv(path_c)
         ApplicationContext.LABEL_COLUMN = "label"
         C[ApplicationContext.LABEL_COLUMN] = "Not-Labeled"
         ApplicationContext.TAGS_COLUMN = "tags"
