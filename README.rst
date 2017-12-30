@@ -25,7 +25,7 @@ The package is free, open-source, and BSD-licensed.
 Important links
 ===============
 
-* Project Homepage: https://sites.google.com/site/anhaidgroup/projects/magellan/py_entitymatching
+* Project Homepage: https://sites.google.com/site/anhaidgroup/projects/magellan/py_labeler
 * Code repository: https://github.com/anhaidgroup/py_labeler
 * Issue Tracker: https://github.com/anhaidgroup/py_labeler/issues
 
