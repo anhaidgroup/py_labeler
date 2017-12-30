@@ -69,7 +69,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'py_labeler'
-copyright = u'2016, anhaidgroup'
+copyright = u'2018, anhaidgroup'
 author = u'anhaidgroup'
 
 # The version info for the project you're documenting, acts as replacement for
