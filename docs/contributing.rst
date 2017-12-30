@@ -5,7 +5,7 @@ Contributing to magellan_labeler
 *********************************
 
 .. contents:: Table of contents:
-:local:
+   :local:
 
 This document is adapted from `pandas how to contribute guidelines
 <http://pandas.pydata.org/pandas-docs/stable/contributing.html>`_ for

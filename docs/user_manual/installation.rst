@@ -27,7 +27,8 @@ which will retrieve py_labeler from Anaconda repository then install it::
 The above command will install py_labeler and all of its dependencies
 
 .. note::
-To use the command conda, first you must install Miniconda or Anaconda. For
+
+    To use the command conda, first you must install Miniconda or Anaconda. For
     more details refer to this `conda page <http://conda.pydata.org/docs/using/index.html>`_.
 
 

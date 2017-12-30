@@ -1,5 +1,5 @@
-New tool for labeling
-------------------------------------
+Labeling Tool
+-------------
 
 WARNING: The new labeler is only available in python version 3.5 and above only.
 

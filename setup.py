@@ -36,7 +36,7 @@ if __name__ == "__main__":
         version='0.1.0',
         description='Python GUI for labeling in Entity Matching process.',
         long_description=LONG_DESCRIPTION,
-        url='https://sites.google.com/site/anhaidgroup/projects/magellan/py_entitymatching',
+        url='https://sites.google.com/site/anhaidgroup/projects/magellan/py_labeler',
         author='UW Magellan Team',
         author_email='uwmagellan@gmail.com',
         license='BSD',
