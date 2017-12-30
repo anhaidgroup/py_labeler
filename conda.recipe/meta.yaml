@@ -31,7 +31,7 @@ requirements:
 test:
   # Python imports
   imports:
-    - py_entitymatching
+    - py_labeler
 
   # commands:
     # You can put test commands to be run here.  Use this to test that the
@@ -46,7 +46,7 @@ test:
     # - nose
 
 about:
-  home: https://sites.google.com/site/anhaidgroup/projects/magellan/py_entitymatching
+  home: https://sites.google.com/site/anhaidgroup/projects/magellan/py_labeler
   license: BSD License
   summary: 'Python library for entity matching.'
 

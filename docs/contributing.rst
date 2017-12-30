@@ -26,7 +26,7 @@ in the documentation and thinking 'this can be improved'...you can do something
 about it!
 
 Feel free to ask questions on the `mailing list
-<https://groups.google.com/forum/#!forum/py_entitymatching>`_
+<https://groups.google.com/forum/#!forum/py_labeler>`_
 
 Bug reports and enhancement requests
 ====================================
@@ -51,10 +51,10 @@ Bug reports must:
       ...
       ```
 
-#. Include the full version string of *magellan_labeler*. You can find the version as follows::
+#. Include the full version string of *py_labeler*. You can find the version as follows::
 
-      >>> import magellan_labeler as em
-      >>> em.__version__
+      >>> import py_labeler as pl
+      >>> pl.__version__
 
 #. Explain why the current behavior is wrong/not desired and what you expect instead.
 

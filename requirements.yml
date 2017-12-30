@@ -1,4 +1,4 @@
-name: py_entitymatching_dev
+name: py_labeler_dev
 channels:
   - conda-forge
   - uwmagellan
