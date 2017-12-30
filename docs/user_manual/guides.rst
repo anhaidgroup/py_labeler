@@ -14,3 +14,7 @@ gives a quick tour on installing and using Jupyter notebook.
 Sampling and labeling
 -----------------------
 * Sampling and labeling: `Jupyter notebook <https://nbviewer.jupyter.org/github/anhaidgroup/py_entitymatching/blob/rel_0.2.x/notebooks/guides/step_wise_em_guides/Sampling%20and%20Labeling.ipynb>`_
+
+End-to-End EM Workflows
+------------------------
+* Refer to py_entitymatching for stepwise and end-to-end entity matching workflow guide: `py_entitymatching guides <https://github.com/anhaidgroup/py_entitymatching/blob/master/docs/user_manual/guides.rst>`_
