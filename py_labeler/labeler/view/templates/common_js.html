@@ -104,13 +104,15 @@
 
     function save_data() {
         save_file_name = prompt("Please enter your name", default_file_name);
-        if (!save_file_name.trim() || !valid_file_name.test(save_file_name.trim())) {
-            alert("Save file name can't be empty. valid file names must have only alphabets, numbers, _ , - and spaces")
-        }
-        else {
-            new QWebChannel(qt.webChannelTransport, function (channel) {
-                channel.objects.tuple_pair_display_controller.save_data(save_file_name);
-            });
+        if (save_file_name != null) {
+            if (!save_file_name.trim() || !valid_file_name.test(save_file_name.trim())) {
+                alert("Save file name can't be empty. valid file names must have only alphabets, numbers, _ , - and spaces")
+            }
+            else {
+                new QWebChannel(qt.webChannelTransport, function (channel) {
+                    channel.objects.tuple_pair_display_controller.save_data(save_file_name);
+                });
+            }
         }
 
     }

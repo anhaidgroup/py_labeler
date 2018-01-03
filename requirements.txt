@@ -1,4 +1,4 @@
 pandas
-nose
+six
 Jinja2
 pyqt5
