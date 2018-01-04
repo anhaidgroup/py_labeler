@@ -5,6 +5,7 @@
 <script type="text/javascript">
 
     var save_file_name = "{{ save_file_name}}";
+    var default_file_name = " {{ save_file_name }}"
     var current_page = {{ current_page|int }};
     var valid_file_name = /^[\w\-\/\\. ]+$/;
 
@@ -102,16 +103,16 @@
     }
 
     function save_data() {
-        save_file_name = prompt("Please enter your name", save_file_name);
-        if (save_file_name == null || !save_file_name.trim())
-            alert("Save file name can't be empty");
-        if (save_file_name == null || !save_file_name.trim() || !valid_file_name.test(save_file_name.trim())) {
-            alert("Valid file names must have only alphabets, numbers, _ , - and spaces")
-        }
-        else {
-            new QWebChannel(qt.webChannelTransport, function (channel) {
-                channel.objects.tuple_pair_display_controller.save_data(save_file_name);
-            });
+        save_file_name = prompt("Please enter your name", default_file_name);
+        if (save_file_name != null) {
+            if (!save_file_name.trim() || !valid_file_name.test(save_file_name.trim())) {
+                alert("Save file name can't be empty. valid file names must have only alphabets, numbers, _ , - and spaces")
+            }
+            else {
+                new QWebChannel(qt.webChannelTransport, function (channel) {
+                    channel.objects.tuple_pair_display_controller.save_data(save_file_name);
+                });
+            }
         }
 
     }
