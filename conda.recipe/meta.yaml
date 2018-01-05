@@ -1,6 +1,6 @@
 package:
   name: py_labeler
-  version: "0.2.0"
+  version: "0.1.0"
 
 source:
     git_url: ../
@@ -10,23 +10,16 @@ requirements:
   build:
     - python
     - setuptools
-    - py_stringsimjoin
-    - cloudpickle
-    - pyparsing
-    - scikit-learn
-    - pyqt
-    - pandas-profiling
-#    - xgboost
+    - pandas
+    - six
+    - jinja2
 
   run:
     - python
-    - py_stringsimjoin
-    - cloudpickle
-    - pyparsing
-    - scikit-learn
-    - pyqt
-    - pandas-profiling
-#    - xgboost
+    - setuptools
+    - pandas
+    - six
+    - jinja2
 
 test:
   # Python imports
@@ -34,7 +27,7 @@ test:
     - py_labeler
 
   # commands:
-    # You can put test commands to be run here.  Use this to test that the
+    # You can putls test commands to be run here.  Use this to test that the
     # entry points work.
 
 
