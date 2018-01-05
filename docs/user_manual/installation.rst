@@ -28,6 +28,18 @@ command::
 
 The above command will install py_labeler and all of its dependencies.
 
+Note about working with conda environments
+------------------------------------------
+We recommened working with a virtual environment created using the 
+
+    virtualenv
+
+command.
+
+If you are working with an environment created using conda note that conda does not provide the latest version of PyQt5 which py_labeler needs.
+An already installed package such as jupyter which uses conda's version of PyQt5 may cause conflict with the version py_labeler needs.
+
+
 Installing from Source Distribution
 -----------------------------------
 Clone the py_labeler package from GitHub
