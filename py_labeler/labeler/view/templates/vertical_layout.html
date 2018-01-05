@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Magellan Labeller</title>
+    <title>Py Labeller</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -19,7 +19,7 @@
             {% for tuple_pair in tuple_pairs %}
                 <div class="tuple-pair-div">
                     <div>
-                        <table class="{{tuple_pair[label_column_name]+' table table-bordered' }}" id={{tuple_pair['_id'] }}>
+                        <table class="{{ tuple_pair[label_column_name]+' table table-bordered' }}" id={{ tuple_pair['_id'] }}>
                             {% for attribute in attributes %}
                                 <tr>
                                     <td>
