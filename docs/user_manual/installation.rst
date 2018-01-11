@@ -28,9 +28,11 @@ command::
 
 The above command will install py_labeler and all of its dependencies.
 
-Note about working with conda environments
+Note about working with conda/virtual environments
 ------------------------------------------
-We recommened working with a virtual environment created using the 
+Due to dependencies, py_labeler works only with virtual environments created with virtualenv or a pure python 3.5+ environment.
+
+We recommend working with a virtual environment created using the
 
     virtualenv
 
