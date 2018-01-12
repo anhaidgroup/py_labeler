@@ -13,7 +13,7 @@ gives a quick tour on installing and using Jupyter notebook.
 
 Sampling and labeling
 ---------------------
-* Sampling and labeling: `Jupyter notebook <https://nbviewer.jupyter.org/github/anhaidgroup/py_labeler/blob/master/notebooks/Sampling%20and%20Labeling.ipynb>`_
+* Sampling and labeling: `Jupyter notebook <https://nbviewer.jupyter.org/github/anhaidgroup/py_labeler/blob/rel_0.1.x/notebooks/Labeling.ipynb>`_
 
 End-to-End EM Workflows
 -----------------------
