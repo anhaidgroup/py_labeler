@@ -1,3 +1,4 @@
 What is New?
 ============
-This is the first version 0.1.0 of py_labeler.
+* Updated the documentation 
+* Fixed bugs related to UI (Issue #3).
