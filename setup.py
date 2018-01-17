@@ -61,7 +61,6 @@ if __name__ == "__main__":
         packages=packages,
         install_requires=[
             'pandas',
-            'nose',
             'Jinja2',
             'pyqt5'
         ],
