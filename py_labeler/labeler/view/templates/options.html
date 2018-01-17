@@ -24,12 +24,13 @@
                 alert("Enter name for Tags column");
                 valid = false;
             }
-            if (valid) {
+            if (valid) {                
                 new QWebChannel(qt.webChannelTransport, function (channel) {
                     channel.objects.bridge.respond(comments_col, tags_col);
                 });
+                //This delay prevents intermittent errors in Windows.
+                for(var i=0;i<5000000;i++){}
             }
-
         }
     </script>
 </head>
