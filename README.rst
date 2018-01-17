@@ -13,7 +13,7 @@ practice involves many steps than just blocking and matching. While performing E
 users often execute many steps, e.g. exploring, cleaning, debugging, sampling,
 estimating accuracy, etc. Current EM systems however do not cover the entire
 EM pipeline, providing support only for a few steps (e.g., blocking, matching), while
-ignoring less well-known yet equally critical steps (e.g., debgging, sampling).
+ignoring less well-known yet equally critical steps (e.g., debugging, sampling).
 py_entitymatching seeks to support all the steps involved in EM pipeline.
 
 At the matching step, users would want to check and verify candidate pairs as matches
@@ -25,7 +25,7 @@ The package is free, open-source, and BSD-licensed.
 Important links
 ===============
 
-* Project Homepage: https://sites.google.com/site/anhaidgroup/projects/magellan/py_labeler
+* Project Homepage: https://sites.google.com/site/anhaidgroup/projects/magellan/py_labeler_v0_1_1
 * Code repository: https://github.com/anhaidgroup/py_labeler
 * Issue Tracker: https://github.com/anhaidgroup/py_labeler/issues
 
