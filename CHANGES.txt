@@ -1,3 +1,7 @@
+v0.1.1 - 
+* Updated the documentation 
+* Fixed bugs related to UI (Issue #3).
+
 v0.1.0 -
   * Initial release.
   * Contains commands to launch GUI for labeling candidate pairs for matching two tables.
