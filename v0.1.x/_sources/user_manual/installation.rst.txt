@@ -17,19 +17,6 @@ Dependencies
 * jinja2 (provides templating for GUI)
 * numpy (required by pandas)
 
-Installing Using conda
-----------------------
-The easiest and recommended way to install the package is to use the command conda,
-which will retrieve py_labeler from Anaconda repository then install it::
-
-    conda install -c uwmagellan py_labeler
-
-The above command will install py_labeler and all of its dependencies
-
-.. note::
-To use the command conda, first you must install Miniconda or Anaconda. For
-    more details refer to this `conda page <http://conda.pydata.org/docs/using/index.html>`_.
-
 
 Installing Using pip
 --------------------
@@ -40,6 +27,20 @@ command::
 
 
 The above command will install py_labeler and all of its dependencies.
+
+Note about working with conda/virtual environments
+--------------------------------------------------
+
+Due to dependencies, py_labeler works only with virtual environments created with virtualenv or a pure python 3.5+ environment.
+
+We recommend working with a virtual environment created using the
+
+    virtualenv
+
+command.
+
+If you are working with an environment created using conda note that conda does not provide the latest version of PyQt5 which py_labeler needs.
+An already installed package such as jupyter which uses conda's version of PyQt5 may cause conflict with the version py_labeler needs.
 
 
 Installing from Source Distribution

@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>py_labeler 0.1.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="None" href="index.html#document-index"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html#document-index" class="icon icon-home"> py_labeler
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.1
+              </div>
+            
+          
+
+          
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><p class="caption"><span class="caption-text">User Manual</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-user_manual/whatisnew">What is New?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-user_manual/installation">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#platforms">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installing-using-pip">Installing Using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#note-about-working-with-conda-virtual-environments">Note about working with conda/virtual environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#installing-from-source-distribution">Installing from Source Distribution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-user_manual/labeling">Labeling Tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-user_manual/guides">Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#a-quick-tour-of-jupyter-notebook">A Quick Tour of Jupyter Notebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#sampling-and-labeling">Sampling and labeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#end-to-end-em-workflows">End-to-End EM Workflows</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-user_manual/api/labeling">Labeling</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html#document-index">py_labeler</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html#document-index">Docs</a> &raquo;</li>
+        
+      <li>py_labeler 0.1.1 documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-manual-for-py-labeler">
+<h1>User Manual for py_labeler<a class="headerlink" href="#user-manual-for-py-labeler" title="Permalink to this headline">¶</a></h1>
+<p>This document explains how to install and use the package.
+To contribute to the package, see the
+<a class="reference external" href="https://sites.google.com/site/anhaidgroup/projects/magellan/py_labeler">project website</a>,
+section “For Contributors and Developers”.</p>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<span id="document-user_manual/whatisnew"></span><div class="section" id="what-is-new">
+<h2>What is New?<a class="headerlink" href="#what-is-new" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Updated the documentation</li>
+<li>Fixed bugs related to UI (Issue #3).</li>
+</ul>
+</div>
+<span id="document-user_manual/installation"></span><div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Python 3.5+</li>
+</ul>
+</div>
+<div class="section" id="platforms">
+<h3>Platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h3>
+<p>py_labeler has been tested on Linux (Ubuntu 15, 16, 17), OS X (Sierra), and Windows 10.</p>
+</div>
+<div class="section" id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>pandas (provides data structures to store and manage tables)</li>
+<li>pyqt5 (provides tools to build GUIs)</li>
+<li>jinja2 (provides templating for GUI)</li>
+<li>numpy (required by pandas)</li>
+</ul>
+</div>
+<div class="section" id="installing-using-pip">
+<h3>Installing Using pip<a class="headerlink" href="#installing-using-pip" title="Permalink to this headline">¶</a></h3>
+<p>To install the package using pip, execute the following
+command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">py_labeler</span>
+</pre></div>
+</div>
+<p>The above command will install py_labeler and all of its dependencies.</p>
+</div>
+<div class="section" id="note-about-working-with-conda-virtual-environments">
+<h3>Note about working with conda/virtual environments<a class="headerlink" href="#note-about-working-with-conda-virtual-environments" title="Permalink to this headline">¶</a></h3>
+<p>Due to dependencies, py_labeler works only with virtual environments created with virtualenv or a pure python 3.5+ environment.</p>
+<p>We recommend working with a virtual environment created using the</p>
+<blockquote>
+<div>virtualenv</div></blockquote>
+<p>command.</p>
+<p>If you are working with an environment created using conda note that conda does not provide the latest version of PyQt5 which py_labeler needs.
+An already installed package such as jupyter which uses conda’s version of PyQt5 may cause conflict with the version py_labeler needs.</p>
+</div>
+<div class="section" id="installing-from-source-distribution">
+<h3>Installing from Source Distribution<a class="headerlink" href="#installing-from-source-distribution" title="Permalink to this headline">¶</a></h3>
+<p>Clone the py_labeler package from GitHub</p>
+<blockquote>
+<div>git clone <a class="reference external" href="https://github.com/anhaidgroup/py_labeler.git">https://github.com/anhaidgroup/py_labeler.git</a></div></blockquote>
+<p>Then,  execute the following commands from the package root:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>which installs py_labeler into the default Python directory on your machine. If you do not have installation permission for that directory then you can install the package in your
+home directory as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span>
+</pre></div>
+</div>
+<p>For more information see this StackOverflow <a class="reference external" href="http://stackoverflow.com/questions/14179941/how-to-install-python-packages-without-root-privileges">link</a>.</p>
+<p>The above commands will install py_labeler and all of its
+dependencies.</p>
+</div>
+</div>
+<span id="document-user_manual/labeling"></span><div class="section" id="labeling-tool">
+<h2>Labeling Tool<a class="headerlink" href="#labeling-tool" title="Permalink to this headline">¶</a></h2>
+<p>The command <cite>label_table</cite> is used to label the samples.
+An example use is shown below:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">py_labeler</span> <span class="k">as</span> <span class="nn">pl</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">G</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">label_table</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">label_column_name</span><span class="o">=</span><span class="s1">&#39;gold_labels&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The new labeler will take an input table <cite>S</cite> with pairs of tuples and create
+a copy table <cite>G</cite> with additional label, comment, and tags columns. The command
+will open a GUI that allows the user to label each pair of tuples with with
+either ‘Yes’, ‘No’, or ‘Not-Sure’.</p>
+<p>Please refer to the API reference of <a class="reference internal" href="index.html#py_labeler.label_table" title="py_labeler.label_table"><code class="xref py py-meth docutils literal"><span class="pre">label_table()</span></code></a>
+for more details</p>
+</div>
+<span id="document-user_manual/guides"></span><div class="section" id="guides">
+<h2>Guides<a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h2>
+<p>The goal of this page  is to give you some concrete examples for using py_labeler.
+These are examples with sample data that is already bundled along with the package. The
+examples are in the form of Jupyter notebooks.</p>
+<div class="section" id="a-quick-tour-of-jupyter-notebook">
+<h3>A Quick Tour of Jupyter Notebook<a class="headerlink" href="#a-quick-tour-of-jupyter-notebook" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html">This tutorial</a>
+gives a quick tour on installing and using Jupyter notebook.</p>
+</div>
+<div class="section" id="sampling-and-labeling">
+<h3>Sampling and labeling<a class="headerlink" href="#sampling-and-labeling" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Sampling and labeling: <a class="reference external" href="https://nbviewer.jupyter.org/github/anhaidgroup/py_labeler/blob/rel_0.1.x/notebooks/Labeling.ipynb">Jupyter notebook</a></li>
+</ul>
+</div>
+<div class="section" id="end-to-end-em-workflows">
+<h3>End-to-End EM Workflows<a class="headerlink" href="#end-to-end-em-workflows" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Refer to py_entitymatching for stepwise and end-to-end entity matching workflow guide: <a class="reference external" href="https://github.com/anhaidgroup/py_entitymatching/blob/master/docs/user_manual/guides.rst">py_entitymatching guides</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+<span id="document-user_manual/api/labeling"></span><div class="section" id="labeling">
+<h2>Labeling<a class="headerlink" href="#labeling" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="py_labeler.label_table">
+<code class="descclassname">py_labeler.</code><code class="descname">label_table</code><span class="sig-paren">(</span><em>df</em>, <em>label_column_name</em><span class="sig-paren">)</span><a class="headerlink" href="#py_labeler.label_table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to be invoked to launch the Labeler application.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>df</strong> (<em>Dataframe</em>) – A Dataframe containing the tuple pairs that are possible matches</li>
+<li><strong>label_column_name</strong> (<em>str</em>) – Name of column to be used to save tuple pair labels.
+This column will be created if it doesn’t already exist.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The updated Dataframe with the label column, comments, and tags</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><code class="xref py py-exc docutils literal"><span class="pre">AssertionError</span></code> – If <cite>table</cite> is not of type pandas DataFrame.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">AssertionError</span></code> – If <cite>label_column_name</cite> is not of type string.</li>
+<li><code class="xref py py-exc docutils literal"><span class="pre">ImportError</span></code> – If python version is less than 3.5</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, anhaidgroup.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
