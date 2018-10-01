@@ -217,10 +217,10 @@ def label_table(df, label_column_name):
 
     view = QWebEngineView()
     main_page = MainPage()
+    view.setPage(main_page)
     # main_page.profile().clearHttpCache()
     main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
     main_page.setHtml(Renderer.render_options_page(tags_col, comments_col))
-    view.setPage(main_page)
 
     # create channel of communication between HTML & Py
     channel = QWebChannel(main_page)
