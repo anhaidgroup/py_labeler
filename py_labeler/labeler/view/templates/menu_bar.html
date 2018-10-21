@@ -49,16 +49,15 @@
                     </div>
                 {% endfor %}
 
+                <button data-toggle="tooltip" title="Display tuple pairs with all attributes" type="button" class="btn btn-default"
+                        id="clear-attribute-display-button" onclick=filter_attributes(true)>Clear filter
+                </button>
+                <button data-toggle="tooltip" title="Display tuple pairs with selected attributes" type="button" class="btn btn-default"
+                        id="attribute-display-button" onclick=filter_attributes()>Change displayed attributes
+
+
+                </button>
             </div>
-
-            <button data-toggle="tooltip" title="Display tuple pairs with all attributes" type="button" class="btn btn-default"
-                    id="clear-attribute-display-button" onclick=filter_attributes(true)>Clear filter
-            </button>
-            <button data-toggle="tooltip" title="Display tuple pairs with selected attributes" type="button" class="btn btn-default"
-                    id="attribute-display-button" onclick=filter_attributes()>Change displayed attributes
-
-
-            </button>
         </div>
 
 
