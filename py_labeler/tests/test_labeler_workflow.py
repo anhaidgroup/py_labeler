@@ -63,8 +63,7 @@ class WorkflowTest(unittest.TestCase):
             self.assertEqual(ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(ApplicationContext.COMPLETE_DATA_FRAME,
                                                                                            ApplicationContext.LABEL_COLUMN), 1)
 
-            self.assertEqual(ApplicationContext.COMPLETE_DATA_FRAME.loc[ApplicationContext.COMPLETE_DATA_FRAME['_id']
-                                                                        == int(4), ApplicationContext.LABEL_COLUMN].values[0],
+            self.assertEqual(ApplicationContext.COMPLETE_DATA_FRAME.loc[int(4), ApplicationContext.LABEL_COLUMN],
                              ApplicationContext.MATCH)
 
             ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.set_current_layout(ApplicationContext.VALID_LAYOUTS[2])
@@ -100,8 +99,7 @@ class WorkflowTest(unittest.TestCase):
             self.assertEqual(ApplicationContext.STATS_CONTROLLER.count_matched_tuple_pairs(ApplicationContext.COMPLETE_DATA_FRAME,
                                                                                            ApplicationContext.LABEL_COLUMN), 1)
 
-            self.assertEqual(ApplicationContext.COMPLETE_DATA_FRAME.loc[ApplicationContext.COMPLETE_DATA_FRAME['_id']
-                                                                        == 4, ApplicationContext.LABEL_COLUMN].values[0],
+            self.assertEqual(ApplicationContext.COMPLETE_DATA_FRAME.loc[4, ApplicationContext.LABEL_COLUMN],
                              ApplicationContext.MATCH)
 
             ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.change_page(2)

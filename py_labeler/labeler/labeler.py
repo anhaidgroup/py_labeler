@@ -203,6 +203,10 @@ def label_table(df, label_column_name):
         if l_att in r_attrs:
             attributes.append(l_att)
 
+    if not '_id' in df.columns:
+        df.insert(0, column='_id', value=range(len(df.index)))
+    df.set_index(df['_id'], inplace=True)
+
     ApplicationContext.current_attributes = attributes
     ApplicationContext.ALL_ATTRIBUTES = ApplicationContext.current_attributes
 
