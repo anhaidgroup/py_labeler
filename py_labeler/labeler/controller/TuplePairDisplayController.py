@@ -210,7 +210,11 @@ class TuplePairDisplayController(QObject):
 
         if os.path.isdir(ApplicationContext.SAVEPATH + "/".join(path[:len(path) - 1])):
             ApplicationContext.save_file_name = save_file_name
-            ApplicationContext.COMPLETE_DATA_FRAME.to_csv(ApplicationContext.SAVEPATH + save_file_name,index = False)
+            df2 = ApplicationContext.COMPLETE_DATA_FRAME.copy(deep=True)
+            if ' _id' in df2.columns:
+                df2 = df2.drop('_id', 1)
+                df2.rename(columns={' _id':'_id'}, inplace=True)
+            df2.to_csv(ApplicationContext.SAVEPATH + save_file_name,index = False)
         else:
             return
 
