@@ -4,11 +4,13 @@ Installation
 
 Requirements
 ------------
-* Python 3.5+
+* Minimum Python 3.5+, Recommended Python 3.5.2+
 
 Platforms
 ---------
 py_labeler has been tested on Linux (Ubuntu 15, 16, 17), OS X (Sierra), and Windows 10.
+
+Please ensure that your OS is 64-bit.
 
 Dependencies
 ------------
@@ -61,3 +63,18 @@ For more information see this StackOverflow `link <http://stackoverflow.com/ques
 
 The above commands will install py_labeler and all of its
 dependencies.
+
+Troubleshooting
+-----------------------------------
+
+- **ModuleNotFoundError: No module named PyQt5.sip**
+
+Because the sip is installed separately, there may be some issues during the installation. Try to uninstall both pyqt5 and pyqt5-tools and then reinstall them.
+
+- **ModuleNotFoundError: No module named 'PyQt5.QtWebEngineWidgets'**
+
+PyQt5 for 32-bit OS does not contain the WebEngine modules. Please make sure both your OS and Python are 64-bit.
+
+- **The program works but the display is strange**
+
+Please check your network connection. Some templates requires external script files from the Internet.

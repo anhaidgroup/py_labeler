@@ -11,14 +11,14 @@ env = Environment(
 
 def render_options_page(tags_col, comments_col):
     """ Renders page asking user to enter/validate column names for tags and comments.
-    
+
     Args:
         tags_col (str): Suggestion for the name of the tags column.
         comments_col (str): Suggestion for the name of the comments column.
-        
+
     Returns:
         Options page HTML (str).
-    
+
     Raises:
     """
     options_page = env.get_template('options.html')
@@ -30,10 +30,10 @@ def render_tuple_pair(tuple_pair):
 
     Args:
         tuple_pair : Single tuple pair to be rendered.
-        
+
     Returns:
         Tuple pair HTML (str).
-        
+
     Raises:
     """
     tuple_pair_template = env.get_template('tuple_pair.html');
@@ -46,11 +46,11 @@ def compute_page_numbers(current_page):
 
     Args:
         current_page (int): Page number of the current page being displayed.
-        
+
     Returns:
-        [start_page, end_page] (int, int): Starting page number and ending page number to be 
+        [start_page, end_page] (int, int): Starting page number and ending page number to be
         displayed in pagination footer.
-        
+
     Raises:
     """
     if current_page - ApplicationContext.PAGE_DISPLAY_COUNT / 2 < 0:
@@ -71,9 +71,9 @@ def render_main_page(current_page_tuple_pairs, match_count, not_match_count, not
         not_match_count (int):
         not_sure_count (int):
         unlabeled_count (int):
-        
+
     Returns: Complete window HTML (str)
-    
+
     Raises:
     """
     template = env.get_template('horizontal_layout.html')

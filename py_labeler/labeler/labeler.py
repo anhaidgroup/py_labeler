@@ -188,6 +188,8 @@ def label_table(df, label_column_name):
         df[label_column_name] = "Not-Labeled"
     ApplicationContext.LABEL_COLUMN = label_column_name
 
+    df.rename(columns=lambda x: x.strip(),inplace=True)
+
     # Get list of left table and right table attributes
     attrs = list(df.columns.values)
     r_attrs = []
@@ -203,6 +205,13 @@ def label_table(df, label_column_name):
         if l_att in r_attrs:
             attributes.append(l_att)
 
+    if not '_id' in df.columns:
+        df.insert(0, column=' _id', value=range(len(df.index)))
+    elif any(df['_id'].duplicated()) or df.isnull().values.any():
+        df.rename(columns={'_id':' _id'}, inplace=True)
+        df.insert(0, column='_id', value=range(len(df.index)))
+    df.set_index(df['_id'], inplace=True)
+
     ApplicationContext.current_attributes = attributes
     ApplicationContext.ALL_ATTRIBUTES = ApplicationContext.current_attributes
 
@@ -217,10 +226,10 @@ def label_table(df, label_column_name):
 
     view = QWebEngineView()
     main_page = MainPage()
+    view.setPage(main_page)
     # main_page.profile().clearHttpCache()
     main_page.profile().scripts().insert(client_script())  # insert QT web channel JS to allow for communication
     main_page.setHtml(Renderer.render_options_page(tags_col, comments_col))
-    view.setPage(main_page)
 
     # create channel of communication between HTML & Py
     channel = QWebChannel(main_page)

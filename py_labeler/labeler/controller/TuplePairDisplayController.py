@@ -27,12 +27,12 @@ class TuplePairDisplayController(QObject):
     def set_per_page_count(self, count_per_page):
         """ Sets the number of tuple pairs to be shown per page.
 
-        Args: 
+        Args:
             count_per_page (int): per page tuple pair count value.
-            
+
         Returns:
             None.
-            
+
         Raises:
             ValueError if count_per_page is negative
         """
@@ -43,13 +43,13 @@ class TuplePairDisplayController(QObject):
 
     def set_current_page(self, current_page):
         """ Sets the current page of tuple pairs being displayed.
-        
+
         Args:
             current_page (int): Current page number.
-            
+
         Returns:
             None.
-            
+
         Raises:
             ValueError if current page is negative
         """
@@ -59,13 +59,13 @@ class TuplePairDisplayController(QObject):
 
     def set_current_layout(self, layout):
         """ Sets the current tuple pair display layout.
-        
+
         Args:
             layout (str): Layout value to change to.
-             
+
         Returns:
             None.
-            
+
         Raises:
             ValueError if parameter is not in list of valid layouts
         """
@@ -77,13 +77,13 @@ class TuplePairDisplayController(QObject):
 
     def get_tuples_for_page(self, page_number):
         """ Gets tuple pairs for a given page number.
-        
+
         Args:
             page_number (int): page number of tuple pairs to get.
-            
+
         Returns:
             Tuple Pairs (DataFrame).
-            
+
         Raises:
             ValueError if page number is not positive
         """
@@ -95,41 +95,41 @@ class TuplePairDisplayController(QObject):
 
     def get_current_page(self):
         """ Gets current page number being displayed.
-        
+
         Args:
             None.
-            
+
         Returns:
             Page number (int).
-            
-        Raises:         
+
+        Raises:
         """
         return ApplicationContext.current_page_number
 
     def get_per_page_count(self):
         """ Gets number of tuple pairs being displayed
-        
+
         Args:
             None.
-            
+
         Returns:
             Tuple pair count per page (int).
-            
-        Raises:         
+
+        Raises:
         """
         return ApplicationContext.tuple_pair_count_per_page
 
     def get_number_of_pages(self, data_frame=ApplicationContext.current_data_frame):
         """ Gets number of pages of tuple pairs
-        
+
         Args:
-            data_frame (DataFrame): DataFrame whose pages are counted. 
-            Default Value is the application's current data frame with filters applied. 
-            
+            data_frame (DataFrame): DataFrame whose pages are counted.
+            Default Value is the application's current data frame with filters applied.
+
         Returns:
             Number of pages (int): Number of pages in DataFrame.
-            
-        Raises:         
+
+        Raises:
             ValueError if data_frame is None
         """
         if data_frame is None:
@@ -140,13 +140,13 @@ class TuplePairDisplayController(QObject):
     @pyqtSlot(int)
     def change_page(self, page_number):
         """ Changes the page being displayed and renders it.
-        
+
         Args:
             page_number (int): Page number to change the display to.
-            
+
         Returns:
             None.
-            
+
         Raises:
             ValueError if current page is negative
         """
@@ -196,10 +196,10 @@ class TuplePairDisplayController(QObject):
 
         Args:
             save_file_name (str): Name of CSV file to save tuple pairs in.
-            
+
         Returns:
             None
-            
+
         Raises:
 
         """
@@ -210,20 +210,24 @@ class TuplePairDisplayController(QObject):
 
         if os.path.isdir(ApplicationContext.SAVEPATH + "/".join(path[:len(path) - 1])):
             ApplicationContext.save_file_name = save_file_name
-            ApplicationContext.COMPLETE_DATA_FRAME.to_csv(ApplicationContext.SAVEPATH + save_file_name)
+            df2 = ApplicationContext.COMPLETE_DATA_FRAME.copy(deep=True)
+            if ' _id' in df2.columns:
+                df2 = df2.drop('_id', 1)
+                df2.rename(columns={' _id':'_id'}, inplace=True)
+            df2.to_csv(ApplicationContext.SAVEPATH + save_file_name,index = False)
         else:
             return
 
     @pyqtSlot(int)
     def change_token_count(self, token_count):
         """ Changes the number of letters displayed per attribute of a tuple pair.
-        
+
         Args:
             token_count (int): Number
-        
+
         Returns:
             None.
-        
+
         Raises:
             ValueError if new token_count is not positive
         """
