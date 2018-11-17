@@ -84,13 +84,13 @@ def render_main_page(current_page_tuple_pairs, match_count, not_match_count, not
     elif ApplicationContext.current_layout == "single":
         template = env.get_template('single_layout.html')
 
-    [start_page_number, end_page_number] = compute_page_numbers(ApplicationContext.current_page_number)
+    # [start_page_number, end_page_number] = compute_page_numbers(ApplicationContext.current_page_number)
     return template.render(layout=ApplicationContext.current_layout, tuple_pairs=current_page_tuple_pairs.to_dict(orient='records'),
                            attributes=ApplicationContext.current_attributes,
                            count_per_page=ApplicationContext.tuple_pair_count_per_page,
                            number_of_pages=ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_number_of_pages(
                                ApplicationContext.current_data_frame),
-                           start_page_number=start_page_number, end_page_number=ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_number_of_pages(
+                           start_page_number=0, end_page_number=ApplicationContext.TUPLE_PAIR_DISPLAY_CONTROLLER.get_number_of_pages(
             ApplicationContext.current_data_frame),
                            current_page=ApplicationContext.current_page_number, match_count=match_count,
                            not_match_count=not_match_count, not_sure_count=not_sure_count,

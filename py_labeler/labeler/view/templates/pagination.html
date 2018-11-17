@@ -8,19 +8,23 @@
             <li><a href="#" onclick="change_page({{ current_page-2 }})"> < prev </a></li>
         {% endif %}
         {% for i in range(start_page_number, end_page_number) %}
-            {% if current_page == i %}
-                <li class="active"><a href="#" onclick="change_page({{ i-1 }})">{{ i }}</a></li>
-            {% else %}
-                <li><a href="#" onclick="change_page({{ i-1 }})">{{ i }}</a></li>
+            {% if ((i > current_page - 5) and (i < current_page + 5)) or
+                ((i < 10) and (current_page < 5)) or
+                ((i > number_of_pages - 9) and (current_page > number_of_pages - 5))  %}
+                {% if current_page == i %}
+                    <li class="active"><a href="#" onclick="change_page({{ i-1 }})">{{ i }}</a></li>
+                {% else %}
+                    <li><a href="#" onclick="change_page({{ i-1 }})">{{ i }}</a></li>
+                {% endif %}
             {% endif %}
         {% endfor %}
-        {% if current_page < number_of_pages-3 %}
+        {% if current_page < number_of_pages-4 %}
             <li><a href="#" onclick="change_page({{ current_page }})"> next > </a></li>
         {% endif %}
     </ul>
 
     <div id="pagination_info_text">
-        <p>showing 1 page out of {{ number_of_pages }}</p>
+        <p>showing 1 page out of {{ number_of_pages }} </p>
     </div>
 
 </div>
